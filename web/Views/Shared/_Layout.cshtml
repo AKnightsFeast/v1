@@ -1,0 +1,156 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" http-equiv="X-UA-Compatible" content="IE=edge" />
+        @*<meta name="viewport" content="width=device-width, initial-scale=1.0" />*@
+        <title>A Knight's Feast Personal Chef Service - @ViewBag.Title</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,400|Macondo' rel='stylesheet' type='text/css'>
+        @Styles.Render("~/Content/bootstrap")
+        @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @RenderSection("Head", required: false)
+        @Html.Partial("_html5shiv")
+    </head>
+
+    <body data-spy="scroll" data-target=".leftnav">
+        <!-- Content -->
+        <div id="content">
+            <!-- Site Navigation -->
+            <div id="sitenavigation">@Html.Partial("_SiteNavBars")</div>
+
+            @RenderBody()
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <a href="http://www.facebook.com/aknightsfeast" target="_blank"><i class="fa fa-facebook-square"></i></a>
+            <a href="http://www.twitter.com/chefknight" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="http://www.lacademie.com/" id="lacadamie" target="_blank"></a>
+            <a href="http://www.personalchef.com/" id="appca" target="_blank"><i></i></a>
+            <a href="https://www.servsafe.com/" id="servsafe" target="_blank"><i></i></a>
+            <div>703.863.3068</div>
+       </div>
+
+        <!-- Sign In Modal -->
+        <div class="modal fade" id="signin" data-replace="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Sign In</h4>
+            </div>
+            @* ------------------ Use this if you want to login via ajax (still not complete) ------------------
+            using (Ajax.BeginForm("SignIn", "Account", null, new AjaxOptions() { HttpMethod = "post", OnSuccess = "GetResponse" }, new { id = "signinform" }))
+            *@
+            @using (Html.BeginForm("SignIn", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                        @Html.TextBox("username", string.Empty, new { @class = "form-control", placeholder = "Email address" })
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+                        @Html.Password("password", string.Empty, new { @class = "form-control", placeholder = "Password" })
+                    </div>
+                    <div class="input-group">
+                        @Html.CheckBox("persist")
+                        @Html.Label("persist", "Remember Me", new { @class = "checkbox" })
+                    </div>
+                    @*
+                    <div>
+                        Use another <a href="#signinext" data-toggle="modal">service</a> to sign in, or @Html.ActionLink("create an account", "Register", "Account").
+                    </div>
+                    *@
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="Sign in">
+                </div>
+            }
+        </div>
+
+        <!-- Sign In External Modal -->
+        <div class="modal fade" id="signinext" data-replace="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Log in using another service</h4>
+            </div>
+            <div class="modal-body">
+                @Html.Action("ExternalLoginsList", "Account")
+            </div>
+        </div>
+
+        <!-- Gift Certificate Modal -->
+        <div class="modal fade" id="gift" data-keyboard="false" data-backdrop="static">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Gift Certificates Are Available!</h4>
+            </div>
+            <div class="modal-body">
+                Gift certificates are available upon request. Consider purchasing one for:
+                <ul>
+                    <li><i class="fa fa-leaf"></i> a Christmas gift</li>
+	                <li><i class="fa fa-leaf"></i> a get well gift</li>
+	                <li><i class="fa fa-leaf"></i> baby showers</li>
+	                <li><i class="fa fa-leaf"></i> birthdays</li>
+	                <li><i class="fa fa-leaf"></i> other special occassions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Contact Modal -->
+        <div class="modal fade" id="contact" data-replace="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Contact Chef Laura!</h4>
+            </div>
+            @using (Ajax.BeginForm("", "Contact", null, new AjaxOptions() { HttpMethod = "post", OnSuccess = "GetResponse" }, new { id = "contactform" }))
+            {
+                <div class="modal-body">
+                    @Html.AntiForgeryToken()
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+                        @Html.TextBox("name", string.Empty, new { @class = "form-control", placeholder = "Name" })
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+                        @Html.TextBox("email", string.Empty, new { @class = "form-control", placeholder = "Email address" })
+                    </div>
+                    <div class="input-group">
+                        @Html.TextArea("message", string.Empty, new { @class = "form-control", placeholder = "Message" })
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="submit" class="btn btn-primary" value="Send">
+                </div>
+            }
+        </div>
+
+        <!-- Ajax Response Modal -->
+        <div class="modal fade" id="response" data-replace="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body"></div>
+        </div>
+
+        <!-- Wait Modal -->
+        <div class="modal fade" id="wait" data-replace="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-body"></div>
+        </div>
+
+        @RenderSection("Modals", required: false)
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @Scripts.Render("~/bundles/site")
+        @RenderSection("Scripts", required: false)
+        <script type="text/javascript">
+            $(function () {
+                $("#signinform").submit(function () { ShowWaitModal("Signing in..."); });
+                $("#contactform").submit(function () { ShowWaitModal("Sending message to Chef Laura..."); });
+            });
+        </script>
+    </body>
+</html>

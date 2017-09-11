@@ -1,0 +1,87 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Policies";
+}
+
+@section Head
+{
+    @Styles.Render("~/Content/Policies/css")
+}
+
+<div id="banner">
+    <div id="chefquote">
+        <i class="fa fa-quote-left fa-2x pull-left dblquote"></i>
+        <div>
+            <div class="quote">A personal chef service is for anyone looking for a few nights off from worrying about what's for dinner.</div>
+            <div class="speaker"><i class="fa fa-user"></i> Chef Laura</div>
+        </div>
+    </div>
+</div>
+
+<div class="container beginning">
+    <div class="heading justify">Payment Procedure</div>
+    <div class="justify">         
+        Your scheduled cook date will be a priority and exclusively reserved, and must be secured with Chef Laura.
+        The full service fee is payable in advance.
+    </div>
+</div>
+
+<div class="container">
+    <div class="heading justify">Allergy Policy</div>
+    <div class="justify">
+        Your home will need to be stocked with any equipment, containers and knives that I may need.  We will coordinate a grocery 
+        delivery, possibly through Peapod, Relay Foods, or any service you prefer.   Some equipment I need include a blender, cutting boards, 
+        rice cooker, mandolin, kitchen towels, paper towels and a ricer.  Average pots, pans and knives are fine.  You will purchase 
+        all groceries and containers. You will make the final choice on ingredients and make sure they do not include allergens you are 
+        sensitive to.  I will only charge the $375 service fee.
+    </div>
+</div>
+
+<div class="container">
+    <div class="heading justify">Travel Policy</div>
+    <div class="justify">         
+        A travel fee of $.75 per mile for locations between 15 and 99 miles from Alexandria, Va. will be applied.  
+        For Locations over 100 miles from Alexandria, Va a $250 travel fee will be applied to the total bill.
+    </div>
+</div>
+
+<div class="container">
+    <div class="heading justify">Cancellations</div>
+    <div class="justify">         
+        Because your cook date is exclusively reserved, other clients will be required to choose another cook date.
+        Therefore a cancellation fee will be charged unless Chef Laura is notified one week (seven days) before your
+        scheduled cook date. The cancellation fee is 50% of the agreed upon service plan.  
+    </div>
+</div>
+
+<div class="container">
+    <div class="heading justify">Gift Certificates</div>
+    <div class="justify">
+        Gift certificates are available upon request. Consider purchasing one for:
+        <ul>
+            <li><i class="fa fa-leaf"></i> a Christmas gift</li>
+	        <li><i class="fa fa-leaf"></i> a get well gift</li>
+	        <li><i class="fa fa-leaf"></i> baby showers</li>
+	        <li><i class="fa fa-leaf"></i> birthdays</li>
+	        <li><i class="fa fa-leaf"></i> other special occassions</li>
+        </ul>
+    </div>
+</div>
+
+<div class="container ending">
+    <div class="heading justify">Charity Event Policy</div>
+    <div class="justify">         
+        Charity events will be considered based on availability.  I may donate my time, but all food cost and kitchen 
+        rental if you do not have one available must be reimbursed by the charity upon arrival at the event.  Kitchen 
+        rental is $40 per hour.  A normal home kitchen is fine.  A receipt or invoice can be given upon request.  A $300 
+        deposit is due at booking.  If the event is over 20 people a staffing fee of $100 per server is required.
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery/effects")
+    <script type="text/javascript">
+        $(function () { $("#banner").backstretch("@Html.Raw(Url.Content("~/Content/images/bg/") + "seafood.jpg")"); });
+    </script>
+}

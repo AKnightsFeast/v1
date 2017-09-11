@@ -1,0 +1,255 @@
+html, body
+{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(230, 230, 230);
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+html, body, i.fa.default
+{
+    color: rgb(61, 61, 92);
+}
+
+ul, ul li
+{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+/* Removes the clear field "x" from input fields in IE10+ */
+input::-ms-clear {
+    display: none;
+}
+
+a, a:hover, a:active, a:focus
+{
+    text-decoration: none;
+}
+
+a, a:hover, a:active, a:focus, .fa, .pink
+{
+    color: rgb(240, 32, 100);
+}
+
+.container + .container
+{
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+.justify
+{
+    text-align: justify;
+}
+
+/*
+.frame
+{
+    padding: 3px;
+    border: 1px solid rgb(181, 180, 180);
+    background-color: rgb(255, 255, 255);
+}
+*/
+
+.shadow
+{
+    -o-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    -moz-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    -webkit-text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+
+.lightgrey, .mediumgrey, .darkgrey
+{
+    border-bottom: 1px dotted rgb(204, 204, 204);
+}
+
+.lightgrey
+{
+    background-color: rgb(255, 255, 255);
+}
+
+.mediumgrey
+{
+    background-color: rgb(246, 246, 246);
+}
+
+.darkgrey
+{
+    background-color: rgb(227, 227, 227);
+}
+
+
+
+
+#content
+{
+    margin: 0 auto;
+    margin-top: 70px;
+    width: 1090px;
+    min-width: 1090px;
+    max-width: 1090px;
+    position: relative;
+    padding-bottom: 30px;
+    background: rgb(255, 255, 255);
+    -o-box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+    -moz-box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+    -webkit-box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+    box-shadow: 0 2px 6px rgba(100, 100, 100, 0.3);
+}
+
+#banner
+{
+    width: 100%;
+    height: 319px;
+    position: relative;
+    margin-bottom: 25px;
+}
+
+#contact > #contactform > .modal-body > div.input-group > textarea
+{
+    width: 458px;
+    height: 300px;
+}
+
+#contact > #contactform > .modal-body > div.input-group + div.input-group
+{
+    margin-top: 15px;
+}
+
+
+/* Chef Laura Quote */
+#chefquote
+{
+    left: 0;
+    bottom: 0;
+    width: 440px;
+    margin-left: 15px;
+    position: absolute;
+}
+
+#chefquote > *
+{
+    display: inline-block;
+}
+
+#chefquote div.quote,
+#chefquote div.speaker,
+#chefquote > div > div.speaker > i.fa
+{
+    color: rgb(227, 227, 227);
+}
+
+#chefquote div.quote,
+#chefquote div.speaker
+{
+    width: 400px;
+    position: relative;
+}
+
+#chefquote i.dblquote
+{
+    color: rgb(217, 217, 217);
+}
+
+#chefquote div.speaker
+{
+    text-align: right;
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+
+/* Woolf Quote */
+#woolfquote
+{
+    width: 320px;
+    margin-left: 170px;
+    position: relative;
+}
+
+#woolfquote > div
+{
+    display: inline-block;
+}
+
+#woolfquote div.quote,
+#woolfquote div.speaker
+{
+    width: 270px;
+    position: relative;
+}
+
+#woolfquote i.dblquote
+{
+    text-align: right;
+    color: rgb(217, 217, 217);
+}
+
+#woolfquote div.speaker
+{
+    text-align: right;
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+
+/* Footer */
+#footer, #footer i
+{
+    color: rgb(000, 000, 000);
+}
+
+#footer
+{
+    clear: both;
+    line-height: 2;
+    max-width: 60rem;
+    text-align: center;
+    padding: 1.71429rem 0;
+    margin: 20px auto 5px auto;
+    border-top: 1px solid rgb(192, 192, 192);
+}
+
+#footer > *
+{
+    display: inline-block;
+}
+
+#footer > * + *
+{
+    margin-left: 20px;
+}
+
+#footer > a#lacadamie
+{
+    width: 24px;
+    height: 80px;
+    background: transparent url(/Content/Images/lacademie.png) 0 0 no-repeat;
+}
+
+#footer > a#appca
+{
+    width: 59px;
+    height: 78px;
+    background: transparent url(/Content/Images/appca.png) 0 0 no-repeat;
+}
+
+#footer > a#servsafe
+{
+    width: 100px;
+    height: 46px;
+    background: transparent url(/Content/Images/servsafe.png) 0 0 no-repeat;
+}
+
+#footer > a > i
+{
+    font-size: 20px;
+}

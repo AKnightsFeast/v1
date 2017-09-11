@@ -1,0 +1,412 @@
+﻿@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
+
+@section Head
+{
+    @Styles.Render("~/Content/Home/css")
+}
+
+@section Modals
+{
+    <div id="announcement" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title announcementtitle">New Meal Delivery Service!</h4>
+        </div>
+        <div class="modal-body announcementbody">
+            <p>
+                Check out my new <a data-dismiss="modal" href="#delivery">meal delivery service!</a>
+            </p>
+        </div>
+    </div>
+}
+
+<div id="banner">
+    <map name="ribbon">
+        <area data-toggle="modal" href="#announcement" title="Healthy Stock Up!" alt="Healthy Stock Up!" shape="poly" coords="0,0,180,180,180,0">
+    </map>
+    <img src="@Url.Content("~/Content/images/healthy.png")" class="ribbon" usemap="#ribbon" title="Healthy Stock Up!" alt="Healthy Stock Up!">
+    <div id="chefquote">
+        <i class="fa fa-quote-left fa-2x pull-left dblquote"></i>
+        <div>
+            <div class="quote">A personal chef service is for anyone looking for a few nights off from worrying about what's for dinner.</div>
+            <div class="speaker"><i class="fa fa-user"></i> Chef Laura</div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Question?</h4>
+            <p class="justify">
+                Have you and your family become too reliant on carryout meals, mass-produced restaurant food, or boxed dinners
+                with minimal nutritional value? Do you want to eat healthier but lack the time to plan, shop for and cook meals
+                that are good for you?
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h4>Answer!</h4>
+            <p class="justify">
+                <b>A Knight's Feast Personal Chef Service</b> prepares your choice of meals - made fresh in your own kitchen - and packages
+                them with easy-to-follow heating instructions. We create meals that meet your specific dietary and nutritional needs
+                and appeal to your personal tastes.
+            </p>
+            <p class="justify"><b><u>What can I do for you?</u></b></p>
+        </div>
+    </div>
+</div>
+
+<div id="how" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="frame">
+                <section id="howbg">
+                    <div class="title shadow">How it Works</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h4><img alt="" src="~/Images/1.png" /> Chat</h4>
+            <p class="justify">
+                First I meet with you to discuss your dining wants and needs.
+            </p>
+            <ul class="justify">
+                <li><i class="fa fa-leaf"></i> What are your favorite foods, flavors, and textures?</li>
+                <li><i class="fa fa-leaf"></i> Do you have a family favorite that you just don’t have time to prepare?</li>
+                <li><i class="fa fa-leaf"></i> Do you want to follow a diet plan?</li>
+                <li><i class="fa fa-leaf"></i> Do you have any allergies or foods you don’t like?</li>
+                <li><i class="fa fa-leaf"></i> What international foods do you enjoy?</li>
+            </ul>
+            <p class="justify highlight">
+                You can also complete a <a href="@Url.Action("", "Assessment")"><i class="fa fa-edit"></i> Client Assessment Form</a>
+                online so I can come up with a menu for you quicker!
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h4><img alt="" src="~/Images/2.png" /> Design</h4>
+            <p class="justify">Your menu is designed and sent to you for approval.</p>
+            <p class="justify">
+                A list of suggestions will be sent you.  It must be approved within 48 hours of your cook date.  Feel free to
+                make suggestions of what you’re craving!
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h4><img alt="" src="~/Images/3.png" /> Shop</h4>
+            <p class="justify">Your food is purchased fresh the day of your cook date.</p>
+            <p class="justify">
+                Chef Laura will shop at the best local grocery stores and local farmers’ markets to
+                ensure your meals are produced from the absolute freshest ingredients.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-4">
+            <h4><img alt="" src="~/Images/4.png" /> Cook</h4>
+            <p class="justify">Your food will be prepared fresh in your home.</p>
+        </div>
+        <div class="col-md-4">
+            <h4><img alt="" src="~/Images/5.png" /> Pack</h4>
+            <p class="justify">Your fridge or freezer will be chock full of delicious food ready to consume at your convenience.</p>
+            <p class="justify">
+                All meals will be packaged with instructions on how to serve. Your kitchen will be clean of all evidence of
+                your chef being there — all except for the pleasant smell of fresh food.
+            </p>
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+    </div>
+</div>
+
+<div id="delivery" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="frame">
+                <section id="deliverybg">
+                    <div class="title shadow">Meal Delivery Service</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify">
+        <div id="deliverysummary" class="col-md-11">
+            <p>Here's a summary of the meal delivery service:</p>
+            <ul>
+                <li>
+                    Meals will be delivered through most of DC, Maryland, and Virginia (DMV area)
+                </li>
+                <li>
+                    There will be 10 meal choices with classic, Keto (a.k.a. low carb, high fat), Paleo, vegan, and vegetarian variations
+                </li>
+                <li>
+                    Organic ingredients are purchased from reputable stores, such as Wegman’s or Trader Joe’s, or local farmers' markets
+                </li>
+                <li>
+                    The menu for the week is prepared by Chef Laura and made available on the Friday prior to that week
+                    <br /><br />
+                    <i>
+                        Menu choices must be sent to Chef Laura by the Sunday prior to that week no later than noon via e-mail, or she may
+                        select the menu by stating "chef’s choice" in the message
+                    </i>
+                </li>
+                <li>
+                    Deliveries are made throughout the day on the Tuesday of the menu week
+                    <br /><br />
+                    If given access Chef Laura would prefer to put the meals in your refrigerator
+                </li>
+                <li>
+                    <b>$20/Serving for 10 meals</b> or <b>$200 per delivery</b>
+                </li>
+                <li>
+                    Payment options include Paypal, Venmo, or check
+                </li>
+            </ul>
+            <p>
+                <br />
+                <b>
+                    NOTE: The meals are prepared in a kitchen where many ingredients have been used and not in an allergen free kitchen. Chef Laura
+                    can avoid using some ingredients when cooking, but cannot guarantee any adverse allergic reactions from occurring.
+                </b>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div id="prices" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="frame">
+                <section id="pricebg">
+                    <div class="title shadow">Prices</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Packages</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h4>$325 flat service fee (additional fees dependent on package)</h4>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pricetbl">
+                <div>
+                    <ul class="col1">
+                        <li class="header">
+                            <h2>&nbsp;</h2>
+                            <h3>&nbsp;</h3>
+                        </li>
+                        <li class="pricerow darkgrey">Conventional Grocery Fee</li>
+                        <li class="pricerow mediumgrey">Organic Grocery Fee</li>
+                        <li class="pricerow darkgrey">Total Meals</li>
+                    </ul>
+                </div>
+                <div class="hover">
+                    <ul class="col2">
+                        <li class="header">
+                            <h2>We Are Family!</h2>
+                            <h3>(Four - Six People)</h3>
+                        </li>
+                        <li class="pricerow mediumgrey">+ $225</li>
+                        <li class="pricerow lightgrey">+ $275</li>
+                        <li class="pricerow mediumgrey">20</li>
+                    </ul>
+                </div>
+                <div class="hover">
+                    <ul class="col3">
+                        <li class="header">
+                            <h2>Three Peas in a Pod</h2>
+                            <h3>(Three People)</h3>
+                        </li>
+                        <li class="pricerow darkgrey">+ $175</li>
+                        <li class="pricerow mediumgrey">+ $225</li>
+                        <li class="pricerow darkgrey">15</li>
+                    </ul>
+                </div>
+                <div class="hover">
+                    <ul class="col4">
+                        <li class="header">
+                            <h2>Just the Two of Us</h2>
+                            <h3>(Two People)</h3>
+                        </li>
+                        <li class="pricerow mediumgrey">+ $150</li>
+                        <li class="pricerow lightgrey">+ $200</li>
+                        <li class="pricerow mediumgrey">10</li>
+                    </ul>
+                </div>
+                <div class="hover">
+                    <ul class="col5">
+                        <li class="header">
+                            <h2>Single and Loving It</h2>
+                            <h3>(One Person)</h3>
+                        </li>
+                        <li class="pricerow darkgrey">+ $125</li>
+                        <li class="pricerow mediumgrey">+ $175</li>
+                        <li class="pricerow darkgrey">5</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="justify">
+                <i class="fa fa-leaf"></i> <b>
+                    If you would like more than five meals including dinner, lunch or breakfast
+                    increase the grocery bill by $50/meal and service fee by $25.
+                </b>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p class="justify">
+                <i class="fa fa-leaf"></i> <b>
+                    If you would like to reduce the meal count from five to four or three, reduce
+                    the grocery cost by $25 for four or $50 for three.  Service fee does not change.
+                </b>
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <p><b>Additional Items can be purchased in addition to the service fee:</b></p>
+            <div class="pricetbl">
+                <div>
+                    <ul class="col1">
+                        <li class="pricerow darkgrey">Breakfast Bakes</li>
+                        <li class="pricerow mediumgrey">Baked Muffins or Cookies</li>
+                        <li class="pricerow darkgrey">Family Style Fruit Salad</li>
+                        <li class="pricerow mediumgrey">Add a Soup or Salad</li>
+                        <li class="pricerow darkgrey">Pie, Tart, or Cake</li>
+                        <li class="pricerow mediumgrey">Baby Food</li>
+                        <li class="pricerow darkgrey">Pet Food</li>
+                        <li class="pricerow mediumgrey">Cooking Lessons</li>
+                    </ul>
+                </div>
+                <div class="colwidth35">
+                    <ul class="col2">
+                        <li class="pricerow mediumgrey">$25 per 9 x 12 tray</li>
+                        <li class="pricerow lightgrey">$15 per dozen</li>
+                        <li class="pricerow mediumgrey">$25 for 8 cups</li>
+                        <li class="pricerow lightgrey">$15 for 4 servings</li>
+                        <li class="pricerow mediumgrey">$25 each</li>
+                        <li class="pricerow lightgrey">$20 per ice cube tray full</li>
+                        <li class="pricerow mediumgrey">$50 for ten 8 oz servings</li>
+                        <li class="pricerow lightgrey">$75/person or $450 minimum (includes groceries)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Additional Services</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="price">
+                <div class="price-header lightgrey shadow">
+                    <h3>@Html.ActionLink("Themed events", "ThemedEvents", "Menus", null, new { @class = "pink" }), dinner parties and heavy appetizers</h3>
+                </div>
+                <div class="price-body mediumgrey">
+                    Usually $85/person with a $500 minimum (No additional charges for groceries)
+                </div>
+                <div class="price-footer darkgrey"></div>
+            </div>
+            <div class="price">
+                <div class="price-header lightgrey shadow">
+                    <h3>Romantic Dinner for Two</h3>
+                </div>
+                <div class="price-body mediumgrey">
+                    4 Course Meal for $500 (includes groceries)
+                </div>
+                <div class="price-footer darkgrey"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="price">
+                <div class="price-header lightgrey shadow">
+                    <h3>Mother's Helper</h3>
+                </div>
+                <div class="price-body mediumgrey">
+                    <p>
+                        Sometimes you don't mind doing the shopping and the prep, but you want to enjoy the party and would like
+                        help with clean up.
+                    </p>
+                    <p>
+                        I can come cook your food, serve and clean up. I charge $75/hour with a $300 minimum.
+                        If the event is over 25 people, additional help will be hired at $20/hour.
+                    </p>
+                </div>
+                <div class="price-footer darkgrey"></div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="price">
+                <div class="price-header lightgrey shadow">
+                    <h3>Pack your Freezer – Lasagnas, Chills, Soups, Meatloaves, Etc!</h3>
+                </div>
+                <div class="price-body mediumgrey">
+                    <ul class="justify">
+                        <li><i class="fa fa-leaf"></i> $400 for 4 Entrees with 8 Servings Each with Conventional Groceries</li>
+                        <li><i class="fa fa-leaf"></i> $500  for 4 entrees with 8 Servings Each with Organic Groceries</li>
+                    </ul>
+                </div>
+                <div class="price-footer darkgrey"></div>
+            </div>
+        </div>
+    </div>
+</div>
+-->
+@section Scripts
+{
+    @{ var bgPath = Url.Content("~/Content/images/bg/"); }
+
+    @Scripts.Render("~/bundles/jquery/effects")
+    <script type="text/javascript">
+        $(function () {
+            $("#banner").backstretch("@Html.Raw(bgPath + "punch.jpg")");
+            @*
+            $.vegas('slideshow', {
+                backgrounds: [
+                  { src: "@Html.Raw(bgPath + "chicken.jpg")", fade: 1000 },
+                  { src: "@Html.Raw(bgPath + "peppers.jpg")", fade: 1000 },
+                  { src: "@Html.Raw(bgPath + "punch.jpg")", fade: 1000 },
+                  { src: "@Html.Raw(bgPath + "seafood.jpg")", fade: 1000 },
+                  { src: "@Html.Raw(bgPath + "tiramisu.jpg")", fade: 1000 },
+                  { src: "@Html.Raw(bgPath + "tortellinis.jpg")", fade: 1000 }
+                ]
+            })('overlay', {
+                src: '@Html.Raw(bgPath + "overlays/07.png")'
+            });
+
+            $.vegas('stop');
+            *@
+
+            $('#announcement').modal({ backdrop: 'static' });
+        });
+    </script>
+}

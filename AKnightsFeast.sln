@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web", "web\web.csproj", "{AF6BCB0D-D231-40F7-8A42-E8122BDCA5C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web.Tests", "web.Tests\web.Tests.csproj", "{55980A35-77FF-4B4C-932E-FA7CC773F0BE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpiceParser", "SpiceParser\SpiceParser.csproj", "{29A59DE1-D2C5-416E-8804-0491C8898730}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AF6BCB0D-D231-40F7-8A42-E8122BDCA5C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF6BCB0D-D231-40F7-8A42-E8122BDCA5C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF6BCB0D-D231-40F7-8A42-E8122BDCA5C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF6BCB0D-D231-40F7-8A42-E8122BDCA5C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55980A35-77FF-4B4C-932E-FA7CC773F0BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55980A35-77FF-4B4C-932E-FA7CC773F0BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55980A35-77FF-4B4C-932E-FA7CC773F0BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55980A35-77FF-4B4C-932E-FA7CC773F0BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29A59DE1-D2C5-416E-8804-0491C8898730}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29A59DE1-D2C5-416E-8804-0491C8898730}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29A59DE1-D2C5-416E-8804-0491C8898730}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29A59DE1-D2C5-416E-8804-0491C8898730}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

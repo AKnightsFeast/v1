@@ -1,0 +1,17 @@
+﻿.jumbotron h2
+{
+}
+
+.jumbotron .close
+{
+  /*
+  top: -12.5px;
+  right: -12.5px;
+  text-indent: -9999px;
+  */
+  width: 30px;
+  height: 30px;
+  display: block;
+  position: absolute;
+  background: url(../../Images/close.png) no-repeat 0 0;
+}

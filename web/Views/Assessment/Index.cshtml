@@ -1,0 +1,272 @@
+﻿@model Assessment
+
+@{
+    ViewBag.Title = "Weekly Service Client Assessment Form";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head
+{
+    @Styles.Render("~/Content/Assessment/css")
+    <style type="text/css">
+        #errors {
+            display: none;
+            overflow: auto;
+            padding-top: 0;
+            font-weight: bold;
+            padding-left: 15px;
+            background-color: #FFDDDD;
+            border-top: 1px solid rgb(240, 32, 100);
+            border-bottom: 1px solid rgb(240, 32, 100);
+        }
+
+        #errors label {
+            float: none;
+            width: auto;
+            font-weight: normal;
+        }
+    </style>
+}
+
+<div id="errors">
+    <p>Please correct the following errors and try again:</p>
+    <ul></ul>
+</div>
+<div class="container">
+    <div class="row">
+        @using (Ajax.BeginForm("Create", "Assessment", null, new AjaxOptions() { HttpMethod = "post", OnSuccess = "GetResponse" }, new { id = "assessment", @class = "form" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.Hidden("CreationDate", DateTime.Now)
+
+            <div class="col-md-10">
+                <div><i><b>* Asterisk fields are required.</b></i></div>
+                <div>
+                    <div>
+                        <div class="padbottom">At what address will the chef be cooking?</div>
+                        <div class="field padbottom">
+                            <div>
+                                <div>@Html.TextBoxFor(m => m.CookingAddress.Address1, new { @class = "entry address", maxlength = 100 })</div>
+                                @Html.LabelFor(m => m.CookingAddress.Address1, "* Address1", new { @class = "caption" })
+                            </div>
+                            <div>
+                                <div>@Html.TextBoxFor(m => m.CookingAddress.Address2, new { @class = "entry address", maxlength = 100 })</div>
+                                @Html.LabelFor(m => m.CookingAddress.Address2, "Address2", new { @class = "caption" })
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div>
+                                <div>@Html.TextBoxFor(m => m.CookingAddress.City, new { @class = "entry address", maxlength = 100 })</div>
+                                @Html.LabelFor(m => m.CookingAddress.City, "* City", new { @class = "caption" })
+                            </div>
+                            <div>
+                                <div>@Html.DropDownListFor(m => m.CookingAddress.State, new SelectList(States.Collection, "Key", "Key"))</div>
+                                @Html.LabelFor(m => m.CookingAddress.State, "State", new { @class = "caption" })
+                            </div>
+                            <div>
+                                <div>@Html.TextBoxFor(m => m.CookingAddress.ZipCode, new { @class = "entry zipcode", maxlength = 5 })</div>
+                                @Html.LabelFor(m => m.CookingAddress.ZipCode, "Zip Code", new { @class = "caption" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="NumPpl">How many people will the chef be cooking for?</label>
+                        <input id="NumPpl" type="text" class="entry" maxlength="2" style="width: 20px" value="1" />
+                    </div>
+                    <div><i><b>Please enter either the person's email address, phone number, or both.</b></i></div>
+                    <div id="people" class="object"></div>
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.HiringGoal, "* What is your goal with hiring a personal chef?")
+                    <div>@Html.TextAreaFor(m => m.HiringGoal, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div class="field">
+                    <div>Are there any allergies in your family?</div>
+                    <div><label><input id="AllergiesT" class="tfaction" type="radio" name="allergiestf" value="true" /> Yes</label></div>
+                    <div><label><input id="AllergiesF" class="tfaction" type="radio" name="allergiestf" value="false" checked="checked" /> No</label></div>
+                    <div id="allergiestf" class="nlfield hidden">@Html.TextAreaFor(m => m.Allergies, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div class="field">
+                    <div>Are you lactose intolerant?</div>
+                    <div><label>@Html.RadioButtonFor(m => m.LactoseInt, true) Yes</label></div>
+                    <div><label>@Html.RadioButtonFor(m => m.LactoseInt, false, new { @checked = "checked" }) No</label></div>
+                </div>
+                <div class="field">
+                    <div>Are there any medical conditions in your family?</div>
+                    <div><label><input id="MedicalT" class="tfaction" type="radio" name="medicaltf" value="true" /> Yes</label></div>
+                    <div><label><input id="MedicalF" class="tfaction" type="radio" name="medicaltf" value="false" checked="checked" /> No</label></div>
+                    <div id="medicaltf" class="nlfield hidden">@Html.TextAreaFor(m => m.Medical, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div class="field">
+                    <div>Are you planning to follow or currently following any specific diet plan?</div>
+                    <div><label><input id="DietPlanT" class="tfaction" type="radio" name="dietplantf" value="true" /> Yes</label></div>
+                    <div><label><input id="DietPlanF" class="tfaction" type="radio" name="dietplantf" value="false" checked="checked" /> No</label></div>
+                    <div id="dietplantf" class="nlfield hidden">@Html.TextAreaFor(m => m.DietPlan, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div class="field">
+                    <div>How should your meals be packaged?</div>
+                    <div><label>@Html.RadioButtonFor(m => m.PackageStyle, PackageType.Individual) Individual</label></div>
+                    <div><label>@Html.RadioButtonFor(m => m.PackageStyle, PackageType.Family, new { @checked = "checked" }) Family Style</label></div>
+                </div>
+                <div>
+                    <div class="padbottom">What type of containers should be used to store the food?</div>
+                    <div><label>@Html.RadioButtonFor(m => m.Container, ContainerType.Plastic) Microwave safe plastic</label></div>
+                    <div>
+                        <label>
+                            @Html.RadioButtonFor(m => m.Container, ContainerType.Pyrex, new { @checked = "checked" })
+                            Freezer, oven, and microwafe safe Pyrex <i>(a $100 one-time fee will be charged if the chef needs to purchase them for you)</i>
+                        </label>
+                    </div>
+                    <div><label>@Html.RadioButtonFor(m => m.Container, ContainerType.Own) Your own</label></div>
+                </div>
+                <div>
+                    <div class="padbottom">Do you like the following meats?</div>
+                    <div>
+                        @{
+                            var showSection = Model != null && Model.Beef;
+                            var subDivClass = @"class='nlfield" + (!showSection ? " hidden" : string.Empty) + "'";
+                            var attrs = new Dictionary<string, object>() { { "class", "tfaction" } };
+                            if (showSection) { attrs.Add("checked", "checked"); }
+                        }
+                        <div><label>@Html.CheckBoxFor(m => m.Beef, attrs) Beef</label></div>
+                        <div id="beef" @Html.Raw(subDivClass) style="margin: 2px 0px 2px 16px !important">
+                            <div style="margin-bottom: 2px">How do you like your beef prepared?</div>
+                            <div class="field">@Html.CheckBoxListForEnum(m => m.BeefPrep, 3)</div>
+                        </div>
+                    </div>
+                    <div>
+                        @{
+                            showSection = Model != null && Model.Chicken;
+                            subDivClass = @"class='nlfield" + (!showSection ? " hidden" : string.Empty) + "'";
+                            attrs = new Dictionary<string, object>() { { "class", "tfaction" } };
+                            if (showSection) { attrs.Add("checked", "checked"); }
+                        }
+                        <div><label>@Html.CheckBoxFor(m => m.Chicken, attrs) Chicken</label></div>
+                        <div id="chicken" @Html.Raw(subDivClass) style="margin: 2px 0px 2px 16px !important">
+                            <div style="margin-bottom: 2px">How do you like your chicken prepared?</div>
+                            <div class="field">@Html.CheckBoxListForEnum(m => m.ChickenPrep, 3)</div>
+                        </div>
+                    </div>
+                    <div><label>@Html.CheckBoxFor(m => m.Turkey) Turkey</label></div>
+                    <div><label>@Html.CheckBoxFor(m => m.Lamb) Lamb</label></div>
+                    <div><label>@Html.CheckBoxFor(m => m.Pork) Pork</label></div>
+                    <div>
+                        <div><label>@Html.CheckBoxFor(m => m.Seafood, new { @class = "tfaction" }) Seafood</label></div>
+                        <div id="seafood" class="nlfield hidden" style="margin-bottom: 2px">
+                            <div>What types of fish/shellfish don't you like?</div>
+                            <div>@Html.TextAreaFor(m => m.SeafoodNots, new { @rows = "10", @cols = "96" })</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div><label><input id="OtherMeatsTF" type="checkbox" class="tfaction" name="other" /> Other</label></div>
+                        <div id="other" class="nlfield hidden">@Html.TextAreaFor(m => m.OtherMeats, new { @rows = "10", @cols = "96" })</div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div>How spicy do you like your spicy meals?</div>
+                    <div class="field">@Html.CheckBoxListForEnum(m => m.SpiceLikes, 1)</div>
+                </div>
+                <div class="field">
+                    <div>Would you like any vegetarian meals?</div>
+                    <div><label>@Html.RadioButtonFor(m => m.VegMeals, true) Yes</label></div>
+                    <div><label>@Html.RadioButtonFor(m => m.VegMeals, false, new { @checked = "checked" }) No</label></div>
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.FavFHV, "What are your favorite fruits, herbs and vegetables?")
+                    <div>@Html.TextAreaFor(m => m.FavFHV, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.UnfavFHV, "What fruits, herbs and vegetables do you dislike?")
+                    <div>@Html.TextAreaFor(m => m.UnfavFHV, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.FavGreens, "What are you favorite greens for salads?")
+                    <div>@Html.TextAreaFor(m => m.FavGreens, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.EquipNots, "Are there any kitchen appliances or equipment the chef cannot use?")
+                    <div>@Html.TextAreaFor(m => m.EquipNots, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div>
+                    <div style="width: 500px">@Html.LabelFor(m => m.Recipes, @"Are there any family favorite recipes that you no longer have time to prepare? List any that you would like the chef to prepare for you.")</div>
+                    <div>@Html.TextAreaFor(m => m.Recipes, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.Restaurants, "What are some of your favorite restaurants?")
+                    <div>@Html.TextAreaFor(m => m.Restaurants, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div class="field">
+                    <div>Do you have an additional freezer or refrigerator?</div>
+                    <div><label>@Html.RadioButtonFor(m => m.AddlFridge, true) Yes</label></div>
+                    <div><label>@Html.RadioButtonFor(m => m.AddlFridge, false, new { @checked = "checked" }) No</label></div>
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.Grocers, "Where do you shop for groceries?")
+                    <div>@Html.TextAreaFor(m => m.Grocers, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.FuseboxLocale, "Where is your fuse/breaker box?")
+                    <div>@Html.TextAreaFor(m => m.FuseboxLocale, new { @rows = "10", @cols = "96" })</div>
+                </div>
+                <div>
+                    <div>
+                        <label for="NumPets">How many pets are in the household that the chef might interact with?</label>
+                        <input id="NumPets" type="text" class="entry" maxlength="2" style="width: 20px" value="0" />
+                    </div>
+                    <div><i><b>To clear the list of pets enter "0".</b></i></div>
+                    <div id="pets"></div>
+                </div>
+                <div>
+                    @Html.LabelFor(m => m.Comments, "Any comments/concerts?")
+                    <div>@Html.TextAreaFor(m => m.Comments, new { @rows = "10", @cols = "96" })</div>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div><input class="btn btn-primary" type="submit" value="Submit" /></div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/inputmask")
+    @Scripts.Render("~/bundles/assessment")
+    <script type="text/javascript">
+        $(function () {
+            $("#assessment").validate({
+                onkeyup: false,
+                rules: {
+                    "CookingAddress.Address1": "required",
+                    "CookingAddress.City": "required",
+                    HiringGoal: "required",
+                    Medical: { required: "#MedicalT:checked" },
+                    DietPlan: { required: "#DietPlanT:checked" },
+                    Allergies: { required: "#AllergiesT:checked" },
+                    OtherMeats: { required: "#OtherMeatsTF:checked" }
+                },
+                messages: {
+                    "CookingAddress.Address1": "Please enter an address for Address1",
+                    "CookingAddress.City": "Please enter a city",
+                    HiringGoal: "Please enter you hiring goals",
+                    Medical: "Please enter any medical conditions",
+                    DietPlan: "Please enter any current diet plans",
+                    Allergies: "Please enter any current allergies",
+                    OtherMeats: "Please specify other types of meat"
+                },
+                errorContainer: $("#errors"),
+                errorLabelContainer: $("#errors ul"),
+                wrapper: "li"
+            });
+
+            var assessment = $("#assessment").Assessment();
+
+            InitializeNumericInputs($("#NumPpl").inputmask('Regex', { regex: "^[1-9]$|^([1-9][0-9])$" }), assessment.UpdatePeople, true);
+            InitializeNumericInputs($("#NumPets").inputmask("integer", { allowMinus: false, rightAlignNumerics: false }), assessment.UpdatePets);
+        });
+    </script>
+}

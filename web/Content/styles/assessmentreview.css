@@ -1,0 +1,75 @@
+﻿.container {
+  padding: 20px 0 30px 0;
+}
+.form {
+  margin: 0 auto;
+  overflow: hidden;
+}
+.form * {
+  color: #6f6c6c;
+}
+.form > div + div {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+.form label {
+  font-weight: normal;
+}
+.form .section,
+.form .label,
+.form .caption {
+  font-weight: bold;
+}
+.form .section {
+  padding-bottom: 5px;
+}
+.form .address {
+  width: 405px;
+}
+.form .city {
+  width: 405px;
+}
+.form .state {
+  width: 100px;
+}
+.form .zipcode {
+  width: 80px;
+}
+.form .name {
+  width: 200px;
+}
+.form .mi {
+  width: 50px;
+}
+.form .email {
+  width: 405px;
+}
+.form .caption {
+  font-size: 75%;
+}
+.form .padbottom {
+  margin-bottom: 10px;
+}
+.form .field > div {
+  display: inline-block;
+}
+.form .field > div + div {
+  padding-left: 8px;
+}
+.form .object > div {
+  padding: 1px 5px 1px 5px;
+  margin-top: 10px;
+}
+.form .altobject {
+  background-color: #e3e3e3;
+}
+.form .hidden {
+  display: none !important;
+}
+.form .buttonrow {
+  width: 615px;
+}
+.form .buttonrow > div {
+  float: right;
+}
+/*# sourceMappingURL=assessmentreview.css.map */

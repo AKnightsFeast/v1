@@ -1,0 +1,98 @@
+﻿@default: rgb(111, 108, 108);
+@darkgray: rgb(227,227, 227);
+@entry: solid 1px rgb(187, 185, 185);
+@entryhover: solid 1px @default;
+
+.container {
+    padding: 20px 0 30px 0;
+}
+
+.form {
+    margin: 0 auto;
+    overflow: hidden;
+
+    * {
+        color: @default;
+    }
+
+    > div + div {
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+
+    label {
+        font-weight: normal;
+    }
+
+    .section, .label, .caption {
+        font-weight: bold;
+    }
+
+    .section {
+        padding-bottom: 5px;
+    }
+
+    .address {
+        width: 405px;
+    }
+
+    .city {
+        width: 405px;
+    }
+
+    .state {
+        width: 100px;
+    }
+
+    .zipcode {
+        width: 80px;
+    }
+
+    .name {
+        width: 200px;
+    }
+
+    .mi {
+        width: 50px;
+    }
+
+    .email {
+        width: 405px;
+    }
+
+    .caption {
+        font-size: 75%;
+    }
+
+    .padbottom {
+        margin-bottom: 10px;
+    }
+
+    .field {
+        > div { display: inline-block; }
+        > div + div { padding-left: 8px; }
+    }
+
+    .object {
+        > div {
+            padding: 1px 5px 1px 5px;
+            margin-top: 10px;
+        }
+    }
+
+    .altobject {
+        background-color: @darkgray;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .buttonrow {
+        width: 615px;
+    }
+
+    .buttonrow > div {
+        float: right;
+    }
+}

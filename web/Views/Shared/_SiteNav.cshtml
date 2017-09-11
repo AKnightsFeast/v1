@@ -1,0 +1,44 @@
+﻿<ul class="sitenav">
+    <li class="navlink dropdown" title="Some of Chef Laura's menus!">
+        <i class="fa fa-cutlery"></i><a href="#" class="dropdown-toggle" data-hover="dropdown" data-delay="0" data-close-others="true">Menus <i class="fa fa-caret-down"></i></a>
+        <ul class="dropdown-menu justify">
+            <li><a href="@Url.Action("Monthly", "Menus")">Monthly</a></li>
+            <li><a href="@Url.Action("Personal", "Menus")">Personal</a></li>
+            <li><a href="@Url.Action("ThemedEvents", "Menus")">Themed Events</a></li>
+            <li><a href="@Url.Action("Freezer", "Menus")">Pack Your Freezer</a></li>
+        </ul>
+    </li>
+    <li class="navlink" title="Gift certificates are available!"><i class="fa fa-gift"></i><a data-toggle="modal" href="#gift">Gift Certificates</a></li>
+        @if (ViewBag.IsAuthenticated)
+        {
+            <li class="navlink dropdown" title="Weekly Service Client Assessment Form">
+                <i class="fa fa-edit"></i><a href="#" class="dropdown-toggle" data-hover="dropdown" data-delay="0" data-close-others="true">Assessment <i class="fa fa-caret-down"></i></a>
+                <ul class="dropdown-menu justify">
+                    <li><a href="@Url.Action("", "Assessment")">New Assessment</a></li>
+                    <li><a href="@Url.Action("ViewAll", "Assessment")">Assessments</a></li>
+                </ul>
+            </li>
+        } else {
+            <li class="navlink" title="Weekly Service Client Assessment Form">
+                <i class="fa fa-edit"></i><a href="@Url.Action("", "Assessment")">Assessment</a>
+            </li>
+        }
+    <li class="navlink" title="Chef Laura's policies"><i class="fa fa-book"></i><a href="@Url.Action("", "Policies")">Policies</a></li>
+    <li class="navlink" title="Hear what people are saying!"><i class="fa fa-comments"></i><a href="@Url.Action("", "Testimonials")">Testimonials</a></li>
+    <li class="navlink" title="About Chef Laura"><i class="fa fa-info-circle"></i><a href="@Url.Action("", "About")">About</a></li>
+    <li class="navlink" title="Friends of Chef Laura"><i class="fa fa-group"></i><a href="@Url.Action("", "Friends")">Friends</a></li>
+    <li class="navlink" title="Contact Chef Laura!"><i class="fa fa-envelope"></i><a data-toggle="modal" href="#contact">Contact</a></li>
+    @if (ViewBag.IsAuthenticated)
+    {
+    <li class="navlink" title="Sign Out">
+        @using (Html.BeginForm("SignOut", "Account", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <i class="fa fa-sign-out"></i><input type="submit" value="Sign Out">
+        }
+    </li>
+    } else {
+    <li class="navlink" title="Sign In"><i class="fa fa-sign-in"></i><a data-toggle="modal" href="#signin">Sign In</a></li>
+    }
+    <li class="navspacer"></li>
+</ul>

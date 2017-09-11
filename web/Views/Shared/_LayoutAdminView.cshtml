@@ -1,0 +1,267 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/styles/admin.css")" type="text/css" rel="stylesheet" />
+</head>
+<body>
+    <div class="dyn-ele" style="left: 0px; right: 0px; top: 0px; bottom: 0px; min-width: 1050px; min-height: 500px">
+        <div class="dyn-ele" style="left: 0px; right: 0px; top: 44px; bottom: 0px;">
+            <!-- Left Menu Begin -->
+            <div class="dyn-ele" style="left: 0px; top: 0px; bottom: 0px; width: 200px">
+                <div class="dyn-ele" style="left: 0px; right: 0px; top: 0px; bottom: 44px">
+                    <div class="dyn-ele" style="left: 0px; right: 0px; top: 0px; bottom: 0px;">
+                        <div role="tree" class="dyn-ele" style="left: 0px; right: 0px; top: 1px; bottom: 0px; min-height: 352px">
+                            <div role="treeitem" class="menu_item" style="left: 0px; right: 0px; top: 0px; height: 44px;">
+                                <div class="sc-outline" style="left: 16px;">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==" class="inbox icon">
+                                    <label class="me-sourcelist-row-title" title="Assessments">Assessments</label>
+                                </div>
+                            </div>
+                            <div role="treeitem" class="menu_item" style="left: 0px; right: 0px; top: 0px; height: 44px;">
+                                <div class="sc-outline" style="left: 16px;">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==" class="inbox icon">
+                                    <label class="me-sourcelist-row-title" title="Clients">Clients</label>
+                                </div>
+                            </div>
+                            <div role="treeitem" class="menu_item" style="left: 0px; right: 0px; top: 0px; height: 44px;">
+                                <div class="sc-outline" style="left: 16px;">
+                                    <img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==" class="inbox icon">
+                                    <label class="me-sourcelist-row-title" title="Calendar">Calendar</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dyn-ele menu_footer" style="left: 0px; right: 0px; bottom: 0px; height: 44px;">
+                    <div class="dyn-ele" style="left: 9px; width: 30px; top: 7px; height: 30px">
+                        S
+                    </div>
+                    <div class="dyn-ele" style="right: 1px; width: 42px; top: 0px; height: 42px;">
+                        R
+                    </div>
+                </div>
+            </div>
+            <!-- Left Menu End -->
+            <!-- Vertical Splitter Begin -->
+            <div class="dyn-ele divider" style="left: 208px; top: 0px; bottom: 0px; cursor: ew-resize; width: 5px">
+                <div class="line"></div>
+            </div>
+            <!-- Vertical Splitter End -->
+            <!-- Right Pane Begin -->
+            <div class="dyn-ele" style="left: 211px; top: 0px; bottom: 0px; width: 1045px">
+                <div class="dyn-ele list" style="left: 0px; right: 0px; top: 0px; bottom: 0px; ">
+                    <div role="group" aria-label="Messages" class="dyn-ele" style="left: 0px; top: 0px; bottom: 0px; width: 320px">
+                        @*
+                            <div id="sc2553" class="atv4 sc2321 sc-view search-pane-view sc-hidden" style="left: 0px; right: 0px; top: 0px; height: 44px">
+                                <div role="tablist" tabindex="0" id="sc2558" class="atv4 borderless sc2321 sc-view sc-segmented-view segmented sc-small-size" style="left: 8px; right: 8px; top: 9px; height: 30px; text-align: left;">
+                                    <div role="tab" tabindex="-1" aria-selected="false" aria-labelledby="sc3018-label" id="search-from" class="atv4 borderless sc2321 sc-view sc-segment-view sc-static-layout segment sc-first-segment sc-segment-0 sc-small-size" style="left: 0px; width: 25%; top: 0px; bottom: 0px; "><label id="sc3018-label" class="sc-button-label sc-small-size ellipsis">From</label></div>
+                                    <div role="tab" tabindex="-1" aria-selected="false" aria-labelledby="sc3019-label" id="search-to" class="atv4 borderless sc2321 sc-view sc-segment-view sc-static-layout segment sc-middle-segment sc-segment-1 sc-small-size" style="left: 0px; width: 25%; top: 0px; bottom: 0px; "><label id="sc3019-label" class="sc-button-label sc-small-size ellipsis">To</label></div>
+                                    <div role="tab" tabindex="-1" aria-selected="false" aria-labelledby="sc3020-label" id="search-subject" class="atv4 borderless sc2321 sc-view sc-segment-view sc-static-layout segment sc-middle-segment sc-segment-2 sc-small-size" style="left: 0px; width: 25%; top: 0px; bottom: 0px; "><label id="sc3020-label" class="sc-button-label sc-small-size ellipsis">Subject</label></div>
+                                    <div role="tab" tabindex="-1" aria-selected="false" aria-labelledby="sc3021-label" id="search-all" class="atv4 borderless sc2321 sc-view sc-segment-view sc-static-layout segment sc-last-segment sc-segment-3 sc-small-size" style="left: 0px; width: 25%; top: 0px; bottom: 0px; "><label id="sc3021-label" class="sc-button-label sc-small-size ellipsis">All</label></div>
+                                    <div role="tab" tabindex="-1" title="More..." alt="More..." aria-selected="false" aria-label="More..." id="sc2561" class="atv4 borderless sc2321 sc-view sc-segment-view sc-hidden sc-static-layout segment sc-last-segment sc-overflow-segment sc-small-size" style=""><label id="sc3022-label" class="sc-button-label sc-small-size ellipsis">»</label></div>
+                                </div>
+                            </div>
+                        *@
+                        <!-- Begin List Items -->
+                        <div class="dyn-ele" style="left: 0px; right: 0px; top: 0px; bottom: 0px; ">
+                            <div class="dyn-ele list_items" style="left: 0px; right: 0px; top: 0px; bottom: 0px">
+                                <div class="dyn-ele column_header" style="left: 0px; right: 0px; top: 0px; height: 24px">
+                                    <div role="button" tabindex="0" class="dyn-ele button_view switch_header button" style="left: 0px; width: 29px; top: 1px; height: 23px" title="Hide Mailboxes" alt="Hide Mailboxes">
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==" class="hide">
+                                    </div>
+                                    @*
+                                        <div role="button" class="dyn-ele button_view button" tabindex="0" aria-haspopup="true" aria-label="&lt;img src=&quot;data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==&quot; alt=&quot;&quot; class=&quot;black-caret&quot; /&gt;" style="left: 100px; right: 118px; top: 2px; height: 18px" title="">
+                                            <label class="sc-button-label sc-regular-size ellipsis">Inbox (0)<img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==" alt="" class="black-caret"></label>
+                                        </div>
+                                        <div class="dyn-ele align_right" style="right: 6px; width: 118px; top: 2px; bottom: 0px; ">
+                                            <div role="button" tabindex="0" aria-haspopup="true" aria-label="" id="sc2533" class="dyn-ele button_view sort-header button sc-regular-size icon" style="right: 0px; top: 0px; bottom: 0px; width: 98px" title="">
+                                                <label class="sc-button-label sc-regular-size ellipsis icon">
+                                                    <img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==" class="icon down-arrow">Sort by Date
+                                                </label>
+                                            </div>
+                                        </div>
+                                    *@
+                                </div>
+                                <div class="dyn-ele border" style="left: 0px; right: 0px; top: 24px; height: 1px"></div>
+                                <div class="dyn-ele" style="left: 0px; right: 0px; top: 25px; bottom: 0px">
+                                    <div class="dyn-ele" style="left: 0px; right: 0px; top: 0px; bottom: 0px; ">
+                                        <div class="dyn-ele" style="left: 0px; right: 0px; top: 0px; bottom: 0px; ">
+                                            <div tabindex="0" class="dyn-ele" style="left: 0px; right: 0px; top: 0px; bottom: 0px; min-height: 99px">
+                                                <div title="iCloud: Welcome to iCloud Mail." aria-hidden="false" class="dyn-ele list_item" style="left: 0px; right: 0px; top: 0px; height: 98px">
+                                                    <div class="left_item" title="Mark as unread">
+                                                        <div class="top_flag" title="Mark as unread"></div>
+                                                        <div class="middle_flag "></div>
+                                                    </div>
+                                                    <div class="right_item">
+                                                        <div class="first_row">
+                                                            <span class="wrapper"><span class="from">iCloud</span></span>
+                                                            <span class="account" style="color:#a8a8a8;"></span>
+                                                            <span class="tor">02/05/14</span>
+                                                        </div>
+                                                        <div class="second_row subject">Welcome to iCloud Mail.</div>
+                                                        <div class="third_row_wrapper">
+                                                            <div class="third_row preview">
+                                                                Welcome to iCloud Mail. Your email address is roknight23@icloud.com. To use iCloud Mail with another device or computer, turn on Mail in iCloud settings - http://help.apple.com/icloud/#mmdd8d1d47. You can also access your mail at iCloud.com. --- iCloud is a service provided by Apple. My Apple ID: https://appleid.apple.com/choose-your-country/ Support: http://www.apple.com/support/icloud/ww Terms and Conditions: http://www.apple.com/legal/internet-services/icloud/ww/ Privacy Policy: http://www.apple.com/legal/internet-services/privacy/ Copyright 2014 Apple Inc. 1 Infinite Loop, Cupertino, CA 95014, United States. All rights reserved.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div role="scrollbar" aria-disabled="true" aria-orientation="vertical" aria-valuemax="0" aria-valuemin="0" aria-valuenow="0" aria-controls="sc4505" id="sc4514" class="atv4 sc2321 sc-view sc-scroller-view sc-fading-capless-scroller-view sc-hidden disabled sc-vertical controls-hidden" style="left: 0px; right: 0px; top: 0px; bottom: 0px; ">
+                                            <div class="track"></div>
+                                            <div class="thumb" style="height: 606px; top: 0px; opacity: 0.001;">
+                                                <div class="thumb-center"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End List Items -->
+                    </div>
+
+                    <!-- Vertical Splitter Begin -->
+                    <div class="dyn-ele divider" style="left: 317px; top: 0px; bottom: 0px; cursor: ew-resize; width: 5px">
+                        <div class="line"></div>
+                    </div>
+                    <!-- Vertical Splitter End -->
+
+                    <div id="sc2342" class="dyn-ele" style="left: 320px; top: 0px; width: 725px; bottom: 0px">
+                        <div class="dyn-ele sc-scroll-view" style="left: 0px; right: 0px; top: 0px; bottom: 0px">
+                            <div class="dyn-ele sc-container-view" style="left: 0px; top: 0px; width: 725px; height: 456px">
+                                <div tabindex="0" class="dyn-ele" style="left: 0px; top: 0px; width: 725px; height: 456px">
+                                    <div class="dyn-ele static-header-view-subject allow-select sc-static-layout" style="">
+                                        <div id="sc13076" class="atv4 sc2321 sc-view sc-label-view header-view-subject allow-select sc-static-layout label sc-large-size" style="text-align: left">Testing, testing, 123...</div>
+                                    </div>
+                                    <div id="sc13080" class="atv4 sc2321 sc-view header-view-date-field sc-static-layout" style="left: 0px; right: 0px; top: 0px; height: 21px; ">
+                                        <div id="sc13089" class="atv4 sc2321 sc-view sc-label-view header-view-info-date allow-select sc-static-layout label sc-large-size" style="">1 minute ago 9:06 PM</div>
+                                        <div id="sc13093" class="atv4 sc2321 sc-view sc-label-view header-view-attachment-style sc-static-layout label sc-large-size" style=""></div>
+                                    </div>
+                                    <div tabindex="0" id="sc13098" class="atv4 sc2321 sc-view static-header-view-collapsed sc-static-layout" style="">
+                                        <div id="sc13101" class="atv4 sc2321 sc-view header-view-field header-view-collapsed allow-select sc-static-layout" style="">
+                                            <span id="sc13106" class="atv4 sc2321 sc-view sc-label-view header-view-compact-info disclosure-header-names allow-select sc-static-layout label sc-large-size" style="text-align: left">From</span>
+                                            <span id="sc13109" class="atv4 sc2321 sc-view header-view-field-value sc-static-layout" style="left: 0px; right: 0px; top: 1px; bottom: 0px; "><span id="sc13121" class="atv4 sc2321 sc-view sc-label-view message-token-item token-commit token-accessory allow-select sc-static-layout label" style=""><span class="token-span"><label class="token-value">Rufus Knight</label><img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw=="></span></span></span>
+                                            <span id="sc13127" class="atv4 sc2321 sc-view sc-label-view header-view-compact-info to-recipients allow-select sc-hidden sc-static-layout label sc-large-size" style=""></span>
+                                        </div>
+                                    </div>
+                                    <div id="sc13132" class="atv4 sc2321 sc-view static-header-view-expanded sc-hidden sc-static-layout" style="">
+                                        <div id="sc13135" class="atv4 sc2321 sc-view header-view-field disclosure-header-names allow-select sc-static-layout" style="">
+                                            <span id="sc13137" class="atv4 sc2321 sc-view sc-label-view header-view-compact-info allow-select sc-static-layout label sc-large-size" style="">From</span>
+                                            <span id="sc13140" class="atv4 sc2321 sc-view header-view-field-value sc-static-layout" style=""><span id="sc13144" class="atv4 sc2321 sc-view sc-label-view message-token-item token-commit token-accessory allow-select sc-static-layout label" style=""><span class="token-span"><label class="token-value">Rufus Knight</label><img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw=="></span></span></span>
+                                        </div>
+                                        <div id="sc13150" class="atv4 sc2321 sc-view header-view-field allow-select sc-static-layout" style="">
+                                            <span id="sc13152" class="atv4 sc2321 sc-view sc-label-view header-view-compact-info allow-select sc-static-layout label sc-large-size" style="text-align: left; ">To</span>
+                                            <span id="sc13156" class="atv4 sc2321 sc-view sc-collection-view sc-stacked-view header-view-field-value allow-select sc-static-layout collection to-data" style="left: 0px; right: 0px; top: 0px; height: 1px; "><span id="sc13156-0" class="atv4 sc2321 sc-view sc-label-view message-token-item token-commit token-accessory sc-collection-item allow-select sc-static-layout label" style=""><span class="token-span"><label class="token-value">roknight23@icloud.com</label><img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw=="></span></span></span>
+                                        </div>
+                                        <div id="sc13161" class="atv4 sc2321 sc-view header-view-field allow-select sc-hidden sc-static-layout" style="">
+                                            <span id="sc13163" class="atv4 sc2321 sc-view sc-label-view header-view-compact-info allow-select sc-static-layout label sc-large-size" style="text-align: left; ">Cc</span>
+                                            <span id="sc13167" class="atv4 sc2321 sc-view sc-collection-view sc-stacked-view header-view-field-value allow-select sc-static-layout collection" style="left: 0px; right: 0px; top: 0px; height: 1px; "></span>
+                                        </div>
+                                        <div id="sc13172" class="atv4 sc2321 sc-view header-view-field allow-select sc-hidden sc-static-layout" style="">
+                                            <span id="sc13174" class="atv4 sc2321 sc-view sc-label-view header-view-compact-info allow-select sc-static-layout label sc-large-size" style="text-align: left; ">Bcc</span>
+                                            <span id="sc13178" class="atv4 sc2321 sc-view sc-collection-view sc-stacked-view header-view-field-value allow-select sc-static-layout collection" style="left: 0px; right: 0px; top: 0px; height: 1px; "></span>
+                                        </div>
+                                        <div id="sc13183" class="atv4 sc2321 sc-view header-view-field allow-select sc-hidden sc-static-layout" style="">
+                                            <span id="sc13185" class="atv4 sc2321 sc-view sc-label-view header-view-compact-info allow-select sc-static-layout label sc-large-size" style="text-align: left; ">Reply-To</span>
+                                            <span id="sc13189" class="atv4 sc2321 sc-view sc-collection-view sc-stacked-view header-view-field-value allow-select sc-static-layout collection" style="left: 0px; right: 0px; top: 0px; height: 1px; "></span>
+                                        </div>
+                                        <div id="sc13193" class="atv4 sc2321 sc-view attachments sc-hidden sc-static-layout" style="left: 0px; width: auto; top: 0px; bottom: 0px">
+                                            <div id="sc13195" class="atv4 sc2321 sc-view sc-label-view allow-select sc-static-layout label sc-regular-size icon" style="left: 1px; right: 0px; top: 4px; height: auto; text-align: right; "><img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==" class="icon attachment-image"></div>
+                                            <div id="sc13200" class="atv4 sc2321 sc-view allow-select sc-static-layout" style="left: 17px; width: auto; top: -11px; height: auto; "><span></span></div>
+                                        </div>
+                                        <div id="sc13204" class="atv4 sc2321 sc-view long-header-background long-header-font sc-hidden sc-static-layout" style="left: 42px; right: 20px; top: 0px; height: auto; ">
+                                            <div id="sc13208" class="atv4 sc2321 sc-view allow-select sc-hidden sc-static-layout" style="left: 7px; right: 50px; top: 5px; height: auto"></div>
+                                        </div>
+                                    </div>
+                                    <div id="sc13213" class="atv4 sc2321 sc-view border sc-static-layout" style="left: 20px; right: 20px; top: 0px; bottom: 0px; "></div>
+                                    <div id="sc13216" class="atv4 sc2321 sc-view message-body sc-static-layout" style="height: 100%;">
+                                        <div id="sc13222" class="atv4 sc2321 sc-view sc-web-view allow-select sc-static-layout sc-regular-size" style="width: 725px; height: 456px;"><iframe src="/applications/mail/14B53/frameworks/core_mail/mail_theme/14B53/en-us/empty.html" style="position: absolute; width: 100%;height: 100%;border: 0px;margin: 0px;padding: 0px;min-width: 520px;" frameborder="0" scrolling="no"></iframe></div>
+                                        <div id="sc13225" class="atv4 sc2321 sc-view sc-web-view sc-regular-size" style="left: 0px; width: 0px; top: 0px; height: 0px; "><iframe src="" style="position: absolute; width: 100%; height: 100%; border: 0px; margin: 0px; padding: 0px;"></iframe></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div role="scrollbar" aria-orientation="vertical" aria-valuemax="0" aria-valuemin="0" aria-valuenow="0" aria-controls="sc13071" id="sc13232" class="atv4 sc2321 sc-view sc-scroller-view sc-fading-capless-scroller-view sc-hidden disabled sc-horizontal controls-hidden" style="left: 0px; right: 9px; bottom: 0px; height: 10px" aria-disabled="true">
+                                <div class="track"></div>
+                                <div class="thumb" style="width: 715px; left: 2px; opacity: 0.0010000000000000009;">
+                                    <div class="thumb-center"></div>
+                                </div>
+                            </div>
+                            <div role="scrollbar" aria-orientation="vertical" aria-valuemax="0" aria-valuemin="0" aria-valuenow="0" aria-controls="sc13071" id="sc13236" class="atv4 sc2321 sc-view sc-scroller-view sc-fading-capless-scroller-view sc-hidden sc-vertical" style="right: 0px; width: 10px; top: 1px; bottom: 1px">
+                                <div class="track"></div>
+                                <div class="thumb" style="height: 134px; top: 2px; opacity: 0.0010000000000000009;">
+                                    <div class="thumb-center"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div role="button" tabindex="0" id="sc13240" class="atv4 borderless sc2321 sc-view sc-button-view header-view-text-button right button sc-regular-size" style="right: 0px; width: 21px; top: 79px; height: 26px" aria-pressed="false" title=""><label id="sc13331-label" class="sc-button-label sc-regular-size ellipsis">More</label></div>
+                        <div id="sc13263" class="atv4 sc-view load-image-background sc-hidden sc-static-layout" style="left: 0px; right: 0px; top: 0px; height: 44px">
+                            <div id="sc13265" class="atv4 sc2321 sc-view" style="margin-top: -22px; left: 0px; right: 0px; top: 50%; height: 44px; ">
+                                <div id="sc13267" class="atv4 sc2321 sc-view sc-label-view load-images-label label sc-regular-size" style="margin-top: -9px; left: 17px; right: 135px; top: 50%; height: 18px; ">This message contains unloaded images.</div>
+                                <div role="button" tabindex="0" id="sc13270" class="atv4 borderless sc2321 sc-view sc-button-view load-images-button button sc-small-size" style="margin-top: -14px; right: 7px; width: 110px; top: 50%; height: 27px; "><label id="sc13335-label" class="sc-button-label sc-small-size ellipsis">Load images</label></div>
+                            </div>
+                        </div>
+                        <div id="sc13279" class="atv4 sc-view junk-background sc-hidden sc-static-layout" style="left: 0px; right: 0px; top: 0px; height: 44px">
+                            <div id="sc13281" class="atv4 sc2321 sc-view" style="margin-top: -22px; left: 0px; right: 0px; top: 50%; height: 44px; ">
+                                <div id="sc13284" class="atv4 sc2321 sc-view sc-label-view message-pane-description label sc-regular-size" style="left: 17px; right: 118px; bottom: 13px; height: 18px; ">iCloud Mail or one of your rules thinks this message is junk.</div>
+                                <div id="sc13287" class="atv4 sc2321 sc-view text-align-right" style="margin-top: -15px; right: 3px; width: 111px; top: 50%; height: 30px; ">
+                                    <span id="sc13289" class="atv4 sc2321 sc-view sc-label-view message-pane-description sc-hidden sc-static-layout label sc-regular-size icon" style="right: 27px; width: auto; top: 5px; height: auto; "><img src="data:image/gif;base64,R0lGODlhAQABAJAAAP///wAAACH5BAUQAAAALAAAAAABAAEAAAICBAEAOw==" class="icon move-to-inbox-spinner">Moving to Inbox</span>
+                                    <span role="button" tabindex="0" id="sc13293" class="atv4 borderless sc2321 sc-view sc-button-view junk-pane-button button-in-between bar-after sc-hidden sc-static-layout button sc-small-size" style="right: 0px; width: auto; top: 0px; height: 28px; "><label id="sc13336-label" class="sc-button-label sc-small-size ellipsis">Load images</label></span>
+                                    <span role="button" tabindex="0" id="sc13296" class="atv4 borderless sc2321 sc-view sc-button-view junk-pane-button button-aligned-right sc-static-layout button sc-small-size def" style="right: 0px; width: auto; top: 0px; height: 28px; "><label id="sc13337-label" class="sc-button-label sc-small-size ellipsis">Not Junk</label></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Right Pane End -->
+        </div>
+
+        <!--
+
+            @* Right Pane *@
+            <div class="dyn-ele" style="left:250px; top:0px; width:1043px;">
+                <div class="dyn-ele" style="top:0px; left:0px; bottom:0px; right:0px;">
+
+                    @* Assessments List *@
+                    <div class="dyn-ele" style="left:0px; top:0px; bottom:0px; width:380px;">
+                        <div>Assessments</div>
+
+                    </div>
+
+                    @* Splitter *@
+                    <div class="dyn-ele divider" style="left:377px; top:0px; width:5px; bottom:0px; cursor:ew-resize;">
+                        <div class="line"></div>
+                    </div>
+
+                    @* Assessment *@
+                    <div class="dyn-ele" style="left: 380px; top: 0px; width: 663px; bottom: 0px;">
+                        <div>Assessment</div>
+                    </div>
+                </div>
+            </div>
+        <div id="header" class="dyn-ele">
+            <div class="dyn-ele" style="width:250px;">
+                <div style="left:0px; top:0px; bottom:0px; width:132px;">
+                    <div id="sig">
+                        <div id="logo">image</div>
+                        <div id="company">A Knight's Feast</div>
+                    </div>
+                </div>
+                <div class="dyn-ele" style="top:0px; width:1px; height:44px; right:0px;"></div>
+            </div>
+            <div class="dyn-ele" style="left:250px; width:380px;">
+                <div>&lt;placeholder&gt;</div>
+            </div>
+            <div class="dyn-ele" style="left:630px;">
+                <div>Chef Laura</div>
+            </div>
+        </div>
+        -->
+        @RenderBody()
+    </div>
+</body>
+</html>

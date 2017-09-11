@@ -1,0 +1,48 @@
+﻿@{
+    // Have to check if the user is authenticated this way becasue "WebSecurity.IsAuthenticated"
+    // isn't set to true until a new request has been submitted, and not immediately after a user
+    // has logged in successfully
+    var isAuthenticated = ViewBag.IsAuthenticated = WebSecurity.IsAuthenticated || ViewBag.RecentlyAuthenticated ?? false;
+}
+
+<!-- Scroll Navigation -->
+<div id="scrollnavbar">
+    <div id="scrolllogo"></div>
+    <div id="akftitle">
+        <div id="akfname" class="pink">A Knight's Feast</div>
+        <div id="akfservice">Personal Chef Service</div>
+    </div>
+    <div class="navblock sitenav">
+        @Html.Partial("_SiteNav")
+    </div>
+</div>
+
+<!-- Navigation -->
+<div id="navbar">
+    <a href="@Url.Action("", "Home")"><div id="logo"></div></a><div>
+        <div class="navblock">
+            <div id="woolfquote">
+                <i class="fa fa-quote-left fa-2x pull-left dblquote"></i>
+                <div>
+                    <div class="quote justify">One cannot think well, love well, sleep well, if one has not dined well.</div>
+                    <div class="speaker"><i class="fa fa-user default"></i> Virginia Woolf</div>
+                </div>
+            </div>
+            <div class="sitenav">
+                @Html.Partial("_SiteNav")
+            </div>
+        </div>
+    </div>
+</div>
+
+@* ------------------ Use this if you want to login via ajax (still not complete) ------------------
+if (isAuthenticated && ViewBag.RecentlyAuthenticated != null)
+{
+    <script type="text/javascript">
+        // Need to do this to trigger the dropdown functionality for the
+        // new dropdown menus added via ajax (don't need to do this if a
+        // new request is submitted)
+        $('[data-hover="dropdown"]').dropdownHover();
+    </script>
+}
+*@

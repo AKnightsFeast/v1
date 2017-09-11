@@ -1,0 +1,47 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head
+{
+    @Styles.Render("~/Content/Menus/css")
+    @RenderSection("Head", required: false)
+}
+
+<div id="banner">
+    <div id="chefquote">
+        <i class="fa fa-quote-left fa-2x pull-left dblquote"></i>
+        <div>
+            <div class="quote">A personal chef service is for anyone looking for a few nights off from worrying about what's for dinner.</div>
+            <div class="speaker"><i class="fa fa-user"></i> Chef Laura</div>
+        </div>
+    </div>
+</div>
+
+@RenderBody()
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jquery/effects")
+    <script type="text/javascript">
+        var $leftnav;
+
+        $(function () {
+            $("#banner").backstretch("@Html.Raw(Url.Content("~/Content/images/bg/") + "vegetables.jpg")");
+            $(window).bind('scroll', function () { PinLeftnav(); });
+
+            $leftnav = $(".leftnav");
+
+            PinLeftnav();
+        });
+
+        function PinLeftnav() {
+            if ($window.scrollTop() > 445) {
+                $leftnav.addClass('pinned');
+            } else {
+                $leftnav.removeClass('pinned');
+            }
+        }
+    </script>
+    @RenderSection("Scripts", required: false)
+}

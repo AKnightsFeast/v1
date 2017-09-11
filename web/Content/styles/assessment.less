@@ -1,0 +1,103 @@
+@default: rgb(111, 108, 108);
+@darkgray: rgb(227,227, 227);
+@entry: solid 1px rgb(187, 185, 185);
+@entryhover: solid 1px @default;
+@entryerror: solid 1px rgb(240, 32, 100);
+
+.container {
+    padding: 20px 0 30px 0;
+}
+
+.form {
+    margin: 0 auto;
+    overflow: hidden;
+
+    * {
+        color: @default;
+    }
+
+    > div + div {
+        margin-top: 10px;
+        padding-top: 10px;
+        /*border-top: solid 1px @darkgray;*/
+    }
+
+    textarea, input, select, .entry {
+        background-color: transparent;
+    }
+
+    textarea, select {
+        border: @entry;
+        &:hover, &:focus { border: @entryhover !important; }
+    }
+
+    textarea.input-validation-error {
+        border: @entryerror;
+    }
+
+    label {
+        font-weight: normal;
+    }
+
+    .padbottom {
+        margin-bottom: 10px;
+    }
+    
+    .address {
+        width: 335px;
+    }
+
+    .zipcode {
+        width: 80px;
+    }
+
+    .entry {
+        border: solid 1px transparent;
+        border-bottom: @entry !important;
+        &:hover, &:focus { border-bottom: @entryhover !important; }
+    }
+
+    .entry.input-validation-error {
+        border: solid 1px transparent;
+        border-bottom: @entryerror !important;
+    }
+
+    .entrycaption {
+        padding-left: 2px;
+        font-style: italic;
+    }
+
+    .field {
+        > div { display: inline-block; }
+        > div + div { padding-left: 8px; }
+    }
+
+    .object {
+        > div { margin-top: 10px; }
+    }
+
+    .altobject {
+        background-color: @darkgray;
+    }
+
+    .nlfield {
+        display: block !important;
+        padding-left: 0 !important;
+    }
+
+    .radiolabel {
+        padding-left: 3px !important;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .buttonrow {
+        width: 615px;
+    }
+
+    .buttonrow > div {
+        float: right;
+    }
+}

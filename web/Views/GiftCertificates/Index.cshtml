@@ -1,0 +1,63 @@
+﻿@model GiftCertificate
+
+@{
+    ViewBag.Title = "Gift Certificates";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div>
+                Need a gift idea? Gift certificates from Chef Laura are the perfect solution! Consider
+                purchasing one for:
+            </div>
+            <ul>
+                <li><i class="fa fa-leaf"></i> A Christmas gift</li>
+	            <li><i class="fa fa-leaf"></i> A get well gift</li>
+	            <li><i class="fa fa-leaf"></i> Baby showers</li>
+	            <li><i class="fa fa-leaf"></i> Birthdays</li>
+	            <li><i class="fa fa-leaf"></i> Other special occassions</li>
+            </ul>
+            <div>Gift Certificate Purchase Form</div>
+            <div>
+                @using (Ajax.BeginForm("Purchase", null, new AjaxOptions() { HttpMethod = "post" }, new { id = "gc" }))
+                {
+                    <div>From</div>
+                    <div>
+                        <div>@Html.EditorFor(gc => gc.From.FirstName)</div>
+                        @Html.LabelFor(gc => gc.From.FirstName)
+                    </div>
+                    <div>
+                        <div>@Html.EditorFor(gc => gc.From.MiddleInitial)</div>
+                        @Html.LabelFor(gc => gc.From.MiddleInitial)
+                    </div>
+                    <div>
+                        <div>@Html.EditorFor(gc => gc.From.LastName)</div>
+                        @Html.LabelFor(gc => gc.From.LastName)
+                    </div>
+                    <div>
+                        <div>@Html.EditorFor(gc => gc.From.Address.Address1)</div>
+                        @Html.LabelFor(gc => gc.From.Address.Address1)
+                    </div>
+                    <div>
+                        <div>@Html.EditorFor(gc => gc.From.Address.Address2)</div>
+                        @Html.LabelFor(gc => gc.From.Address.Address2)
+                    </div>
+                    <div>
+                        <div>@Html.EditorFor(gc => gc.From.Address.City)</div>
+                        @Html.LabelFor(gc => gc.From.Address.City)
+                    </div>
+                    <div>
+                        <div>@Html.DropDownListFor(gc => gc.From.Address.State, new SelectList(States.Collection, "Key", "Key"))</div>
+                        @Html.LabelFor(m => m.From.Address.State)
+                    </div>
+                    <div>
+                        <div>@Html.EditorFor(gc => gc.From.Address.ZipCode)</div>
+                        @Html.LabelFor(gc => gc.From.Address.ZipCode)
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

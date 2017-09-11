@@ -1,0 +1,38 @@
+﻿@model List<Assessment>
+
+@{
+    ViewBag.Title = "Assessments";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model != null && Model.Count > 0)
+{
+    <table border="1">
+        <tr>
+            <th>Created</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th colspan="2">Phone</th>
+        </tr>
+    @foreach (var assessment in Model)
+    {
+        var person = assessment.People.First();
+        
+        <tr>
+            <td>@assessment.CreationDate.ToString("MMM dd, yyyy h:mm tt")</td>
+            <td>@person.FirstName</td>
+            <td>@person.LastName</td>
+            <td>@person.Email</td>
+            <td>@person.Phone</td>
+            <td rowspan="2">@Html.ActionLink("View", "Details", new { id = assessment.AID }) | @Html.ActionLink("Print", "Print", new { id = assessment.AID })</td>
+        </tr>
+        <tr>
+            <td colspan="5">
+                <div>Hiring Goal</div>
+                @assessment.HiringGoal
+            </td>
+        </tr>
+    }
+    </table>
+}

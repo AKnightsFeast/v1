@@ -1,0 +1,41 @@
+﻿@model SortedDictionary<int, List<MonthlyMenuLink>>
+
+@{
+    ViewBag.Title = "Monthly Menus";
+    Layout = "~/Views/Shared/_LayoutMenus.cshtml";
+
+    var currentYear = DateTime.Now.Year;
+    var menusDirectory = Url.Content("~/Content/media/menus");
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 justify">
+            <div class="leftnav frame">
+                <ul class="nav frame">
+                    <li class="menu"><i class="fa fa-cutlery"></i> Monthly Menus</li>
+                    @foreach (var year in Model.Keys)
+                    {
+                    <li @Html.Raw(year == currentYear ? "class=\"active\"" : string.Empty)><a href="#@year">@year</a></li>
+                    }
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-9 justify">
+            @foreach (var year in Model.Keys)
+            {
+            <div id="@year" class="infoblock">
+                <div class="header">@year</div>
+                <div>
+                    <ul>
+                        @foreach (var link in Model[year])
+                        {
+                        <li><a href="@Html.Raw(string.Format("{0}/{1}", menusDirectory, link.FileName))" target="_blank">@link.Text</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            }
+        </div>
+    </div>
+</div>

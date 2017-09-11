@@ -1,0 +1,242 @@
+﻿@model Assessment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var className = string.Empty;
+    var createdOn = (Model != null) ? Model.CreationDate.ToString("MMM dd, yyyy h:mm tt") : string.Empty;
+}
+
+@section Head
+{
+    @Styles.Render("~/Content/AssessmentReview/css")
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 form">
+            <div>
+                <div class="object">
+                    <div class="field">
+                        <div class="section">Address</div>
+                        <div class="section" style="float: right;">@createdOn</div>
+                    </div>
+                    <div class="field">
+                        <div class="address">
+                            <div>@Model.CookingAddress.Address1</div>
+                            <div class="caption">Address1</div>
+                        </div>
+                        <div class="address">
+                            <div>@Model.CookingAddress.Address2</div>
+                            <div class="caption">Address2</div>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="city">
+                            <div>@Model.CookingAddress.City</div>
+                            <div class="caption">City</div>
+                        </div>
+                        <div class="state">
+                            <div>@Model.CookingAddress.State</div>
+                            <div class="caption">State</div>
+                        </div>
+                        <div class="zipcode">
+                            <div>@Model.CookingAddress.ZipCode</div>
+                            <div class="caption">Zip Code</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="section">People</div>
+                @if (Model != null && Model.People != null && Model.People.Count > 0)
+                {
+                    var i = 0;
+                    
+                    <div>
+                    @foreach (var person in Model.People)
+                    {
+                        i++;
+                        className = "object" + (i % 2 == 0 ? " altobject" : string.Empty);
+                        
+                        <div class="@className">
+                            <div class='field'>
+                                <div class="name">
+                                    <div>@person.FirstName</div>
+                                    <div class="caption">First Name</div>
+                                </div>
+                                <div class="name">
+                                    <div>@person.LastName</div>
+                                    <div class="caption">Last Name</div>
+                                </div>
+                                <div class="mi">
+                                    <div>@person.MiddleInitial</div>
+                                    <div class="caption">M.I.</div>
+                                </div>
+                                <div class="dob">
+                                    <div>@Html.Raw(person.DOB.HasValue ? person.DOB.Value.ToString("MM/dd/yyyy") : string.Empty)</div>
+                                    <div class="caption">DOB</div>
+                                </div>
+                            </div>
+                            <div class='field'>
+                                <div class="email">
+                                    <div>@person.Email</div>
+                                    <div class="caption">Email</div>
+                                </div>
+                                <div class="phone">
+                                    <div>@person.Phone</div>
+                                    <div class="caption">Phone</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    </div>
+                }
+            </div>
+            <div class="textarea">
+                <div class="section">Hiring Goals</div>
+                @Model.HiringGoal
+            </div>
+            <div class="textarea">
+                <div class="section">Allergies</div>
+                @Model.Allergies
+            </div>
+            <div class="field">
+                <div class="section">Lactose Intolerant</div>
+                <div>@Html.Raw(Model.LactoseInt ? "Yes" : "No")</div>
+            </div>
+            <div class="textarea">
+                <div class="section">Medical Conditions</div>
+                @Model.Medical
+            </div>
+            <div class="textarea">
+                <div class="section">Diet Plans</div>
+                @Model.DietPlan
+            </div>
+            <div class="field">
+                <div class="section">Meal Packaging</div>
+                <div>@Model.PackageStyle.Join(", ")</div>
+            </div>
+            <div class="field">
+                <div class="section">Storage Containers</div>
+                <div>@Model.Container.Join(", ")</div>
+            </div>
+            <div>
+                <div class="section">Meats</div>
+                @{
+                    var attrs = new Dictionary<string, object>() { };
+                    if (Model != null && Model.Beef) { attrs.Add("checked", "checked"); }
+                }
+                <div class="field">
+                    <div><label>@Html.CheckBoxFor(m => m.Beef, attrs) Beef: </label></div>
+                    <div>@Model.BeefPrep.Join(", ")</div>
+                </div>
+                @{
+                    attrs = new Dictionary<string, object>() { };
+                    if (Model != null && Model.Chicken) { attrs.Add("checked", "checked"); }
+                }
+                <div class="field">
+                    <div><label>@Html.CheckBoxFor(m => m.Chicken, attrs) Chicken: </label></div>
+                    <div>@Model.ChickenPrep.Join(", ")</div>
+                </div>
+                <div><label>@Html.CheckBoxFor(m => m.Turkey) Turkey</label></div>
+                <div><label>@Html.CheckBoxFor(m => m.Lamb) Lamb</label></div>
+                <div><label>@Html.CheckBoxFor(m => m.Pork) Pork</label></div>
+                <div>
+                    <div><label>@Html.CheckBoxFor(m => m.Seafood) Seafood</label></div>
+                    <div style="margin-bottom: 2px">
+                        <div class="section">Fish/shellfish Dislikes</div>
+                        <div>@Model.SeafoodNots</div>
+                    </div>
+                </div>
+                <div>
+                    <div><label><input type="checkbox"@Html.Raw(Model != null && !string.IsNullOrEmpty(Model.OtherMeats) ? " checked=\"checked\"" : string.Empty) /> Other</label></div>
+                    @Model.OtherMeats
+                </div>
+            </div>
+            <div class="field">
+                <div class="section">Spice Levels</div>
+                <div>@Model.SpiceLikes.Join(", ")</div>
+            </div>
+            <div class="field">
+                <div class="section">Vegetarian Meals</div>
+                <div>@Html.Raw(Model.VegMeals ? "Yes" : "No")</div>
+            </div>
+            <div class="textarea">
+                <div class="section">Fruit, Herb, and Vegetable Likes</div>
+                @Model.FavFHV
+            </div>
+            <div class="textarea">
+                <div class="section">Fruit, Herb, and Vegetable Dislikes</div>
+                @Model.UnfavFHV
+            </div>
+            <div class="textarea">
+                <div class="section">Favorite Greens</div>
+                @Model.FavGreens
+            </div>
+            <div class="textarea">
+                <div class="section">Kitchen Equipment Not Available For Use</div>
+                @Model.EquipNots
+            </div>
+            <div class="textarea">
+                <div class="section">Favorite Recipes</div>
+                @Model.Recipes
+            </div>
+            <div class="textarea">
+                <div class="section">Favorite Restaurants</div>
+                @Model.Restaurants
+            </div>
+            <div class="field">
+                <div class="section">Additional Freezer/Refrigerator</div>
+                <div>@Html.Raw(Model.AddlFridge ? "Yes" : "No")</div>
+            </div>
+            <div class="textarea">
+                <div class="section">Grocery Stores</div>
+                @Model.Grocers
+            </div>
+            <div class="textarea">
+                <div class="section">Fuse/Breaker Box Location</div>
+                @Model.FuseboxLocale
+            </div>
+            <div>
+                <div class="section">Pets</div>
+                @if (Model != null && Model.Pets != null && Model.Pets.Count > 0)
+                {
+                    var petsList = Model.Pets.ToList();
+                    
+                    for (var i = 0; i < petsList.Count; i++)
+                    {
+                        var pet = petsList[i];
+                        className = "object" + (((i + 1) % 2 == 0) ? " altobject" : string.Empty);
+                        
+                        <div class="@className">
+                            <div class='field'>
+                                <div class="name">
+                                    <div>@pet.Name</div>
+                                    <div class="caption">Name</div>
+                                </div>
+                                <div class="name">
+                                    <div>@pet.Breed</div>
+                                    <div class="caption">Type/Breed</div>
+                                </div>
+                                <div class="state">
+                                    <div>@Html.Raw(pet.IsFriendly ? "Yes" : "No")</div>
+                                    <div class="caption">Friendly</div>
+                                </div>
+                                <div>
+                                    <div>@pet.Location.Join(", ")</div>
+                                    <div class="caption">Normally Stays</div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="textarea">
+                <div class="section">Comments</div>
+                @Model.Comments
+            </div>
+        </div>
+    </div>
+</div>

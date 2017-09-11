@@ -1,0 +1,240 @@
+﻿/* Navigation */
+#scrollnavbar, #navbar
+{
+    width: 1090px;
+    min-width: 1090px;
+    max-width: 1090px;
+}
+
+.navblock
+{
+    right: 0;
+    width: 490px;
+    position: absolute;
+}
+
+.sitenav
+{
+    text-align: right;
+    position: relative;
+}
+
+.sitenav > li
+{
+    margin-right: 15px;
+    position: relative;
+    white-space: nowrap;
+    display: inline-block;
+    padding: 1px 1px 1px 2px;
+    background-color: transparent;
+}
+
+.sitenav > li.navlink
+{
+    cursor: pointer;
+}
+
+.sitenav > li.navlink > form > input[type="submit"]
+{
+    border: none;
+    padding: 0 !important;
+    color: rgb(240, 32, 100);
+    background: none !important;
+}
+
+.sitenav > li.navlink:hover,
+.sitenav > li.navlink:focus,
+.sitenav > li.navlink:active,
+.sitenav > li.navlink.active,
+.sitenav > li.navlink.dropdown > ul.dropdown-menu > li > a:hover,
+.sitenav > li.navlink.dropdown > ul.dropdown-menu > li > a:focus
+{
+    background-color: rgb(240, 32, 100);
+}
+
+.sitenav > li.navlink:hover,
+.sitenav > li.navlink:focus,
+.sitenav > li.navlink:active,
+.sitenav > li.navlink.active
+{
+    margin-right: 0;
+}
+
+.sitenav > li.navspacer
+{
+    cursor: default;
+}
+
+.sitenav > li > a,
+.sitenav > li > form > input[type="submit"]
+{
+    width: 0;
+    opacity: 0;
+    margin-left: 0;
+    visibility: hidden;
+    position: relative;
+    white-space: nowrap;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.sitenav > li:hover > a,
+.sitenav > li:focus > a,
+.sitenav > li:active > a,
+.sitenav > li.active > a,
+.sitenav > li:hover > form > input[type="submit"],
+.sitenav > li:focus > form > input[type="submit"],
+.sitenav > li:active > form > input[type="submit"],
+.sitenav > li.active > form > input[type="submit"]
+{
+    opacity: 1;
+    width: auto;
+    visibility: visible;
+    margin: 0 1px 0 5px;
+
+    -o-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    -webkit-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.sitenav > li.navlink:hover i,
+.sitenav > li.navlink:focus i,
+.sitenav > li.navlink:active i,
+.sitenav > li.navlink.active i,
+.sitenav > li.navlink:hover > form > input[type="submit"],
+.sitenav > li.navlink:focus > form > input[type="submit"],
+.sitenav > li.navlink:active > form > input[type="submit"],
+.sitenav > li.navlink.active > form > input[type="submit"],
+.sitenav > li.navlink:hover > a,
+.sitenav > li.navlink:focus > a,
+.sitenav > li.navlink:active > a,
+.sitenav > li.navlink.active > a,
+.sitenav > li.navlink:hover > a > i,
+.sitenav > li.navlink:focus > a > i,
+.sitenav > li.navlink:active > a > i,
+.sitenav > li.navlink.active > a > i,
+.sitenav > li.navlink.dropdown > ul.dropdown-menu > li:hover > a
+{
+    color: rgb(255, 255, 255);
+
+    -o-text-shadow: 0 1px 1px rgba(120, 16, 50, 0.5);
+    -moz-text-shadow: 0 1px 1px rgba(120, 16, 50, 0.5);
+    -webkit-text-shadow: 0 1px 1px rgba(120, 16, 50, 0.5);
+    text-shadow: 0 1px 1px rgba(120, 16, 50, 0.5);
+}
+
+.sitenav > li.navlink.dropdown > ul.dropdown-menu
+{
+    margin: 0;
+    padding: 0;
+}
+
+/* Top Navigation */
+#logo, #navbar, #navbar > div
+{
+    height: 96px !important;
+}
+
+#logo
+{
+    width: 200px !important;
+    background: url(/Content/images/logo.png) no-repeat;
+}
+
+#navbar
+{
+    position: relative;
+    margin-bottom: 5px;
+}
+
+#navbar > *
+{
+    display: inline-block;
+    background-color: rgb(255, 255, 255);
+}
+
+#navbar > div
+{
+    width: 890px;
+}
+
+#navbar > div > .navblock
+{
+    bottom: 0;
+    height: 96px;
+    padding-top: 5px;
+}
+
+#navbar > div > .navblock > .sitenav
+{
+    width: 450px;
+    margin-top: 12px;
+    margin-left: 60px;
+}
+
+/* Scroll Navigation */
+#scrollnavbar
+{
+    top: -55px;
+    -o-transition: top 100ms;
+    -moz-transition: top 100ms;
+    -webkit-transition: top 100ms;
+    transition: top 100ms;
+
+    height: 55px;
+    z-index: 1030;
+    display: block;
+    position: fixed;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+#scrollnavbar.visible
+{
+    top: 0;
+    -o-transition: top 100ms;
+    -moz-transition: top 100ms;
+    -webkit-transition: top 100ms;
+    transition: top 100ms;
+}
+
+#scrollnavbar > div,
+#scrollnavbar > #akftitle > div
+{
+    display: inline-block;
+}
+
+#scrollnavbar > #scrolllogo
+{
+    width: 43px !important;
+    height: 48px !important;
+    background: url(/Content/images/smflower.png) no-repeat top left;
+}
+
+#scrollnavbar > #akftitle
+{
+    width: 400px;
+    font-family: 'Macondo', cursive;
+}
+
+#scrollnavbar > #akftitle > #akfname
+{
+    font-size: 20px;
+}
+
+#scrollnavbar > #akftitle > #akfservice
+{
+    font-size: 14px;
+}
+
+#scrollnavbar > .navblock,
+#scrollnavbar > .navblock > .sitenav
+{
+    width: 639px;
+}
+
+#scrollnavbar > .navblock > .sitenav
+{
+    padding: 0;
+    margin-left: 19px;
+}

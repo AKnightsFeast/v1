@@ -1,0 +1,58 @@
+﻿.container
+{
+    padding-bottom: 25px;
+}
+
+/* Quote */
+.customerquote
+{
+    overflow: auto;
+    padding: 15px 10px 15px 10px;
+}
+
+.customerquote:hover
+{
+    background-color: rgb(246, 246, 246);
+}
+
+.customerquote + .customerquote
+{
+    border-top: dashed 1px rgb(217, 217, 217);
+}
+
+.customerquote:hover > div.customer,
+.customerquote:hover > div.customer > i.fa-user,
+.customerquote:hover > div.quoteblock > div.dblquote > i.fa-quote-left
+{
+    color: rgb(240, 32, 100);
+}
+
+.customerquote > div.customer,
+.customerquote > div.quoteblock > div.dblquote
+{
+    float: left;
+}
+
+.customerquote > div.quoteblock,
+.customerquote > div.quoteblock > div.quote
+{
+    float: right;
+}
+
+.customerquote > div.customer
+{
+    width: 200px;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.customerquote > div.quoteblock > div.quote
+{
+    width: 680px;
+}
+
+.customerquote > div.quoteblock > div.dblquote > i.dblquote
+{
+    text-align: right;
+    color: rgb(217, 217, 217);
+}

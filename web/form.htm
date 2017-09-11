@@ -1,0 +1,247 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+        <title>A Knight's Feast - Weekly Service Client Assessment Form</title>
+        <link rel="stylesheet/less" type="text/css" href="Content/form.less" />
+    </head>
+    <body>
+        <div id="form">
+            <div>
+                <div class="field">
+                    <div>
+                        <div>At what address will the chef be cooking?</div>
+                        <div><textarea id="txtAddress" rows="3" cols="46"></textarea></div>
+                    </div>
+                    <div class="field">
+                        <div>How many people will the chef be cooking for?</div>
+                        <div><input id="txtNoPpl" type="text" class="entry" maxlength="2" style="width: 20px" /></div>
+                    </div>
+                </div>
+                <div id="people" class="object"></div>
+            </div>
+            <div>
+                <div>What is your goal with hiring a personal chef?</div>
+                <div><textarea id="txtGoal" rows="10" cols="96"></textarea></div>
+            </div>
+            <div class="field">
+                <div>Are there any allergies in your family?</div>
+                <div><input class="ynaction" type="radio" name="allergies" value="Yes" /></div><div class="radiolabel">Yes</div>
+                <div><input class="ynaction" type="radio" name="allergies" value="No" checked="checked" /></div><div class="radiolabel">No</div>
+                <div id="allergies" class="nlfield hidden"><textarea id="txtAllergies" rows="10" cols="96"></textarea></div>
+            </div>
+            <div class="field">
+                <div>Are you lactose intolerant?</div>
+                <div><input type="radio" name="lactose" value="Yes" /></div><div class="radiolabel">Yes</div>
+                <div><input type="radio" name="lactose" value="No" checked="checked" /></div><div class="radiolabel">No</div>
+            </div>
+            <div class="field">
+                <div>Are there any medical conditions in your family?</div>
+                <div><input class="ynaction" type="radio" name="medical" value="Yes" /></div><div class="radiolabel">Yes</div>
+                <div><input class="ynaction" type="radio" name="medical" value="No" checked="checked" /></div><div class="radiolabel">No</div>
+                <div id="medical" class="nlfield hidden"><textarea id="txtMedical" rows="10" cols="96"></textarea></div>
+            </div>
+            <div class="field">
+                <div>Are you planning to follow or currently following any specific diet plan?</div>
+                <div><input class="ynaction" type="radio" name="diet" value="Yes" /></div><div class="radiolabel">Yes</div>
+                <div><input class="ynaction" type="radio" name="diet" value="No" checked="checked" /></div><div class="radiolabel">No</div>
+                <div id="diet" class="nlfield hidden"><textarea id="txtDiet" rows="10" cols="96"></textarea></div>
+            </div>
+            <div class="field">
+                <div>How should your meals be packaged?</div>
+                <div><input type="radio" name="package" value="indiv" /></div><div class="radiolabel">Individual</div>
+                <div><input type="radio" name="package" value="family" checked="checked" /></div><div class="radiolabel">Family style</div>
+            </div>
+            <div>
+                <div>What type of containers should be used to store the food?</div>
+                <div class="field">
+                    <div><input type="radio" name="container" value="plastic" /></div><div class="radiolabel">Microwave safe plastic</div>
+                </div>
+                <div class="field">
+                    <div><input type="radio" name="container" value="pyrex" checked="checked" /></div><div class="radiolabel" style="width: 520px">
+                        Freezer, oven, and microwafe safe Pyrex <b>(a $100 one-time fee will be charged if the chef needs to purchase them for you)</b>
+                    </div>
+                </div>
+                <div class="field">
+                    <div><input type="radio" name="container" value="own" /></div><div class="radiolabel">Your own</div>
+                </div>
+            </div>
+            <div>
+                <div>Do you like the following meats?</div>
+                <div>
+                    <div class="field">
+                        <div><input id="chkBeef" type="checkbox" name="beef" class="ynaction" /></div><div class="radiolabel">Beef</div>
+                    </div>
+                    <div id="beef" class="nlfield hidden" style="margin: 2px 0px 2px 16px !important">
+                        <div style="margin-bottom: 2px">How do you like your beef prepared?</div>
+                        <div class="field">
+                            <div>
+                                <div class="field">
+                                    <div><input id="chkR" type="checkbox" /></div><div class="radiolabel">Rare</div>
+                                </div>
+                                <div class="field">
+                                    <div><input id="chkMR" type="checkbox" /></div><div class="radiolabel">Med Rare</div>
+                                </div>
+                                <div class="field">
+                                    <div><input id="chkM" type="checkbox" /></div><div class="radiolabel">Med</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="field">
+                                    <div><input id="chkMW" type="checkbox" /></div><div class="radiolabel">Med Well</div>
+                                </div>
+                                <div class="field">
+                                    <div><input id="chkW" type="checkbox" /></div><div class="radiolabel">Well Done</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="field">
+                        <div><input id="chkChicken" type="checkbox" name="chicken" class="ynaction" /></div><div class="radiolabel">Chicken</div>
+                    </div>
+                    <div id="chicken" class="nlfield hidden" style="margin: 2px 0px 2px 16px !important">
+                        <div style="margin-bottom: 2px">How do you like your chicken prepared?</div>
+                        <div class="field">
+                            <div>
+                                <div class="field">
+                                    <div><input id="chkDM" type="checkbox" /></div><div class="radiolabel">Dark Meat</div>
+                                </div>
+                                <div class="field">
+                                    <div><input id="chkWM" type="checkbox" /></div><div class="radiolabel">White Meat</div>
+                                </div>
+                                <div class="field">
+                                    <div><input id="chkBone" type="checkbox" /></div><div class="radiolabel">Bone in</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="field">
+                                    <div><input id="chkBoneless" type="checkbox" /></div><div class="radiolabel">Boneless</div>
+                                </div>
+                                <div class="field">
+                                    <div><input id="chkWhole" type="checkbox" /></div><div class="radiolabel">Whole Roasts</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div><input id="chkTurkey" type="checkbox" /></div><div class="radiolabel">Turkey</div>
+                </div>
+                <div class="field">
+                    <div><input id="chkLamb" type="checkbox" /></div><div class="radiolabel">Lamb</div>
+                </div>
+                <div class="field">
+                    <div><input id="chkPork" type="checkbox" /></div><div class="radiolabel">Pork</div>
+                </div>
+                <div class="field">
+                    <div><input id="chkSeafood" type="checkbox" name="seafood" class="ynaction" /></div><div class="radiolabel">Seafood</div>
+                    <div id="seafood" class="nlfield hidden" style="margin-bottom: 2px">
+                        <div>What types of fish/shellfish don't you like?</div>
+                        <div><textarea id="txtSeafoodNots" rows="10" cols="96"></textarea></div>
+                    </div>
+                </div>
+                <div class="field">
+                    <div><input id="chkOther" type="checkbox" class="ynaction" name="other" /></div><div class="radiolabel">Other</div>
+                    <div id="other" class="nlfield hidden"><textarea id="txtOtherMeat" rows="10" cols="96"></textarea></div>
+                </div>
+            </div>
+            <div class="field">
+                <div>How spicy do you like your spicy meals?</div>
+                <div><input type="radio" name="spicy" value="bland" /></div><div class="radiolabel">Bland</div>
+                <div><input type="radio" name="spicy" value="mild" checked="checked" /></div><div class="radiolabel">Mild</div>
+                <div><input type="radio" name="spicy" value="med" /></div><div class="radiolabel">Medium</div>
+                <div><input type="radio" name="spicy" value="hot" /></div><div class="radiolabel">Hot</div>
+            </div>
+            <div class="field">
+                <div>Would you like any vegetarian meals?</div>
+                <div><input type="radio" name="vegetarian" value="Yes" /></div><div class="radiolabel">Yes</div>
+                <div><input type="radio" name="vegetarian" value="No" checked="checked" /></div><div class="radiolabel">No</div>
+            </div>
+            <div>
+                <div>What are your favorite fruits, herbs and vegetables?</div>
+                <div><textarea id="txtFHVLike" rows="10" cols="96"></textarea></div>
+            </div>
+            <div>
+                <div>What fruits, herbs and vegetables do you dislike?</div>
+                <div><textarea id="txtFHVDislike" rows="10" cols="96"></textarea></div>
+            </div>
+            <div>
+                <div>What are you favorite greens for salads?</div>
+                <div><textarea id="txtSalad" rows="10" cols="96"></textarea></div>
+            </div>
+            <div>
+                <div>Are there any kitchen appliances or equipment the chef cannot use?</div>
+                <div><textarea id="txtEquip" rows="10" cols="96"></textarea></div>
+            </div>
+            <div>
+                <div style="width: 500px">
+                    Are there any family favorite recipes that you no longer have time to prepare? List any 
+                    that you would like the chef to prepare for you.
+                </div>
+                <div><textarea id="txtRecipe" rows="10" cols="96"></textarea></div>
+            </div>
+            <div>
+                <div>What are some of your favorite restaurants?</div>
+                <div><textarea id="txtRestaurant" rows="10" cols="96"></textarea></div>
+            </div>
+            <div class="field">
+                <div>Do you have an additional freezer or refrigerator?</div>
+                <div><input type="radio" name="fridge" value="Yes" /></div><div class="radiolabel">Yes</div>
+                <div><input type="radio" name="fridge" value="No" checked="checked" /></div><div class="radiolabel">No</div>
+            </div>
+            <div>
+                <div>Where do you shop for groceries?</div>
+                <div><textarea id="txtGrocer" rows="10" cols="96"></textarea></div>
+            </div>
+            <div>
+                <div>Where is your fuse/breaker box?</div>
+                <div><textarea id="txtFuse" rows="10" cols="96"></textarea></div>
+            </div>
+            <div>
+                <div class="field">
+                    <div>How many pets are in the household that the chef might interact with?</div>
+                    <div><input id="txtNoPets" type="text" class="entry" maxlength="2" style="width: 20px" /></div>
+                </div>
+                <div id="pets"></div>
+            </div>
+            <div>
+                <div>Any comments/concerts?</div>
+                <div><textarea id="txtComments" rows="10" cols="96"></textarea></div>
+            </div>
+        </div>
+        <script type="text/javascript" src="Scripts/less-1.4.1.min.js"></script>
+        <script type="text/javascript" src="Scripts/jquery-2.0.3.min.js"></script>
+        <!--
+        <script type="text/javascript" src="Scripts/jquery.inputmask.js"></script>
+        <script type="text/javascript" src="Scripts/jquery.inputmask.date.extensions.js"></script>
+        <script type="text/javascript" src="Scripts/jquery.inputmask.numeric.extensions.js"></script>
+        <script type="text/javascript" src="Scripts/jquery.inputmask.regex.extensions.js"></script>
+        -->
+        <script type="text/javascript" src="Scripts/SS/aform.js"></script>
+        <script type="text/javascript">
+            var aForm;
+
+            $(function () {
+                aForm = new Assessment("people", "pets");
+
+                $("#txtNoPpl").keyup(function () { aForm.UpdatePeople($(this)); }).inputmask("9", { "placeholder" : "" });
+                $("#txtNoPets").keyup(function () { aForm.UpdatePets($(this)); }).inputmask("9", { "placeholder": "" });
+
+                $("input.ynaction").click(function () {
+                    var input = $(this);
+                    var div = $("#" + input.attr("name"));
+                    if (div.length == 0) return;
+
+                    var isRadio = input.attr("type").toLowerCase() == "radio";
+
+                    if ((isRadio && input.val().toLowerCase() == "yes") || (!isRadio && input.is(":checked"))) {
+                        div.removeClass("hidden");
+                    } else {
+                        div.addClass("hidden");
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>
