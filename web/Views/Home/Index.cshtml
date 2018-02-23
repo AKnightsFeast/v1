@@ -6,6 +6,12 @@
 @section Head
 {
     @Styles.Render("~/Content/Home/css")
+
+    <style type="text/css">
+        .github-fork-ribbon.right-top:before {
+            background-color: rgb(240, 32, 100);
+        }
+    </style>
 }
 
 @section Modals
@@ -13,21 +19,25 @@
     <div id="announcement" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title announcementtitle">New Meal Delivery Service!</h4>
+            <h4 class="modal-title announcementtitle">Check me out at CozyMeal!</h4>
         </div>
         <div class="modal-body announcementbody">
-            <p>
-                Check out my new <a data-dismiss="modal" href="#delivery">meal delivery service!</a>
-            </p>
+            <div id="cozymeal-chef-badge-4" style="display:table;margin:0 auto"></div>
+            <script type="text/javascript" src="https://www.cozymeal.com/widget.js?id=eyJpdiI6Im1ORTZFclpteFBVdHBTNWRlOUx1VVE9PSIsInZhbHVlIjoibWFTeGxYN0w3bjZhS2o0Rk1ZN1VCZz09IiwibWFjIjoiZWJmODRlZGM4OWE3ODRkNTAxMDgwOGU4ZDY0YzRkYWZmMjViOGYxMGU5MWRkNWRjZjRhOGY2OTZiNzM1M2JhYiJ9" async></script>
         </div>
     </div>
 }
 
 <div id="banner">
+@*
     <map name="ribbon">
         <area data-toggle="modal" href="#announcement" title="Healthy Stock Up!" alt="Healthy Stock Up!" shape="poly" coords="0,0,180,180,180,0">
     </map>
     <img src="@Url.Content("~/Content/images/healthy.png")" class="ribbon" usemap="#ribbon" title="Healthy Stock Up!" alt="Healthy Stock Up!">
+*@
+    <!-- TOP RIGHT RIBBON: START COPYING HERE -->
+    <a class="github-fork-ribbon right-top" data-toggle="modal" href="#announcement" data-ribbon="I'm on CozyMeal!" title="Check me out at CozyMean!">Check me out at CozyMeal!</a>
+    <!-- TOP RIGHT RIBBON: END COPYING HERE -->
     <div id="chefquote">
         <i class="fa fa-quote-left fa-2x pull-left dblquote"></i>
         <div>

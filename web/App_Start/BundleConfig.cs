@@ -48,7 +48,8 @@ namespace web
             ));
 
             bundles.Add(new StyleBundle("~/Content/Home/css").Include(
-                "~/Content/styles/home.css"
+                "~/Content/styles/home.css",
+                "~/Content/styles/gh-fork-ribbon.css"
             ));
 
             bundles.Add(new StyleBundle("~/Content/Assessment/css").Include(
