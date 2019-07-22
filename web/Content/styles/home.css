@@ -107,22 +107,6 @@ h3.shadow
     color: #333;
     margin-bottom: 25px;
     line-height: normal !important;
-    font-family: Calibri, Arial, sans-serif;
-}
-
-.pricetbl div
-{
-    width: 20%;
-}
-
-.pricetbl div + div
-{
-    width: 19%;
-}
-
-.pricetbl div.colwidth35
-{
-    width: 35%;
 }
 
 .pricetbl *
@@ -130,6 +114,49 @@ h3.shadow
     margin: 0;
     clear: both;
     display: inline-block;
+}
+
+.pricetbl div.col1
+{
+    width: 30%;
+}
+
+.pricetbl div.col2
+{
+    width: 45%;
+}
+
+.pricetbl div ul li
+{
+    width: 100%;
+    float: left;
+    height: 75px;
+    text-align: left;
+    min-height: 26px;
+    padding-top: 5px;
+}
+
+.pricetbl div.col1 ul li
+{
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+/*
+.pricetbl div
+{
+    width: 35%;
+}
+
+.pricetbl div + div
+{
+    width: 19%;
+}
+*/
+
+.pricetbl div.colwidth55
+{
+    width: 55%;
+    text-align: left;
 }
 
 .pricetbl div ul li.header
