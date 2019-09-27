@@ -1,0 +1,11 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/web/obj
+/.vs
+/packages
+/web/bin
+/web.Tests/bin/Debug
+/web.Tests/obj
+/AKnightsFeast.v12.suo

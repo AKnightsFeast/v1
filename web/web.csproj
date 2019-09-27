@@ -17,12 +17,12 @@
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <TargetFrameworkProfile />
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>443</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -365,6 +365,8 @@
     <Content Include="Content\styles\assessment.css.map">
       <DependentUpon>assessment.css</DependentUpon>
     </Content>
+    <Content Include="Content\media\menus\201909.pdf" />
+    <Content Include="Content\media\menus\201910.pdf" />
     <None Include="Properties\PublishProfiles\aknightsfeast.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ArcNight.pubxml" />
     <None Include="Scripts\jquery\jquery-2.0.3.intellisense.js" />
