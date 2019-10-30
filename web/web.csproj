@@ -367,6 +367,7 @@
     </Content>
     <Content Include="Content\media\menus\201909.pdf" />
     <Content Include="Content\media\menus\201910.pdf" />
+    <Content Include="Content\media\menus\201911.pdf" />
     <None Include="Properties\PublishProfiles\aknightsfeast.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ArcNight.pubxml" />
     <None Include="Scripts\jquery\jquery-2.0.3.intellisense.js" />
