@@ -34,10 +34,33 @@ namespace web.Controllers
 
                     if (!MonthlyMenus.ContainsKey(fileYear)) MonthlyMenus.Add(fileYear, new List<MonthlyMenuLink>());
 
+                    var linkText = new DateTime(fileYear, fileMonth, 1).ToString("MMM", CultureInfo.InvariantCulture);
+
+                    if (fileName.Length > 10)
+                    {
+                        var menuType = fileName.Replace(".pdf", string.Empty).Substring(6).ToLower();
+
+                        switch (menuType)
+                        {
+                            case "keto":
+                                linkText += " - Keto";
+                                break;
+                            case "paleo":
+                                linkText += " - Paleo";
+                                break;
+                            case "veg":
+                                linkText += " - Vegetarian/Vegan";
+                                break;
+                            default:
+                                linkText += " - Other";
+                                break;
+                        }
+                    }
+
                     MonthlyMenus[fileYear].Add(new MonthlyMenuLink()
                     {
                         FileName = fileName,
-                        Text = new DateTime(fileYear, fileMonth, 1).ToString("MMM", CultureInfo.InvariantCulture)
+                        Text = linkText
                     });
                 }
 
