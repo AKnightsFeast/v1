@@ -375,6 +375,10 @@
     <Content Include="Content\media\menus\202001veg.pdf" />
     <Content Include="Content\media\menus\202002.pdf" />
     <Content Include="Content\media\menus\202003.pdf" />
+    <Content Include="Content\media\menus\202201keto.pdf" />
+    <Content Include="Content\media\menus\202201paleo.pdf" />
+    <Content Include="Content\media\menus\202201veg.pdf" />
+    <Content Include="Content\media\menus\202201.pdf" />
     <None Include="Properties\PublishProfiles\aknightsfeast.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ArcNight.pubxml" />
     <None Include="Scripts\jquery\jquery-2.0.3.intellisense.js" />
