@@ -391,6 +391,9 @@
     <Content Include="Content\media\menus\202212.pdf" />
     <Content Include="Content\media\menus\202212Ketovore_Menu.pdf" />
     <Content Include="Content\media\menus\202212Mediterranean_Menu.pdf" />
+    <Content Include="Content\media\menus\202301.pdf" />
+    <Content Include="Content\media\menus\202301Ketovore_Menu.pdf" />
+    <Content Include="Content\media\menus\202301Mediterranean_Menu.pdf" />
     <None Include="Properties\PublishProfiles\aknightsfeast.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ArcNight.pubxml" />
     <None Include="Scripts\jquery\jquery-2.0.3.intellisense.js" />
