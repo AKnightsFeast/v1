@@ -382,6 +382,15 @@
     <Content Include="Content\media\menus\202202.pdf" />
     <Content Include="Content\media\menus\202203.pdf" />
     <Content Include="Content\media\menus\202204.pdf" />
+    <Content Include="Content\media\menus\202205.pdf" />
+    <Content Include="Content\media\menus\202206.pdf" />
+    <Content Include="Content\media\menus\202208.pdf" />
+    <Content Include="Content\media\menus\202209.pdf" />
+    <Content Include="Content\media\menus\202210.pdf" />
+    <Content Include="Content\media\menus\202211.pdf" />
+    <Content Include="Content\media\menus\202212.pdf" />
+    <Content Include="Content\media\menus\202212Ketovore_Menu.pdf" />
+    <Content Include="Content\media\menus\202212Mediterranean_Menu.pdf" />
     <None Include="Properties\PublishProfiles\aknightsfeast.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ArcNight.pubxml" />
     <None Include="Scripts\jquery\jquery-2.0.3.intellisense.js" />

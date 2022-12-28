@@ -38,9 +38,9 @@ namespace web.Controllers
 
                     if (fileName.Length > 10)
                     {
-                        var menuType = fileName.Replace(".pdf", string.Empty).Substring(6).ToLower();
+                        var menuType = fileName.Replace(".pdf", string.Empty).Substring(6);
 
-                        switch (menuType)
+                        switch (menuType.ToLower())
                         {
                             case "keto":
                                 linkText += " - Keto";
@@ -52,7 +52,7 @@ namespace web.Controllers
                                 linkText += " - Vegetarian/Vegan";
                                 break;
                             default:
-                                linkText += " - Other";
+                                linkText += " - " + menuType.Replace("_", " ");
                                 break;
                         }
                     }
