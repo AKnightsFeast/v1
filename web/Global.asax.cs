@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Web;
+using System.Net;
 using System.Web.Mvc;
+using System.Web.Http;
 using System.Web.Routing;
 using System.Web.Optimization;
 
@@ -22,9 +23,10 @@ namespace web
             AreaRegistration.RegisterAllAreas();
 
             AuthConfig.RegisterAuth();
+            GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters, this.Context.IsDebuggingEnabled);
 
             ModelBinders.Binders.Add(typeof(BeefPrepType), new EnumModelBinder<BeefPrepType>());
             ModelBinders.Binders.Add(typeof(ChickenPrepType), new EnumModelBinder<ChickenPrepType>());

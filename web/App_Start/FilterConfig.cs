@@ -5,10 +5,11 @@ namespace web
 {
     public class FilterConfig
     {
-        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters, bool isDebugEnabled)
         {
             filters.Add(new HandleErrorAttribute());
-            filters.Add(new RequireHttpsAttribute());
+
+            if (!isDebugEnabled) filters.Add(new RequireHttpsAttribute());
         }
     }
 }

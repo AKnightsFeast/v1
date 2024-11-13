@@ -1,149 +1,338 @@
-﻿@{
-    ViewBag.Title = "Home";
-    Layout = "~/Views/shared/_Layout.cshtml";
-}
+﻿@model Dictionary<string, string>
 
-@section Head
+    @{
+        ViewBag.Title = "Home";
+        Layout = "~/Views/shared/_Layout.cshtml";
+    }
+
+    @section Head
 {
-    @Styles.Render("~/Content/Home/css")
+        @Styles.Render("~/Content/Home/css")
 
-    <style type="text/css">
-        .github-fork-ribbon.right-top:before {
-            background-color: rgb(240, 32, 100);
-        }
-    </style>
-}
+        <style type="text/css">
+            .github-fork-ribbon.right-top:before {
+                background-color: rgb(240, 32, 100);
+            }
 
-@section Modals
+            .pp-AJA6RPP82RWWN {
+                text-align: center;
+                border: none;
+                border-radius: 1.5rem;
+                min-width: 11.625rem;
+                padding: 0 2rem;
+                height: 2rem;
+                font-weight: bold;
+                background-color: #d33063;
+                color: #ffffff;
+                font-family: "Helvetica Neue",Arial,sans-serif;
+                font-size: 0.875rem;
+                line-height: 1.125rem;
+                cursor: pointer;
+            }
+
+
+            hr {
+                border: 1px solid #dbdde0;
+                width: 100%;
+            }
+
+                hr:has(+ section[hidden]) {
+                    display: none;
+                }
+
+            input[type="checkbox"] {
+                margin: 8px;
+                transform: scale(1.5);
+            }
+
+            /*
+            input:not([type="checkbox"]) {
+                border: 1px solid #929496;
+                border-radius: 4px;
+                box-sizing: border-box;
+                font-size: 18px;
+                height: 48px;
+                line-height: 24px;
+                padding: 8px 12px 8px 12px;
+            }
+            */
+
+            *:has(#shipping-required-checkbox:not(:checked)) ~ input {
+                display: none;
+            }
+
+            section {
+                margin: 32px 0;
+            }
+
+            section.active .edit-button:not(.pinned) {
+                display: none;
+            }
+
+            section.active .summary {
+                display: none;
+            }
+
+            section.pinned .edit-button:not(.pinned) {
+                display: none;
+            }
+
+            section.pinned .summary {
+                display: none;
+            }
+
+            section:not(.active, .pinned) fieldset {
+                display: none;
+            }
+
+            section:not(.active, .pinned) .submit-button {
+                display: none;
+            }
+
+            section:not(.visited) .edit-button {
+                display: none;
+            }
+
+            .edit-button {
+                background-color: initial;
+                border: 2px solid #003087;
+                box-sizing: border-box;
+                color: #003087;
+                font-size: 14px;
+                font-weight: 700;
+                gap: 6px;
+                height: 32px;
+                line-height: 20px;
+                padding: 0px 16px 0px 16px;
+            }
+
+            .email-container {
+                display: flex;
+                flex-direction: row;
+                gap: 16px;
+                width: 100%;
+            }
+
+            .email-input-with-watermark {
+                flex: auto;
+                margin: 0;
+            }
+
+            .header {
+                align-items: center;
+                display: flex;
+                justify-content: space-between;
+                margin: 16px 0;
+            }
+
+            .submit-button:not([hidden]) {
+                background-color: #003087;
+                border: none;
+                color: #ffffff;
+                display: block;
+                font-size: 18px;
+                height: 48px;
+                line-height: 24px;
+                margin: 0 auto;
+                padding: 12px 32px 12px 32px;
+            }
+
+            .submit-button:disabled {
+                background-color: #dbdde0;
+            }
+
+            #payment:not(.active, .pinned) ~ #checkout-button {
+                display: none;
+            }
+
+            #watermark-container {
+                align-self: flex-end;
+                min-height: 24px;
+            }
+        </style>
+    }
+
+    @section Modals
 {
-@*
-    <div id="announcement" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title announcementtitle">Check me out at CozyMeal!</h4>
-        </div>
-        <div class="modal-body announcementbody">
-            <div id="cozymeal-chef-badge-4"></div>
-            <script type="text/javascript" src="https://www.cozymeal.com/widget.js?id=eyJpdiI6InRZQ2FJYXZ1U002dG9CaTJmSis3YWc9PSIsInZhbHVlIjoiOUNHU2hRVDZKTTdoUE1wSUxGMzBpZz09IiwibWFjIjoiZDRmMzM0Y2I5MzE4YmIzZjdhODcwMzZjZGFjMzc3NDI0YmRkOTQ2MWQ4NzQ5YWYxYTljMTVmMTcyYzBlNmMxZCJ9" async></script>
-        </div>
-    </div>
-*@
-}
+        @*
+            <div id="announcement" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title announcementtitle">Check me out at CozyMeal!</h4>
+                </div>
+                <div class="modal-body announcementbody">
+                    <div id="cozymeal-chef-badge-4"></div>
+                    <script type="text/javascript" src="https://www.cozymeal.com/widget.js?id=eyJpdiI6InRZQ2FJYXZ1U002dG9CaTJmSis3YWc9PSIsInZhbHVlIjoiOUNHU2hRVDZKTTdoUE1wSUxGMzBpZz09IiwibWFjIjoiZDRmMzM0Y2I5MzE4YmIzZjdhODcwMzZjZGFjMzc3NDI0YmRkOTQ2MWQ4NzQ5YWYxYTljMTVmMTcyYzBlNmMxZCJ9" async></script>
+                </div>
+            </div>
+        *@
+        <div id="serviceorder" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title announcementtitle">Order your meal service today!</h4>
+            </div>
+            <div class="modal-body announcementbody">
+                <form id="payment-form">
+                    <h1>Fastlane - PayPal Integration - Quick Start</h1>
 
-<div id="banner">
-@*
-    <map name="ribbon">
-        <area data-toggle="modal" href="#announcement" title="Healthy Stock Up!" alt="Healthy Stock Up!" shape="poly" coords="0,0,180,180,180,0">
-    </map>
-    <img src="@Url.Content("~/Content/images/healthy.png")" class="ribbon" usemap="#ribbon" title="Healthy Stock Up!" alt="Healthy Stock Up!">
-    <!-- TOP RIGHT RIBBON: START COPYING HERE -->
-    <a class="github-fork-ribbon right-top" data-toggle="modal" href="#announcement" data-ribbon="I'm on CozyMeal!" title="Check me out at CozyMean!">Check me out at CozyMeal!</a>
-*@
-    <!-- TOP RIGHT RIBBON: END COPYING HERE -->
-    <div id="chefquote">
-        <i class="fa fa-quote-left fa-2x pull-left dblquote"></i>
-        <div>
-            <div class="quote">A personal chef service is for anyone looking for a few nights off from worrying about what's for dinner.</div>
-            <div class="speaker"><i class="fa fa-user"></i> Chef Laura</div>
-        </div>
-    </div>
-</div>
+                    <section id="customer" class="active visited">
+                        <div class="header">
+                            <h2>Customer</h2>
+                            <button id="email-edit-button"
+                                    type="button"
+                                    class="edit-button">
+                                Edit
+                            </button>
+                        </div>
+                        <div class="summary"></div>
+                        <div class="email-container">
+                            <fieldset class="email-input-with-watermark">
+                                <input id="email-input"
+                                       name="email"
+                                       type="email"
+                                       placeholder="Email"
+                                       autocomplete="email" />
+                                <div id="watermark-container"></div>
+                            </fieldset>
+                            <button id="email-submit-button"
+                                    type="button"
+                                    class="submit-button"
+                                    disabled>
+                                Continue
+                            </button>
+                        </div>
+                    </section>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-6">
-            <h4>Question?</h4>
-            <p class="justify">
-                Have you and your family become too reliant on carryout meals, mass-produced restaurant food, or boxed dinners
-                with minimal nutritional value? Do you want to eat healthier but lack the time to plan, shop for and cook meals
-                that are good for you?
-            </p>
-        </div>
-        <div class="col-md-6">
-            <h4>Answer!</h4>
-            <p class="justify">
-                <b>A Knight's Feast Personal Chef Service</b> prepares your choice of meals - made fresh in your own kitchen - and packages
-                them with easy-to-follow heating instructions. We create meals that meet your specific dietary and nutritional needs
-                and appeal to your personal tastes.
-            </p>
-            <p class="justify"><b><u>What can I do for you?</u></b></p>
-        </div>
-    </div>
-</div>
+                    <hr />
 
-<div id="how" class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="frame">
-                <section id="howbg">
-                    <div class="title shadow">How it Works</div>
-                </section>
+                    <section id="shipping">
+                        <div class="header">
+                            <h2>Shipping</h2>
+                            <button id="shipping-edit-button"
+                                    type="button"
+                                    class="edit-button">
+                                Edit
+                            </button>
+                        </div>
+                        <div class="summary"></div>
+                        <fieldset>
+                            <span>
+                                <input id="shipping-required-checkbox"
+                                       name="shipping-required"
+                                       type="checkbox"
+                                       checked />
+                                <label for="shipping-required-checkbox">This purchase requires your home address</label>
+                            </span>
+                            <input name="given-name"
+                                   placeholder="First name"
+                                   autocomplete="given-name" />
+                            <input name="family-name"
+                                   placeholder="Last name"
+                                   autocomplete="family-name" />
+                            <input name="address-line1"
+                                   placeholder="Street address"
+                                   autocomplete="address-line1" />
+                            <input name="address-line2"
+                                   placeholder="Apt., ste., bldg. (optional)"
+                                   autocomplete="address-line2" />
+                            <input name="address-level2"
+                                   placeholder="City"
+                                   autocomplete="address-level2" />
+                            <input name="address-level1"
+                                   placeholder="State"
+                                   autocomplete="address-level1" />
+                            <input name="postal-code"
+                                   placeholder="ZIP code"
+                                   autocomplete="postal-code" />
+                            <input name="country"
+                                   placeholder="Country"
+                                   autocomplete="country" />
+                            <input name="tel-country-code"
+                                   placeholder="Country calling code"
+                                   autocomplete="tel-country-code" />
+                            <input name="tel-national"
+                                   type="tel"
+                                   placeholder="Phone number"
+                                   autocomplete="tel-national" />
+                        </fieldset>
+                        <button id="shipping-submit-button"
+                                type="button"
+                                class="submit-button">
+                            Continue
+                        </button>
+                    </section>
+
+                    <hr />
+
+                    <section id="payment">
+                        <div class="header">
+                            <h2>Payment</h2>
+                            <button id="payment-edit-button"
+                                    type="button"
+                                    class="edit-button">
+                                Edit
+                            </button>
+                        </div>
+                        <fieldset>
+                            <div id="payment-component"></div>
+                        </fieldset>
+                    </section>
+
+                    <button id="checkout-button" type="button" class="submit-button">
+                        Checkout
+                    </button>
+                </form>
+            </div>
+        </div>
+    }
+
+    <div id="banner">
+        @*
+            <map name="ribbon">
+                <area data-toggle="modal" href="#announcement" title="Healthy Stock Up!" alt="Healthy Stock Up!" shape="poly" coords="0,0,180,180,180,0">
+            </map>
+            <img src="@Url.Content("~/Content/images/healthy.png")" class="ribbon" usemap="#ribbon" title="Healthy Stock Up!" alt="Healthy Stock Up!">
+            <!-- TOP RIGHT RIBBON: START COPYING HERE -->
+            <a class="github-fork-ribbon right-top" data-toggle="modal" href="#announcement" data-ribbon="I'm on CozyMeal!" title="Check me out at CozyMean!">Check me out at CozyMeal!</a>
+        *@
+        <!-- TOP RIGHT RIBBON: END COPYING HERE -->
+        <div id="chefquote">
+            <i class="fa fa-quote-left fa-2x pull-left dblquote"></i>
+            <div>
+                <div class="quote">A personal chef service is for anyone looking for a few nights off from worrying about what's for dinner.</div>
+                <div class="speaker"><i class="fa fa-user"></i> Chef Laura</div>
             </div>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <h4><img alt="" src="~/Images/1.png" /> Chat</h4>
-            <p class="justify">
-                First I meet with you to discuss your dining wants and needs.
-            </p>
-            <ul class="justify">
-                <li><i class="fa fa-leaf"></i> What are your favorite foods, flavors, and textures?</li>
-                <li><i class="fa fa-leaf"></i> Do you have a family favorite that you just don’t have time to prepare?</li>
-                <li><i class="fa fa-leaf"></i> Do you want to follow a diet plan?</li>
-                <li><i class="fa fa-leaf"></i> Do you have any allergies or foods you don’t like?</li>
-                <li><i class="fa fa-leaf"></i> What international foods do you enjoy?</li>
-            </ul>
-            <p class="justify highlight">
-                You can also complete a <a href="@Url.Action("", "Assessment")"><i class="fa fa-edit"></i> Client Assessment Form</a>
-                online so I can come up with a menu for you quicker!
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h4><img alt="" src="~/Images/2.png" /> Design</h4>
-            <p class="justify">Your menu is designed and sent to you for approval.</p>
-            <p class="justify">
-                A list of suggestions will be sent you.  It must be approved within 48 hours of your cook date.  Feel free to
-                make suggestions of what you’re craving!
-            </p>
-        </div>
-        <div class="col-md-4">
-            <h4><img alt="" src="~/Images/3.png" /> Shop</h4>
-            <p class="justify">Your food is purchased fresh the day of your cook date.</p>
-            <p class="justify">
-                Chef Laura will shop at the best local grocery stores and local farmers’ markets to
-                ensure your meals are produced from the absolute freshest ingredients.
-            </p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4>Question?</h4>
+                <p class="justify">
+                    Have you and your family become too reliant on carryout meals, mass-produced restaurant food, or boxed dinners
+                    with minimal nutritional value? Do you want to eat healthier but lack the time to plan, shop for and cook meals
+                    that are good for you?
+                </p>
+            </div>
+            <div class="col-md-6">
+                <h4>Answer!</h4>
+                <p class="justify">
+                    <b>A Knight's Feast Personal Chef Service</b> prepares your choice of meals - made fresh in your own kitchen - and packages
+                    them with easy-to-follow heating instructions. We create meals that meet your specific dietary and nutritional needs
+                    and appeal to your personal tastes.
+                </p>
+                <p class="justify"><b><u>What can I do for you?</u></b></p>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-2">&nbsp;</div>
-        <div class="col-md-4">
-            <h4><img alt="" src="~/Images/4.png" /> Cook</h4>
-            <p class="justify">Your food will be prepared fresh in your home.</p>
-        </div>
-        <div class="col-md-4">
-            <h4><img alt="" src="~/Images/5.png" /> Pack</h4>
-            <p class="justify">Your fridge or freezer will be chock full of delicious food ready to consume at your convenience.</p>
-            <p class="justify">
-                All meals will be packaged with instructions on how to serve. Your kitchen will be clean of all evidence of
-                your chef being there — all except for the pleasant smell of fresh food.
-            </p>
-        </div>
-        <div class="col-md-2">&nbsp;</div>
-    </div>
-</div>
 
-@* ----- Hiding this section for right now ---------
-    <div id="delivery" class="container">
+    <div id="how" class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="frame">
-                    <section id="deliverybg">
-                        <div class="title shadow">Meal Delivery Service</div>
+                    <section id="howbg">
+                        <div class="title shadow">How it Works</div>
                     </section>
                 </div>
             </div>
@@ -151,326 +340,705 @@
     </div>
 
     <div class="container">
-        <div class="row justify">
-            <div id="deliverysummary" class="col-md-11">
-                <p>Here's a summary of the meal delivery service:</p>
-                <ul>
-                    <li>
-                        Meals will be delivered through most of DC, Maryland, and Virginia (DMV area)
-                    </li>
-                    <li>
-                        There will be 10 meal choices with classic, Keto (a.k.a. low carb, high fat), Paleo, vegan, and vegetarian variations
-                    </li>
-                    <li>
-                        Organic ingredients are purchased from reputable stores, such as Wegman’s or Trader Joe’s, or local farmers' markets
-                    </li>
-                    <li>
-                        The menu for the week is prepared by Chef Laura and made available on the Friday prior to that week
-                        <br /><br />
-                        <i>
-                            Menu choices must be sent to Chef Laura by the Sunday prior to that week no later than noon via e-mail, or she may
-                            select the menu by stating "chef’s choice" in the message
-                        </i>
-                    </li>
-                    <li>
-                        Deliveries are made throughout the day on the Tuesday of the menu week
-                        <br /><br />
-                        If given access Chef Laura would prefer to put the meals in your refrigerator
-                    </li>
-                    <li>
-                        <b>$20/Serving for 10 meals</b> or <b>$200 per delivery</b>
-                    </li>
-                    <li>
-                        Payment options include Paypal, Venmo, or check
-                    </li>
+        <div class="row">
+            <div class="col-md-4">
+                <h4><img alt="" src="~/Images/1.png" /> Chat</h4>
+                <p class="justify">
+                    First I meet with you to discuss your dining wants and needs.
+                </p>
+                <ul class="justify">
+                    <li><i class="fa fa-leaf"></i> What are your favorite foods, flavors, and textures?</li>
+                    <li><i class="fa fa-leaf"></i> Do you have a family favorite that you just don’t have time to prepare?</li>
+                    <li><i class="fa fa-leaf"></i> Do you want to follow a diet plan?</li>
+                    <li><i class="fa fa-leaf"></i> Do you have any allergies or foods you don’t like?</li>
+                    <li><i class="fa fa-leaf"></i> What international foods do you enjoy?</li>
                 </ul>
-                <p>
-                    <br />
-                    <b>
-                        NOTE: The meals are prepared in a kitchen where many ingredients have been used and not in an allergen free kitchen. Chef Laura
-                        can avoid using some ingredients when cooking, but cannot guarantee any adverse allergic reactions from occurring.
-                    </b>
+                <p class="justify highlight">
+                    You can also complete a <a href="@Url.Action("", "Assessment")"><i class="fa fa-edit"></i> Client Assessment Form</a>
+                    online so I can come up with a menu for you quicker!
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4><img alt="" src="~/Images/2.png" /> Design</h4>
+                <p class="justify">Your menu is designed and sent to you for approval.</p>
+                <p class="justify">
+                    A list of suggestions will be sent you.  It must be approved within 48 hours of your cook date.  Feel free to
+                    make suggestions of what you’re craving!
+                </p>
+            </div>
+            <div class="col-md-4">
+                <h4><img alt="" src="~/Images/3.png" /> Shop</h4>
+                <p class="justify">Your food is purchased fresh the day of your cook date.</p>
+                <p class="justify">
+                    Chef Laura will shop at the best local grocery stores and local farmers’ markets to
+                    ensure your meals are produced from the absolute freshest ingredients.
                 </p>
             </div>
         </div>
-    </div>
-*@
-
-<div id="prices" class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="frame">
-                <section id="pricebg">
-                    <div class="title shadow">Prices</div>
-                </section>
+        <div class="row">
+            <div class="col-md-2">&nbsp;</div>
+            <div class="col-md-4">
+                <h4><img alt="" src="~/Images/4.png" /> Cook</h4>
+                <p class="justify">Your food will be prepared fresh in your home.</p>
             </div>
+            <div class="col-md-4">
+                <h4><img alt="" src="~/Images/5.png" /> Pack</h4>
+                <p class="justify">Your fridge or freezer will be chock full of delicious food ready to consume at your convenience.</p>
+                <p class="justify">
+                    All meals will be packaged with instructions on how to serve. Your kitchen will be clean of all evidence of
+                    your chef being there — all except for the pleasant smell of fresh food.
+                </p>
+            </div>
+            <div class="col-md-2">&nbsp;</div>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="pricetbl">
-                <div class="col1">
-                    <ul>
-                        <li class="pricerow">
-                            Meals Service - $625
-                        </li>
-                        <li class="pricerow">
-                            Quick Service - $475
-                        </li>
-                        <li class="pricerow">
-                            Party - $500 Minimum
-                        </li>
-                        <li class="pricerow">
-                            Cooking Class - $500 Minimum
-                        </li>
-                    </ul>
-                </div>
-                <div class="col2">
-                    <ul>
-                        <li class="pricerow">
-                            Five meals with up to four - six servings of any selection.  Fee includes groceries and plastic containers.
-                            Glassware may be purchased at an additional fee.
-                        </li>
-                        <li class="pricerow">
-                            Three Meals with up to four - six servings of any selection.  Fee includes groceries and plastic containers.
-                            Glassware may be purchased at an additional fee.
-                        </li>
-                        <li class="pricerow">
-                            Call or email to discuss your event.
-                        </li>
-                        <li class="pricerow">
-                            Call or email to discuss the class you would like.  I specialize in knife skills, sauces, special diets like keto,
-                            Italian and French techniques.
-                        </li>
-                    </ul>
+    @* ----- Hiding this section for right now ---------
+        <div id="delivery" class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="frame">
+                        <section id="deliverybg">
+                            <div class="title shadow">Meal Delivery Service</div>
+                        </section>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
-@*
-    -- Old Prices Section
+        <div class="container">
+            <div class="row justify">
+                <div id="deliverysummary" class="col-md-11">
+                    <p>Here's a summary of the meal delivery service:</p>
+                    <ul>
+                        <li>
+                            Meals will be delivered through most of DC, Maryland, and Virginia (DMV area)
+                        </li>
+                        <li>
+                            There will be 10 meal choices with classic, Keto (a.k.a. low carb, high fat), Paleo, vegan, and vegetarian variations
+                        </li>
+                        <li>
+                            Organic ingredients are purchased from reputable stores, such as Wegman’s or Trader Joe’s, or local farmers' markets
+                        </li>
+                        <li>
+                            The menu for the week is prepared by Chef Laura and made available on the Friday prior to that week
+                            <br /><br />
+                            <i>
+                                Menu choices must be sent to Chef Laura by the Sunday prior to that week no later than noon via e-mail, or she may
+                                select the menu by stating "chef’s choice" in the message
+                            </i>
+                        </li>
+                        <li>
+                            Deliveries are made throughout the day on the Tuesday of the menu week
+                            <br /><br />
+                            If given access Chef Laura would prefer to put the meals in your refrigerator
+                        </li>
+                        <li>
+                            <b>$20/Serving for 10 meals</b> or <b>$200 per delivery</b>
+                        </li>
+                        <li>
+                            Payment options include Paypal, Venmo, or check
+                        </li>
+                    </ul>
+                    <p>
+                        <br />
+                        <b>
+                            NOTE: The meals are prepared in a kitchen where many ingredients have been used and not in an allergen free kitchen. Chef Laura
+                            can avoid using some ingredients when cooking, but cannot guarantee any adverse allergic reactions from occurring.
+                        </b>
+                    </p>
+                </div>
+            </div>
+        </div>
+    *@
+
+    <div id="prices" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="frame">
+                    <section id="pricebg">
+                        <div class="title shadow">Prices</div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h3>Packages</h3>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h4>$325 flat service fee (additional fees dependent on package)</h4>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
                 <div class="pricetbl">
-                    <div>
-                        <ul class="col1">
-                            <li class="header">
-                                <h2>&nbsp;</h2>
-                                <h3>&nbsp;</h3>
+                    <div class="col1">
+                        <ul>
+                            <li class="pricerow">
+                                Meals Service - $625
+                                <br />
+                                <input id="mealSvcBtn" class="pp-AJA6RPP82RWWN" type="button" value="Buy Now!" />
                             </li>
-                            <li class="pricerow darkgrey">Conventional Grocery Fee</li>
-                            <li class="pricerow mediumgrey">Organic Grocery Fee</li>
-                            <li class="pricerow darkgrey">Total Meals</li>
-                        </ul>
-                    </div>
-                    <div class="hover">
-                        <ul class="col2">
-                            <li class="header">
-                                <h2>We Are Family!</h2>
-                                <h3>(Four - Six People)</h3>
+                            <li class="pricerow">
+                                Quick Service - $475
+                                <br />
+                                <input id="quickSvcBtn" class="pp-AJA6RPP82RWWN" type="button" value="Buy Now!" />
                             </li>
-                            <li class="pricerow mediumgrey">+ $225</li>
-                            <li class="pricerow lightgrey">+ $275</li>
-                            <li class="pricerow mediumgrey">20</li>
-                        </ul>
-                    </div>
-                    <div class="hover">
-                        <ul class="col3">
-                            <li class="header">
-                                <h2>Three Peas in a Pod</h2>
-                                <h3>(Three People)</h3>
+                            <li class="pricerow">
+                                Party - $500 Minimum
                             </li>
-                            <li class="pricerow darkgrey">+ $175</li>
-                            <li class="pricerow mediumgrey">+ $225</li>
-                            <li class="pricerow darkgrey">15</li>
-                        </ul>
-                    </div>
-                    <div class="hover">
-                        <ul class="col4">
-                            <li class="header">
-                                <h2>Just the Two of Us</h2>
-                                <h3>(Two People)</h3>
+                            <li class="pricerow">
+                                Cooking Class - $500 Minimum
                             </li>
-                            <li class="pricerow mediumgrey">+ $150</li>
-                            <li class="pricerow lightgrey">+ $200</li>
-                            <li class="pricerow mediumgrey">10</li>
                         </ul>
                     </div>
-                    <div class="hover">
-                        <ul class="col5">
-                            <li class="header">
-                                <h2>Single and Loving It</h2>
-                                <h3>(One Person)</h3>
+                    <div class="col2">
+                        <ul>
+                            <li class="pricerow">
+                                Five meals with up to four - six servings of any selection.  Fee includes groceries and plastic containers.
+                                Glassware may be purchased at an additional fee.
                             </li>
-                            <li class="pricerow darkgrey">+ $125</li>
-                            <li class="pricerow mediumgrey">+ $175</li>
-                            <li class="pricerow darkgrey">5</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p class="justify">
-                    <i class="fa fa-leaf"></i> <b>
-                        If you would like more than five meals including dinner, lunch or breakfast
-                        increase the grocery bill by $50/meal and service fee by $25.
-                    </b>
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p class="justify">
-                    <i class="fa fa-leaf"></i> <b>
-                        If you would like to reduce the meal count from five to four or three, reduce
-                        the grocery cost by $25 for four or $50 for three.  Service fee does not change.
-                    </b>
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p><b>Additional Items can be purchased in addition to the service fee:</b></p>
-                <div class="pricetbl">
-                    <div>
-                        <ul class="col1">
-                            <li class="pricerow darkgrey">Breakfast Bakes</li>
-                            <li class="pricerow mediumgrey">Baked Muffins or Cookies</li>
-                            <li class="pricerow darkgrey">Family Style Fruit Salad</li>
-                            <li class="pricerow mediumgrey">Add a Soup or Salad</li>
-                            <li class="pricerow darkgrey">Pie, Tart, or Cake</li>
-                            <li class="pricerow mediumgrey">Baby Food</li>
-                            <li class="pricerow darkgrey">Pet Food</li>
-                            <li class="pricerow mediumgrey">Cooking Lessons</li>
-                        </ul>
-                    </div>
-                    <div class="colwidth35">
-                        <ul class="col2">
-                            <li class="pricerow mediumgrey">$25 per 9 x 12 tray</li>
-                            <li class="pricerow lightgrey">$15 per dozen</li>
-                            <li class="pricerow mediumgrey">$25 for 8 cups</li>
-                            <li class="pricerow lightgrey">$15 for 4 servings</li>
-                            <li class="pricerow mediumgrey">$25 each</li>
-                            <li class="pricerow lightgrey">$20 per ice cube tray full</li>
-                            <li class="pricerow mediumgrey">$50 for ten 8 oz servings</li>
-                            <li class="pricerow lightgrey">$75/person or $450 minimum (includes groceries)</li>
+                            <li class="pricerow">
+                                Three Meals with up to four - six servings of any selection.  Fee includes groceries and plastic containers.
+                                Glassware may be purchased at an additional fee.
+                            </li>
+                            <li class="pricerow">
+                                Call or email to discuss your event.
+                            </li>
+                            <li class="pricerow">
+                                Call or email to discuss the class you would like.  I specialize in knife skills, sauces, special diets like keto,
+                                Italian and French techniques.
+                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-*@
 
-@{/*
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <h3>Additional Services</h3>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="price">
-                <div class="price-header lightgrey shadow">
-   * 
-                    <h3>@Html.ActionLink("Themed events", "ThemedEvents", "Menus", null, new { @class = "pink" }), dinner parties and heavy appetizers</h3>
+    @*
+        -- Old Prices Section
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Packages</h3>
                 </div>
-                <div class="price-body mediumgrey">
-                    Usually $85/person with a $500 minimum (No additional charges for groceries)
-                </div>
-                <div class="price-footer darkgrey"></div>
             </div>
-            <div class="price">
-                <div class="price-header lightgrey shadow">
-                    <h3>Romantic Dinner for Two</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>$325 flat service fee (additional fees dependent on package)</h4>
                 </div>
-                <div class="price-body mediumgrey">
-                    4 Course Meal for $500 (includes groceries)
-                </div>
-                <div class="price-footer darkgrey"></div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="price">
-                <div class="price-header lightgrey shadow">
-                    <h3>Mother's Helper</h3>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="pricetbl">
+                        <div>
+                            <ul class="col1">
+                                <li class="header">
+                                    <h2>&nbsp;</h2>
+                                    <h3>&nbsp;</h3>
+                                </li>
+                                <li class="pricerow darkgrey">Conventional Grocery Fee</li>
+                                <li class="pricerow mediumgrey">Organic Grocery Fee</li>
+                                <li class="pricerow darkgrey">Total Meals</li>
+                            </ul>
+                        </div>
+                        <div class="hover">
+                            <ul class="col2">
+                                <li class="header">
+                                    <h2>We Are Family!</h2>
+                                    <h3>(Four - Six People)</h3>
+                                </li>
+                                <li class="pricerow mediumgrey">+ $225</li>
+                                <li class="pricerow lightgrey">+ $275</li>
+                                <li class="pricerow mediumgrey">20</li>
+                            </ul>
+                        </div>
+                        <div class="hover">
+                            <ul class="col3">
+                                <li class="header">
+                                    <h2>Three Peas in a Pod</h2>
+                                    <h3>(Three People)</h3>
+                                </li>
+                                <li class="pricerow darkgrey">+ $175</li>
+                                <li class="pricerow mediumgrey">+ $225</li>
+                                <li class="pricerow darkgrey">15</li>
+                            </ul>
+                        </div>
+                        <div class="hover">
+                            <ul class="col4">
+                                <li class="header">
+                                    <h2>Just the Two of Us</h2>
+                                    <h3>(Two People)</h3>
+                                </li>
+                                <li class="pricerow mediumgrey">+ $150</li>
+                                <li class="pricerow lightgrey">+ $200</li>
+                                <li class="pricerow mediumgrey">10</li>
+                            </ul>
+                        </div>
+                        <div class="hover">
+                            <ul class="col5">
+                                <li class="header">
+                                    <h2>Single and Loving It</h2>
+                                    <h3>(One Person)</h3>
+                                </li>
+                                <li class="pricerow darkgrey">+ $125</li>
+                                <li class="pricerow mediumgrey">+ $175</li>
+                                <li class="pricerow darkgrey">5</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
-                <div class="price-body mediumgrey">
-                    <p>
-                        Sometimes you don't mind doing the shopping and the prep, but you want to enjoy the party and would like
-                        help with clean up.
-                    </p>
-                    <p>
-                        I can come cook your food, serve and clean up. I charge $75/hour with a $300 minimum.
-                        If the event is over 25 people, additional help will be hired at $20/hour.
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="justify">
+                        <i class="fa fa-leaf"></i> <b>
+                            If you would like more than five meals including dinner, lunch or breakfast
+                            increase the grocery bill by $50/meal and service fee by $25.
+                        </b>
                     </p>
                 </div>
-                <div class="price-footer darkgrey"></div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="justify">
+                        <i class="fa fa-leaf"></i> <b>
+                            If you would like to reduce the meal count from five to four or three, reduce
+                            the grocery cost by $25 for four or $50 for three.  Service fee does not change.
+                        </b>
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p><b>Additional Items can be purchased in addition to the service fee:</b></p>
+                    <div class="pricetbl">
+                        <div>
+                            <ul class="col1">
+                                <li class="pricerow darkgrey">Breakfast Bakes</li>
+                                <li class="pricerow mediumgrey">Baked Muffins or Cookies</li>
+                                <li class="pricerow darkgrey">Family Style Fruit Salad</li>
+                                <li class="pricerow mediumgrey">Add a Soup or Salad</li>
+                                <li class="pricerow darkgrey">Pie, Tart, or Cake</li>
+                                <li class="pricerow mediumgrey">Baby Food</li>
+                                <li class="pricerow darkgrey">Pet Food</li>
+                                <li class="pricerow mediumgrey">Cooking Lessons</li>
+                            </ul>
+                        </div>
+                        <div class="colwidth35">
+                            <ul class="col2">
+                                <li class="pricerow mediumgrey">$25 per 9 x 12 tray</li>
+                                <li class="pricerow lightgrey">$15 per dozen</li>
+                                <li class="pricerow mediumgrey">$25 for 8 cups</li>
+                                <li class="pricerow lightgrey">$15 for 4 servings</li>
+                                <li class="pricerow mediumgrey">$25 each</li>
+                                <li class="pricerow lightgrey">$20 per ice cube tray full</li>
+                                <li class="pricerow mediumgrey">$50 for ten 8 oz servings</li>
+                                <li class="pricerow lightgrey">$75/person or $450 minimum (includes groceries)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="price">
-                <div class="price-header lightgrey shadow">
-                    <h3>Pack your Freezer – Lasagnas, Chills, Soups, Meatloaves, Etc!</h3>
-                </div>
-                <div class="price-body mediumgrey">
-                    <ul class="justify">
-                        <li><i class="fa fa-leaf"></i> $400 for 4 Entrees with 8 Servings Each with Conventional Groceries</li>
-                        <li><i class="fa fa-leaf"></i> $500  for 4 entrees with 8 Servings Each with Organic Groceries</li>
-                    </ul>
-                </div>
-                <div class="price-footer darkgrey"></div>
-            </div>
-        </div>
-    </div>
-</div>
-*/}
+    *@
 
-@section Scripts
-{
-    @{ var bgPath = Url.Content("~/Content/images/bg/"); }
+    @{/*
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-12">
+                      <h3>Additional Services</h3>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col-md-4">
+                      <div class="price">
+                          <div class="price-header lightgrey shadow">
+             *
+                              <h3>@Html.ActionLink("Themed events", "ThemedEvents", "Menus", null, new { @class = "pink" }), dinner parties and heavy appetizers</h3>
+                          </div>
+                          <div class="price-body mediumgrey">
+                              Usually $85/person with a $500 minimum (No additional charges for groceries)
+                          </div>
+                          <div class="price-footer darkgrey"></div>
+                      </div>
+                      <div class="price">
+                          <div class="price-header lightgrey shadow">
+                              <h3>Romantic Dinner for Two</h3>
+                          </div>
+                          <div class="price-body mediumgrey">
+                              4 Course Meal for $500 (includes groceries)
+                          </div>
+                          <div class="price-footer darkgrey"></div>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="price">
+                          <div class="price-header lightgrey shadow">
+                              <h3>Mother's Helper</h3>
+                          </div>
+                          <div class="price-body mediumgrey">
+                              <p>
+                                  Sometimes you don't mind doing the shopping and the prep, but you want to enjoy the party and would like
+                                  help with clean up.
+                              </p>
+                              <p>
+                                  I can come cook your food, serve and clean up. I charge $75/hour with a $300 minimum.
+                                  If the event is over 25 people, additional help will be hired at $20/hour.
+                              </p>
+                          </div>
+                          <div class="price-footer darkgrey"></div>
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <div class="price">
+                          <div class="price-header lightgrey shadow">
+                              <h3>Pack your Freezer – Lasagnas, Chills, Soups, Meatloaves, Etc!</h3>
+                          </div>
+                          <div class="price-body mediumgrey">
+                              <ul class="justify">
+                                  <li><i class="fa fa-leaf"></i> $400 for 4 Entrees with 8 Servings Each with Conventional Groceries</li>
+                                  <li><i class="fa fa-leaf"></i> $500  for 4 entrees with 8 Servings Each with Organic Groceries</li>
+                              </ul>
+                          </div>
+                          <div class="price-footer darkgrey"></div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+    */}
 
-    @Scripts.Render("~/bundles/jquery/effects")
-    <script type="text/javascript">
-        $(function () {
-            $("#banner").backstretch("@Html.Raw(bgPath + "punch.jpg")");
-            @*
-            $.vegas('slideshow', {
-                backgrounds: [
-                  { src: "@Html.Raw(bgPath + "chicken.jpg")", fade: 1000 },
-                  { src: "@Html.Raw(bgPath + "peppers.jpg")", fade: 1000 },
-                  { src: "@Html.Raw(bgPath + "punch.jpg")", fade: 1000 },
-                  { src: "@Html.Raw(bgPath + "seafood.jpg")", fade: 1000 },
-                  { src: "@Html.Raw(bgPath + "tiramisu.jpg")", fade: 1000 },
-                  { src: "@Html.Raw(bgPath + "tortellinis.jpg")", fade: 1000 }
-                ]
-            })('overlay', {
-                src: '@Html.Raw(bgPath + "overlays/07.png")'
+    @section Scripts
+    {
+        <script src="@Model["sdkSrc"]" data-sdk-client-token="@Model["token"]" data-sdk-integration-source="developer-studio" defer></script>
+
+        @{ var bgPath = Url.Content("~/Content/images/bg/"); }
+
+        @Scripts.Render("~/bundles/jquery/effects")
+
+        <script type="text/javascript">
+            $(function () {
+                $("#banner").backstretch("@Html.Raw(bgPath + "punch.jpg")");
+                @*
+                $.vegas('slideshow', {
+                    backgrounds: [
+                      { src: "@Html.Raw(bgPath + "chicken.jpg")", fade: 1000 },
+                      { src: "@Html.Raw(bgPath + "peppers.jpg")", fade: 1000 },
+                      { src: "@Html.Raw(bgPath + "punch.jpg")", fade: 1000 },
+                      { src: "@Html.Raw(bgPath + "seafood.jpg")", fade: 1000 },
+                      { src: "@Html.Raw(bgPath + "tiramisu.jpg")", fade: 1000 },
+                      { src: "@Html.Raw(bgPath + "tortellinis.jpg")", fade: 1000 }
+                    ]
+                })('overlay', {
+                    src: '@Html.Raw(bgPath + "overlays/07.png")'
+                });
+
+                $.vegas('stop');
+                *@
+
+                $('#announcement').modal({ backdrop: 'static' });
+
+                initFastlane(); 
             });
 
-            $.vegas('stop');
-            *@
+            async function initFastlane() {
+                try {
+                    /**
+                     * ######################################################################
+                     * Initialize Fastlane components
+                     * ######################################################################
+                     */
 
-            $('#announcement').modal({ backdrop: 'static' });
-        });
-    </script>
-}
+                    const {
+                        identity,
+                        profile,
+                        FastlanePaymentComponent,
+                        FastlaneWatermarkComponent,
+                    } = await window.paypal.Fastlane({
+                        // shippingAddressOptions: {
+                        //   allowedLocations: [],
+                        // },
+                        // cardOptions: {
+                        //   allowedBrands: [],
+                        // },
+                    });
+
+                    const paymentComponent = await FastlanePaymentComponent();
+
+                    (
+                        await FastlaneWatermarkComponent({
+                            includeAdditionalInfo: true,
+                        })
+                    ).render("#watermark-container");
+
+                    /**
+                     * ######################################################################
+                     * State & data required for Fastlane
+                     * ######################################################################
+                     */
+
+                    let memberAuthenticatedSuccessfully;
+                    let email;
+                    let shippingAddress;
+                    let paymentToken;
+
+                    /**
+                     * ######################################################################
+                     * Checkout form helpers
+                     * (this will be different for individual websites and will depend on how
+                     * your own checkout flow functions)
+                     * ######################################################################
+                     */
+
+                    const form = document.getElementById("payment-form"); // document.querySelector("form");
+                    const customerSection = document.getElementById("customer");
+                    const emailSubmitButton = document.getElementById(
+                        "email-submit-button"
+                    );
+                    const shippingSection = document.getElementById("shipping");
+                    const paymentSection = document.getElementById("payment");
+                    const checkoutButton = document.getElementById("checkout-button");
+                    let activeSection = customerSection;
+
+                    const setActiveSection = (section) => {
+                        activeSection.classList.remove("active");
+                        section.classList.add("active", "visited");
+                        activeSection = section;
+                    };
+
+                    const getAddressSummary = ({
+                        address: {
+                            addressLine1,
+                            addressLine2,
+                            adminArea2,
+                            adminArea1,
+                            postalCode,
+                            countryCode,
+                        } = {},
+                        name: { firstName, lastName, fullName } = {},
+                        phoneNumber: { countryCode: telCountryCode, nationalNumber } = {},
+                    }) => {
+                        const isNotEmpty = (field) => !!field;
+                        const summary = [
+                            fullName || [firstName, lastName].filter(isNotEmpty).join(" "),
+                            [addressLine1, addressLine2].filter(isNotEmpty).join(", "),
+                            [
+                                adminArea2,
+                                [adminArea1, postalCode].filter(isNotEmpty).join(" "),
+                                countryCode,
+                            ]
+                                .filter(isNotEmpty)
+                                .join(", "),
+                            [telCountryCode, nationalNumber].filter(isNotEmpty).join(""),
+                        ];
+                        return summary.filter(isNotEmpty).join("\n");
+                    };
+
+                    const setShippingSummary = (address) => {
+                        shippingSection.querySelector(".summary").innerText =
+                            getAddressSummary(address);
+                    };
+
+                    document.getElementById('quickSvcBtn').addEventListener("click", () => { $('#serviceorder').modal({ backdrop: 'static' }); });
+                    document.getElementById('mealSvcBtn').addEventListener("click", () => { $('#serviceorder').modal({ backdrop: 'static' }); });
+
+                    /**
+                     * ######################################################################
+                     * Checkout form interactable elements
+                     * (this will be different for individual websites and will depend on how
+                     * your own checkout flow functions)
+                     * ######################################################################
+                     */
+
+                    emailSubmitButton.addEventListener(
+                        "click",
+                        async () => {
+                            // disable button until authentication succeeds or fails
+                            emailSubmitButton.setAttribute("disabled", "");
+
+                            // reset form & state
+                            email = form.elements["email"].value;
+                            form.reset();
+                            document.getElementById("email-input").value = email;
+                            shippingSection.classList.remove("visited");
+                            setShippingSummary({});
+                            paymentSection.classList.remove("visited", "pinned");
+
+                            memberAuthenticatedSuccessfully = undefined;
+                            shippingAddress = undefined;
+                            paymentToken = undefined;
+
+                            // render payment component
+                            paymentComponent.render("#payment-component");
+
+                            try {
+                                // identify and authenticate Fastlane members
+                                const { customerContextId } =
+                                    await identity.lookupCustomerByEmail(email);
+
+                                if (customerContextId) {
+                                    const authResponse =
+                                        await identity.triggerAuthenticationFlow(
+                                            customerContextId
+                                        );
+                                    console.log("Auth response:", authResponse);
+
+                                    // save profile data
+                                    if (authResponse?.authenticationState === "succeeded") {
+                                        memberAuthenticatedSuccessfully = true;
+                                        shippingAddress =
+                                            authResponse.profileData.shippingAddress;
+                                        paymentToken = authResponse.profileData.card;
+                                    }
+                                } else {
+                                    // user was not recognized
+                                    console.log("No customerContextId");
+                                }
+
+                                // update form UI
+                                customerSection.querySelector(".summary").innerText = email;
+                                if (shippingAddress) {
+                                    setShippingSummary(shippingAddress);
+                                }
+                                if (memberAuthenticatedSuccessfully) {
+                                    shippingSection.classList.add("visited");
+                                    paymentSection.classList.add("pinned");
+                                    setActiveSection(paymentSection);
+                                } else {
+                                    setActiveSection(shippingSection);
+                                }
+                            } finally {
+                                // re-enable button once authentication succeeds or fails
+                                emailSubmitButton.removeAttribute("disabled");
+                            }
+                        }
+                    );
+
+                    // enable button after adding click event listener
+                    emailSubmitButton.removeAttribute("disabled");
+
+                    document
+                        .getElementById("email-edit-button")
+                        .addEventListener("click", () => setActiveSection(customerSection));
+
+                    document
+                        .getElementById("shipping-submit-button")
+                        .addEventListener("click", () => {
+                            // extract form values
+                            const firstName = form.elements["given-name"].value;
+                            const lastName = form.elements["family-name"].value;
+                            const address1 = form.elements["address-line1"].value;
+                            const address2 = form.elements["address-line2"].value;
+                            const city = form.elements["address-level2"].value;
+                            const state = form.elements["address-level1"].value;
+                            const zipCode = form.elements["postal-code"].value;
+                            const countryCode = form.elements["country"].value;
+                            const telCountryCode = form.elements["tel-country-code"].value;
+                            const telNational = form.elements["tel-national"].value;
+
+                            // update state & form UI
+                            shippingAddress = {
+                                address: {
+                                    address1,
+                                    address2,
+                                    city,
+                                    state,
+                                    zipCode,
+                                    countryCode,
+                                },
+                                name: {
+                                    firstName,
+                                    lastName,
+                                    fullName: [firstName, lastName]
+                                        .filter((field) => !!field)
+                                        .join(" "),
+                                },
+                                phoneNumber: {
+                                    countryCode: telCountryCode,
+                                    nationalNumber: telNational,
+                                },
+                            };
+                            setShippingSummary(shippingAddress);
+                            paymentComponent.setShippingAddress(shippingAddress);
+                            setActiveSection(paymentSection);
+                        });
+
+                    document
+                        .getElementById("shipping-edit-button")
+                        .addEventListener("click", async () => {
+                            if (memberAuthenticatedSuccessfully) {
+                                // open Shipping Address Selector for Fastlane members
+                                const { selectionChanged, selectedAddress } =
+                                    await profile.showShippingAddressSelector();
+
+                                if (selectionChanged) {
+                                    // selectedAddress contains the new address
+                                    console.log("New address:", selectedAddress);
+
+                                    // update state & form UI
+                                    shippingAddress = selectedAddress;
+                                    setShippingSummary(shippingAddress);
+                                    paymentComponent.setShippingAddress(shippingAddress);
+                                } else {
+                                    // selection modal was dismissed without selection
+                                }
+                            } else {
+                                setActiveSection(shippingSection);
+                            }
+                        });
+
+                    document
+                        .getElementById("payment-edit-button")
+                        .addEventListener("click", () => setActiveSection(paymentSection));
+
+                    checkoutButton.addEventListener("click", async () => {
+                        // disable button until transaction succeeds or fails
+                        checkoutButton.setAttribute("disabled", "");
+
+                        try {
+                            // get payment token
+                            paymentToken = await paymentComponent.getPaymentToken();
+//                            console.log("Payment token:", paymentToken);
+
+                            // send transaction details to back-end
+                            const headers = new Headers();
+                            headers.append("Content-Type", "application/json");
+
+//                            const isShippingRequired = form.elements["shipping-required"].checked;
+//                            const body = JSON.stringify({
+//                                ...(isShippingRequired && { shippingAddress }),
+//                                paymentToken,
+//                            });
+//                            const data = new FormData(form);
+//                            const body = JSON.stringify(Object.fromEntries(data.entries()));
+                            const body = JSON.stringify({ paymentToken, shippingAddress })
+
+                            const response = await fetch("api/Payment", {
+                                method: "POST",
+                                headers,
+                                body,
+                            });
+
+                            const { result, error } = await response.json();
+
+                            if (error) {
+                                console.error(error);
+                            } else {
+                                if (result.id) {
+                                    form.reset();
+
+                                    const message = `Order ${result.id}: ${result.status}`;
+                                    console.log(message);
+                                    alert(message);
+                                } else {
+                                    console.error(result);
+                                }
+                            }
+                        } finally {
+                            // re-enable button once transaction succeeds or fails
+                            checkoutButton.removeAttribute("disabled");
+                        }
+                    });
+                } catch (error) {
+                    console.error(error);
+                }
+            }
+        </script>
+    }
