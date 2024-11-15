@@ -235,12 +235,12 @@
                             <input name="address-line2"
                                    placeholder="Apt., ste., bldg. (optional)"
                                    autocomplete="address-line2" />
-                            <input name="address-level2"
+                            <input name="city"
                                    placeholder="City"
-                                   autocomplete="address-level2" />
-                            <input name="address-level1"
+                                   autocomplete="city" />
+                            <input name="state"
                                    placeholder="State"
-                                   autocomplete="address-level1" />
+                                   autocomplete="state" />
                             <input name="postal-code"
                                    placeholder="ZIP code"
                                    autocomplete="postal-code" />
@@ -926,8 +926,8 @@
                             const lastName = form.elements["family-name"].value;
                             const address1 = form.elements["address-line1"].value;
                             const address2 = form.elements["address-line2"].value;
-                            const city = form.elements["address-level2"].value;
-                            const state = form.elements["address-level1"].value;
+                            const city = form.elements["city"].value;
+                            const state = form.elements["state"].value;
                             const zipCode = form.elements["postal-code"].value;
                             const countryCode = form.elements["country"].value;
                             const telCountryCode = form.elements["tel-country-code"].value;

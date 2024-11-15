@@ -51,6 +51,8 @@ namespace web.Controllers.api
                                 address = new {
                                     address_line_1 = order.ShippingAddress.Address?.Address1,
                                     address_line_2 = order.ShippingAddress.Address?.Address2,
+                                    admin_area_2 = order.ShippingAddress.Address?.City,
+                                    admin_area_1 = order.ShippingAddress.Address?.State,
                                     postal_code = order.ShippingAddress.Address?.ZipCode,
                                     country_code = order.ShippingAddress.Address?.CountryCode
                                 },
