@@ -61,10 +61,6 @@
                 display: none;
             }
 
-            section {
-                margin: 32px 0;
-            }
-
             section.active .edit-button:not(.pinned) {
                 display: none;
             }
@@ -170,11 +166,10 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 <h4 class="modal-title announcementtitle">Order your meal service today!</h4>
+                <div id="watermark-container"></div>
             </div>
-            <div class="modal-body announcementbody">
+            <div class="modal-body announcementbody" style="padding-top:0px">
                 <form id="payment-form">
-                    <h1>Fastlane - PayPal Integration - Quick Start</h1>
-
                     <section id="customer" class="active visited">
                         <div class="header">
                             <h2>Customer</h2>
@@ -187,12 +182,7 @@
                         <div class="summary"></div>
                         <div class="email-container">
                             <fieldset class="email-input-with-watermark">
-                                <input id="email-input"
-                                       name="email"
-                                       type="email"
-                                       placeholder="Email"
-                                       autocomplete="email" />
-                                <div id="watermark-container"></div>
+                                <input id="email-input" class="number" name="email" type="email" placeholder="Email" autocomplete="email" />
                             </fieldset>
                             <button id="email-submit-button"
                                     type="button"
@@ -223,37 +213,16 @@
                                        checked />
                                 <label for="shipping-required-checkbox">This purchase requires your home address</label>
                             </span>
-                            <input name="given-name"
-                                   placeholder="First name"
-                                   autocomplete="given-name" />
-                            <input name="family-name"
-                                   placeholder="Last name"
-                                   autocomplete="family-name" />
-                            <input name="address-line1"
-                                   placeholder="Street address"
-                                   autocomplete="address-line1" />
-                            <input name="address-line2"
-                                   placeholder="Apt., ste., bldg. (optional)"
-                                   autocomplete="address-line2" />
-                            <input name="city"
-                                   placeholder="City"
-                                   autocomplete="city" />
-                            <input name="state"
-                                   placeholder="State"
-                                   autocomplete="state" />
-                            <input name="postal-code"
-                                   placeholder="ZIP code"
-                                   autocomplete="postal-code" />
-                            <input name="country"
-                                   placeholder="Country"
-                                   autocomplete="country" />
-                            <input name="tel-country-code"
-                                   placeholder="Country calling code"
-                                   autocomplete="tel-country-code" />
-                            <input name="tel-national"
-                                   type="tel"
-                                   placeholder="Phone number"
-                                   autocomplete="tel-national" />
+                            <input name="given-name" class="number" placeholder="First name" autocomplete="given-name" />
+                            <input name="family-name" class="number" placeholder="Last name" autocomplete="family-name" />
+                            <input name="address-line1" class="number" placeholder="Street address" autocomplete="address-line1" />
+                            <input name="address-line2" class="number" placeholder="Apt., ste., bldg. (optional)" autocomplete="address-line2" />
+                            <input name="city" class="number" placeholder="City" autocomplete="city" />
+                            <input name="state" class="number" placeholder="State" autocomplete="state" />
+                            <input name="postal-code" class="number" placeholder="Zip code" autocomplete="postal-code" />
+                            <input name="country" class="number" placeholder="Country" autocomplete="country" />
+                            <input name="tel-country-code" class="number" placeholder="Country calling code" autocomplete="tel-country-code" />
+                            <input name="tel-national" class="number" type="tel" placeholder="Phone number" autocomplete="tel-national" />
                         </fieldset>
                         <button id="shipping-submit-button"
                                 type="button"
@@ -774,10 +743,11 @@
                      * ######################################################################
                      */
 
-                    let memberAuthenticatedSuccessfully;
                     let email;
-                    let shippingAddress;
+                    let orderType;
                     let paymentToken;
+                    let shippingAddress;
+                    let memberAuthenticatedSuccessfully;
 
                     /**
                      * ######################################################################
@@ -789,9 +759,7 @@
 
                     const form = document.getElementById("payment-form"); // document.querySelector("form");
                     const customerSection = document.getElementById("customer");
-                    const emailSubmitButton = document.getElementById(
-                        "email-submit-button"
-                    );
+                    const emailSubmitButton = document.getElementById("email-submit-button");
                     const shippingSection = document.getElementById("shipping");
                     const paymentSection = document.getElementById("payment");
                     const checkoutButton = document.getElementById("checkout-button");
@@ -836,8 +804,14 @@
                             getAddressSummary(address);
                     };
 
-                    document.getElementById('quickSvcBtn').addEventListener("click", () => { $('#serviceorder').modal({ backdrop: 'static' }); });
-                    document.getElementById('mealSvcBtn').addEventListener("click", () => { $('#serviceorder').modal({ backdrop: 'static' }); });
+                    document.getElementById('mealSvcBtn').addEventListener("click", () => {
+                        orderType = 0;
+                        $('#serviceorder').modal({ backdrop: 'static' });
+                    });
+                    document.getElementById('quickSvcBtn').addEventListener("click", () => {
+                        orderType = 1;
+                        $('#serviceorder').modal({ backdrop: 'static' });
+                    });
 
                     /**
                      * ######################################################################
@@ -992,6 +966,8 @@
                         // disable button until transaction succeeds or fails
                         checkoutButton.setAttribute("disabled", "");
 
+                        ShowWaitModal("Submitting payment...");
+
                         try {
                             // get payment token
                             paymentToken = await paymentComponent.getPaymentToken();
@@ -1008,7 +984,7 @@
 //                            });
 //                            const data = new FormData(form);
 //                            const body = JSON.stringify(Object.fromEntries(data.entries()));
-                            const body = JSON.stringify({ paymentToken, shippingAddress })
+                            const body = JSON.stringify({ orderType, paymentToken, shippingAddress })
 
                             const response = await fetch("api/Payment", {
                                 method: "POST",
@@ -1021,14 +997,12 @@
                             if (error) {
                                 console.error(error);
                             } else {
+                                GetResponse(result);
+
                                 if (result.id) {
                                     form.reset();
 
-                                    const message = `Order ${result.id}: ${result.status}`;
-                                    console.log(message);
-                                    alert(message);
-                                } else {
-                                    console.error(result);
+                                    console.log(`Order ${result.id}: ${result.status}`);
                                 }
                             }
                         } finally {

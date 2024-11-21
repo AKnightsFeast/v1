@@ -14,13 +14,14 @@ using System.Web.Mvc;
 using web.Models;
 using web.Models.Enums;
 using web.Utilities;
+using PayPal.OpenIdConnect;
 
 namespace web.Controllers.api
 {
     public class PaymentController : ApiController
     {
         // POST: api/Payment
-        public async Task<HttpStatusCodeResult> Post([FromBody]OrderRequest order)
+        public async Task<dynamic> Post([FromBody]OrderRequest order)
         {
             try {
                 var accessToken = await GenerateAccessToken();
@@ -71,13 +72,56 @@ namespace web.Controllers.api
                 request.Content = new StringContent(JsonConvert.SerializeObject(payload), Encoding.UTF8, "application/json");
 
                 var response = await NonSSLHttpClient.SendRequest(request);
+                var responseJson = JObject.Parse(await response.Content.ReadAsStringAsync());
+                var status = responseJson.Root["status"].ToString();
+                var orderType = order.OrderType == MealsServiceType.MealsService ? "Meal" : "Quick";
+                var title = string.Empty;
+                var message = string.Empty;
+                var orderId = default(string);
 
-                return new HttpStatusCodeResult(response.StatusCode, JObject.Parse(await response.Content.ReadAsStringAsync()).Root.ToString());
+                if (status.ToLower() == "completed")
+                {
+                    orderId = responseJson.Root["id"].ToString();
+                    title = "Order " + orderId + " has been processed";
+                    message = "Thank you for your " + orderType + " Service order!<p>Chef Laura will contact you shortly to discuss the next steps!</p>";
+                }
+                else
+                {
+                    title = "Issue with " + orderType + " Service order";
+                    message = "There was an issue with " + orderType + " Service order.<p>Please contact Chef Laura with any inquiries you might have.";
+                }
+
+                return new
+                {
+                    error = default(string),
+                    result = new
+                    {
+                        status,
+                        id = orderId,
+                        statusCode = response.StatusCode,
+                        Modal = new
+                        {
+                            Title = title,
+                            Message = message
+                        }
+                    }
+                };
+
+                //return new HttpStatusCodeResult(response.StatusCode, JObject.Parse(await response.Content.ReadAsStringAsync()).Root.ToString());
             }
             catch (Exception ex) {
                 Console.WriteLine(ex);
 
-                return new HttpStatusCodeResult(500, ex.Message);
+                return new
+                {
+                    error = ex.Message,
+                    result = new
+                    {
+                        statusCode = 500,
+                    }
+                };
+
+                //return new HttpStatusCodeResult(500, ex.Message);
             }
         }
 
