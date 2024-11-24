@@ -1,174 +1,174 @@
 ﻿@model Dictionary<string, string>
 
-    @{
-        ViewBag.Title = "Home";
-        Layout = "~/Views/shared/_Layout.cshtml";
-    }
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
 
-    @section Head
+@section Head
 {
-        @Styles.Render("~/Content/Home/css")
+    @Styles.Render("~/Content/Home/css")
 
-        <style type="text/css">
-            .github-fork-ribbon.right-top:before {
-                background-color: rgb(240, 32, 100);
-            }
+    <style type="text/css">
+        .github-fork-ribbon.right-top:before {
+            background-color: rgb(240, 32, 100);
+        }
 
-            .pp-AJA6RPP82RWWN {
-                text-align: center;
-                border: none;
-                border-radius: 1.5rem;
-                min-width: 11.625rem;
-                padding: 0 2rem;
-                height: 2rem;
-                font-weight: bold;
-                background-color: #d33063;
-                color: #ffffff;
-                font-family: "Helvetica Neue",Arial,sans-serif;
-                font-size: 0.875rem;
-                line-height: 1.125rem;
-                cursor: pointer;
-            }
+        .buy-now-button {
+            text-align: center;
+            border: none;
+            border-radius: 1.5rem;
+            min-width: 11.625rem;
+            padding: 0 2rem;
+            height: 2rem;
+            font-weight: bold;
+            background-color: #d33063;
+            color: #ffffff;
+            font-family: "Helvetica Neue",Arial,sans-serif;
+            font-size: 0.875rem;
+            line-height: 1.125rem;
+            cursor: pointer;
+        }
 
 
-            hr {
-                border: 1px solid #dbdde0;
-                width: 100%;
-            }
+        hr {
+            border: 1px solid #dbdde0;
+            width: 100%;
+        }
 
-                hr:has(+ section[hidden]) {
-                    display: none;
-                }
-
-            input[type="checkbox"] {
-                margin: 8px;
-                transform: scale(1.5);
-            }
-
-            /*
-            input:not([type="checkbox"]) {
-                border: 1px solid #929496;
-                border-radius: 4px;
-                box-sizing: border-box;
-                font-size: 18px;
-                height: 48px;
-                line-height: 24px;
-                padding: 8px 12px 8px 12px;
-            }
-            */
-
-            *:has(#shipping-required-checkbox:not(:checked)) ~ input {
+            hr:has(+ section[hidden]) {
                 display: none;
             }
 
-            section.active .edit-button:not(.pinned) {
-                display: none;
-            }
+        input[type="checkbox"] {
+            margin: 8px;
+            transform: scale(1.5);
+        }
 
-            section.active .summary {
-                display: none;
-            }
-
-            section.pinned .edit-button:not(.pinned) {
-                display: none;
-            }
-
-            section.pinned .summary {
-                display: none;
-            }
-
-            section:not(.active, .pinned) fieldset {
-                display: none;
-            }
-
-            section:not(.active, .pinned) .submit-button {
-                display: none;
-            }
-
-            section:not(.visited) .edit-button {
-                display: none;
-            }
-
-            .edit-button {
-                background-color: initial;
-                border: 2px solid #003087;
-                box-sizing: border-box;
-                color: #003087;
-                font-size: 14px;
-                font-weight: 700;
-                gap: 6px;
-                height: 32px;
-                line-height: 20px;
-                padding: 0px 16px 0px 16px;
-            }
-
-            .email-container {
-                display: flex;
-                flex-direction: row;
-                gap: 16px;
-                width: 100%;
-            }
-
-            .email-input-with-watermark {
-                flex: auto;
-                margin: 0;
-            }
-
-            .header {
-                align-items: center;
-                display: flex;
-                justify-content: space-between;
-                margin: 16px 0;
-            }
-
-            .submit-button:not([hidden]) {
-                background-color: #003087;
-                border: none;
-                color: #ffffff;
-                display: block;
-                font-size: 18px;
-                height: 48px;
-                line-height: 24px;
-                margin: 0 auto;
-                padding: 12px 32px 12px 32px;
-            }
-
-            .submit-button:disabled {
-                background-color: #dbdde0;
-            }
-
-            #payment:not(.active, .pinned) ~ #checkout-button {
-                display: none;
-            }
-
-            #watermark-container {
-                align-self: flex-end;
-                min-height: 24px;
-            }
-        </style>
+        /*
+    input:not([type="checkbox"]) {
+        border: 1px solid #929496;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-size: 18px;
+        height: 48px;
+        line-height: 24px;
+        padding: 8px 12px 8px 12px;
     }
+    */
 
-    @section Modals
+        *:has(#shipping-required-checkbox:not(:checked)) ~ input {
+            display: none;
+        }
+
+        section.active .edit-button:not(.pinned) {
+            display: none;
+        }
+
+        section.active .summary {
+            display: none;
+        }
+
+        section.pinned .edit-button:not(.pinned) {
+            display: none;
+        }
+
+        section.pinned .summary {
+            display: none;
+        }
+
+        section:not(.active, .pinned) fieldset {
+            display: none;
+        }
+
+        section:not(.active, .pinned) .submit-button {
+            display: none;
+        }
+
+        section:not(.visited) .edit-button {
+            display: none;
+        }
+
+        .edit-button {
+            background-color: initial;
+            border: 2px solid #003087;
+            box-sizing: border-box;
+            color: #003087;
+            font-size: 14px;
+            font-weight: 700;
+            gap: 6px;
+            height: 32px;
+            line-height: 20px;
+            padding: 0px 16px 0px 16px;
+        }
+
+        .email-container {
+            display: flex;
+            flex-direction: row;
+            gap: 16px;
+            width: 100%;
+        }
+
+        .email-input-with-watermark {
+            flex: auto;
+            margin: 0;
+        }
+
+        .header {
+            align-items: center;
+            display: flex;
+            justify-content: space-between;
+            margin: 16px 0;
+        }
+
+        .submit-button:not([hidden]) {
+            background-color: #003087;
+            border: none;
+            color: #ffffff;
+            display: block;
+            font-size: 18px;
+            height: 48px;
+            line-height: 24px;
+            margin: 0 auto;
+            padding: 12px 32px 12px 32px;
+        }
+
+        .submit-button:disabled {
+            background-color: #dbdde0;
+        }
+
+        #payment:not(.active, .pinned) ~ #checkout-button {
+            display: none;
+        }
+
+        #watermark-container {
+            align-self: flex-end;
+            min-height: 24px;
+        }
+    </style>
+}
+
+@section Modals
 {
-        @*
-            <div id="announcement" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title announcementtitle">Check me out at CozyMeal!</h4>
-                </div>
-                <div class="modal-body announcementbody">
-                    <div id="cozymeal-chef-badge-4"></div>
-                    <script type="text/javascript" src="https://www.cozymeal.com/widget.js?id=eyJpdiI6InRZQ2FJYXZ1U002dG9CaTJmSis3YWc9PSIsInZhbHVlIjoiOUNHU2hRVDZKTTdoUE1wSUxGMzBpZz09IiwibWFjIjoiZDRmMzM0Y2I5MzE4YmIzZjdhODcwMzZjZGFjMzc3NDI0YmRkOTQ2MWQ4NzQ5YWYxYTljMTVmMTcyYzBlNmMxZCJ9" async></script>
-                </div>
-            </div>
-        *@
-        <div id="serviceorder" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
+    @*
+        <div id="announcement" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title announcementtitle">Order your meal service today!</h4>
-                <div id="watermark-container"></div>
+                <h4 class="modal-title announcementtitle">Check me out at CozyMeal!</h4>
             </div>
-            <div class="modal-body announcementbody" style="padding-top:0px">
+            <div class="modal-body announcementbody">
+                <div id="cozymeal-chef-badge-4"></div>
+                <script type="text/javascript" src="https://www.cozymeal.com/widget.js?id=eyJpdiI6InRZQ2FJYXZ1U002dG9CaTJmSis3YWc9PSIsInZhbHVlIjoiOUNHU2hRVDZKTTdoUE1wSUxGMzBpZz09IiwibWFjIjoiZDRmMzM0Y2I5MzE4YmIzZjdhODcwMzZjZGFjMzc3NDI0YmRkOTQ2MWQ4NzQ5YWYxYTljMTVmMTcyYzBlNmMxZCJ9" async></script>
+            </div>
+        </div>
+    *@
+    <div id="serviceorder" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title announcementtitle">Order your meal service today!</h4>
+            <div id="watermark-container"></div>
+        </div>
+        <div class="modal-body announcementbody" style="padding-top:0px">
                 <form id="payment-form">
                     <section id="customer" class="active visited">
                         <div class="header">
@@ -208,17 +208,17 @@
                         <fieldset>
                             <span>
                                 <input id="shipping-required-checkbox"
-                                       name="shipping-required"
-                                       type="checkbox"
-                                       checked />
+                                        name="shipping-required"
+                                        type="checkbox"
+                                        checked />
                                 <label for="shipping-required-checkbox">This purchase requires your home address</label>
                             </span>
                             <input name="given-name" class="number" placeholder="First name" autocomplete="given-name" />
                             <input name="family-name" class="number" placeholder="Last name" autocomplete="family-name" />
                             <input name="address-line1" class="number" placeholder="Street address" autocomplete="address-line1" />
                             <input name="address-line2" class="number" placeholder="Apt., ste., bldg. (optional)" autocomplete="address-line2" />
-                            <input name="city" class="number" placeholder="City" autocomplete="city" />
-                            <input name="state" class="number" placeholder="State" autocomplete="state" />
+                            <input name="address-level2" class="number" placeholder="City" autocomplete="address-level2" />
+                            <input name="address-level1" class="number" placeholder="State" autocomplete="address-level1" />
                             <input name="postal-code" class="number" placeholder="Zip code" autocomplete="postal-code" />
                             <input name="country" class="number" placeholder="Country" autocomplete="country" />
                             <input name="tel-country-code" class="number" placeholder="Country calling code" autocomplete="tel-country-code" />
@@ -442,12 +442,12 @@
                             <li class="pricerow">
                                 Meals Service - $625
                                 <br />
-                                <input id="mealSvcBtn" class="pp-AJA6RPP82RWWN" type="button" value="Buy Now!" />
+                                <input class="buy-now-button" type="button" value="Buy Now!" data-servicetype="0" />
                             </li>
                             <li class="pricerow">
                                 Quick Service - $475
                                 <br />
-                                <input id="quickSvcBtn" class="pp-AJA6RPP82RWWN" type="button" value="Buy Now!" />
+                                <input class="buy-now-button" type="button" value="Buy Now!" data-servicetype="1" />
                             </li>
                             <li class="pricerow">
                                 Party - $500 Minimum
@@ -610,71 +610,71 @@
     *@
 
     @{/*
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-12">
-                      <h3>Additional Services</h3>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-4">
-                      <div class="price">
-                          <div class="price-header lightgrey shadow">
-             *
-                              <h3>@Html.ActionLink("Themed events", "ThemedEvents", "Menus", null, new { @class = "pink" }), dinner parties and heavy appetizers</h3>
-                          </div>
-                          <div class="price-body mediumgrey">
-                              Usually $85/person with a $500 minimum (No additional charges for groceries)
-                          </div>
-                          <div class="price-footer darkgrey"></div>
-                      </div>
-                      <div class="price">
-                          <div class="price-header lightgrey shadow">
-                              <h3>Romantic Dinner for Two</h3>
-                          </div>
-                          <div class="price-body mediumgrey">
-                              4 Course Meal for $500 (includes groceries)
-                          </div>
-                          <div class="price-footer darkgrey"></div>
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                      <div class="price">
-                          <div class="price-header lightgrey shadow">
-                              <h3>Mother's Helper</h3>
-                          </div>
-                          <div class="price-body mediumgrey">
-                              <p>
-                                  Sometimes you don't mind doing the shopping and the prep, but you want to enjoy the party and would like
-                                  help with clean up.
-                              </p>
-                              <p>
-                                  I can come cook your food, serve and clean up. I charge $75/hour with a $300 minimum.
-                                  If the event is over 25 people, additional help will be hired at $20/hour.
-                              </p>
-                          </div>
-                          <div class="price-footer darkgrey"></div>
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                      <div class="price">
-                          <div class="price-header lightgrey shadow">
-                              <h3>Pack your Freezer – Lasagnas, Chills, Soups, Meatloaves, Etc!</h3>
-                          </div>
-                          <div class="price-body mediumgrey">
-                              <ul class="justify">
-                                  <li><i class="fa fa-leaf"></i> $400 for 4 Entrees with 8 Servings Each with Conventional Groceries</li>
-                                  <li><i class="fa fa-leaf"></i> $500  for 4 entrees with 8 Servings Each with Organic Groceries</li>
-                              </ul>
-                          </div>
-                          <div class="price-footer darkgrey"></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3>Additional Services</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="price">
+                            <div class="price-header lightgrey shadow">
+               *
+                                <h3>@Html.ActionLink("Themed events", "ThemedEvents", "Menus", null, new { @class = "pink" }), dinner parties and heavy appetizers</h3>
+                            </div>
+                            <div class="price-body mediumgrey">
+                                Usually $85/person with a $500 minimum (No additional charges for groceries)
+                            </div>
+                            <div class="price-footer darkgrey"></div>
+                        </div>
+                        <div class="price">
+                            <div class="price-header lightgrey shadow">
+                                <h3>Romantic Dinner for Two</h3>
+                            </div>
+                            <div class="price-body mediumgrey">
+                                4 Course Meal for $500 (includes groceries)
+                            </div>
+                            <div class="price-footer darkgrey"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="price">
+                            <div class="price-header lightgrey shadow">
+                                <h3>Mother's Helper</h3>
+                            </div>
+                            <div class="price-body mediumgrey">
+                                <p>
+                                    Sometimes you don't mind doing the shopping and the prep, but you want to enjoy the party and would like
+                                    help with clean up.
+                                </p>
+                                <p>
+                                    I can come cook your food, serve and clean up. I charge $75/hour with a $300 minimum.
+                                    If the event is over 25 people, additional help will be hired at $20/hour.
+                                </p>
+                            </div>
+                            <div class="price-footer darkgrey"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="price">
+                            <div class="price-header lightgrey shadow">
+                                <h3>Pack your Freezer – Lasagnas, Chills, Soups, Meatloaves, Etc!</h3>
+                            </div>
+                            <div class="price-body mediumgrey">
+                                <ul class="justify">
+                                    <li><i class="fa fa-leaf"></i> $400 for 4 Entrees with 8 Servings Each with Conventional Groceries</li>
+                                    <li><i class="fa fa-leaf"></i> $500  for 4 entrees with 8 Servings Each with Organic Groceries</li>
+                                </ul>
+                            </div>
+                            <div class="price-footer darkgrey"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
     */}
 
-    @section Scripts
+@section Scripts
     {
         <script src="@Model["sdkSrc"]" data-sdk-client-token="@Model["token"]" data-sdk-integration-source="developer-studio" defer></script>
 
@@ -704,7 +704,7 @@
 
                 $('#announcement').modal({ backdrop: 'static' });
 
-                initFastlane(); 
+                initFastlane();
             });
 
             async function initFastlane() {
@@ -759,10 +759,11 @@
 
                     const form = document.getElementById("payment-form"); // document.querySelector("form");
                     const customerSection = document.getElementById("customer");
-                    const emailSubmitButton = document.getElementById("email-submit-button");
                     const shippingSection = document.getElementById("shipping");
                     const paymentSection = document.getElementById("payment");
+                    const emailSubmitButton = document.getElementById("email-submit-button");
                     const checkoutButton = document.getElementById("checkout-button");
+                    const buyNowButtons = Object.values(document.getElementsByClassName('buy-now-button'));
                     let activeSection = customerSection;
 
                     const setActiveSection = (section) => {
@@ -804,13 +805,21 @@
                             getAddressSummary(address);
                     };
 
-                    document.getElementById('mealSvcBtn').addEventListener("click", () => {
-                        orderType = 0;
-                        $('#serviceorder').modal({ backdrop: 'static' });
-                    });
-                    document.getElementById('quickSvcBtn').addEventListener("click", () => {
-                        orderType = 1;
-                        $('#serviceorder').modal({ backdrop: 'static' });
+                    const resetForm = (customerEmail) => {
+                        // reset form & state
+                        form.reset();
+                        document.getElementById("email-input").value = email = customerEmail;
+                        shippingSection.classList.remove("visited");
+                        setShippingSummary({});
+                        paymentSection.classList.remove("visited", "pinned");
+                    };
+
+                    buyNowButtons.forEach(button => {
+                        button.addEventListener("click", () => {
+                            orderType = button.getAttribute("data-servicetype");
+                            setActiveSection(customerSection);
+                            $('#serviceorder').modal({ backdrop: 'static', onClose: () => { resetForm(""); } });
+                        });
                     });
 
                     /**
@@ -827,13 +836,7 @@
                             // disable button until authentication succeeds or fails
                             emailSubmitButton.setAttribute("disabled", "");
 
-                            // reset form & state
-                            email = form.elements["email"].value;
-                            form.reset();
-                            document.getElementById("email-input").value = email;
-                            shippingSection.classList.remove("visited");
-                            setShippingSummary({});
-                            paymentSection.classList.remove("visited", "pinned");
+                            resetForm(form.elements["email"].value);
 
                             memberAuthenticatedSuccessfully = undefined;
                             shippingAddress = undefined;
@@ -898,11 +901,11 @@
                             // extract form values
                             const firstName = form.elements["given-name"].value;
                             const lastName = form.elements["family-name"].value;
-                            const address1 = form.elements["address-line1"].value;
-                            const address2 = form.elements["address-line2"].value;
-                            const city = form.elements["city"].value;
-                            const state = form.elements["state"].value;
-                            const zipCode = form.elements["postal-code"].value;
+                            const addressLine1 = form.elements["address-line1"].value;
+                            const addressLine2 = form.elements["address-line2"].value;
+                            const adminArea2 = form.elements["address-level2"].value;
+                            const adminArea1 = form.elements["address-level1"].value;
+                            const postalCode = form.elements["postal-code"].value;
                             const countryCode = form.elements["country"].value;
                             const telCountryCode = form.elements["tel-country-code"].value;
                             const telNational = form.elements["tel-national"].value;
@@ -910,11 +913,11 @@
                             // update state & form UI
                             shippingAddress = {
                                 address: {
-                                    address1,
-                                    address2,
-                                    city,
-                                    state,
-                                    zipCode,
+                                    addressLine1,
+                                    addressLine2,
+                                    adminArea2,
+                                    adminArea1,
+                                    postalCode,
                                     countryCode,
                                 },
                                 name: {
@@ -971,7 +974,6 @@
                         try {
                             // get payment token
                             paymentToken = await paymentComponent.getPaymentToken();
-//                            console.log("Payment token:", paymentToken);
 
                             // send transaction details to back-end
                             const headers = new Headers();
@@ -1000,7 +1002,7 @@
                                 GetResponse(result);
 
                                 if (result.id) {
-                                    form.reset();
+                                    resetForm("");
 
                                     console.log(`Order ${result.id}: ${result.status}`);
                                 }
@@ -1010,7 +1012,8 @@
                             checkoutButton.removeAttribute("disabled");
                         }
                     });
-                } catch (error) {
+                }
+                catch (error) {
                     console.error(error);
                 }
             }

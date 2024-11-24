@@ -52,9 +52,9 @@ namespace web.Controllers.api
                                 address = new {
                                     address_line_1 = order.ShippingAddress.Address?.Address1,
                                     address_line_2 = order.ShippingAddress.Address?.Address2,
-                                    admin_area_2 = order.ShippingAddress.Address?.City,
-                                    admin_area_1 = order.ShippingAddress.Address?.State,
-                                    postal_code = order.ShippingAddress.Address?.ZipCode,
+                                    admin_area_2 = order.ShippingAddress.Address?.AdminArea2,
+                                    admin_area_1 = order.ShippingAddress.Address?.AdminArea1,
+                                    postal_code = order.ShippingAddress.Address?.PostalCode,
                                     country_code = order.ShippingAddress.Address?.CountryCode
                                 },
                                 phone_number = !string.IsNullOrEmpty(countryCode) && !string.IsNullOrEmpty(nationalNumber) ? new {

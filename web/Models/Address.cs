@@ -13,7 +13,11 @@ namespace web.Models
         [Column("City")] public string City { get; set; }
         [Column("State")] public string State { get; set; }
         [Column("ZipCode"), Display(Name = "Zip Code")] public string ZipCode { get; set; }
+
         [NotMapped] public string CountryCode { get; set; }
+        [NotMapped] public string PostalCode { get; set; }
+        [NotMapped] public string AdminArea2 { get; set; }
+        [NotMapped] public string AdminArea1 { get; set; }
 
         public bool IsValid
         {
