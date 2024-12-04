@@ -36,9 +36,9 @@
             width: 100%;
         }
 
-            hr:has(+ section[hidden]) {
-                display: none;
-            }
+        hr:has(+ section[hidden]) {
+            display: none;
+        }
 
         input[type="checkbox"] {
             margin: 8px;
@@ -61,13 +61,95 @@
             display: none;
         }
 
-        section#customer.active,
-        section#shipping.active {
+        section#customer,
+        section#shipping {
             display: flex;
         }
 
-        section#customer:not(.active, .pinned),
-        section#shipping:not(.active, .pinned) {
+        /*
+        #fastlane-identity-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin: 1em 0;
+            width: auto;
+        }
+        */
+
+        section#customer {
+            align-items: center;
+            flex-direction: row;
+            height: 100%;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        section#customer .email-input,
+        section#customer .summary {
+            width: calc(100% - 105px);
+        }
+
+        section#shipping {
+            flex-direction: column;
+        }
+
+        section#shipping .address-field-row {
+            display: grid;
+            gap: 17px;
+            grid-template-columns: 1fr 1fr;
+            justify-content: space-between;
+        }
+
+        section#shipping .address-field {
+            border: 1px solid #929496;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            width: 100%;
+        }
+
+        section#customer:not(.active, .pinned) .email-input,
+        section#shipping:not(.active, .pinned) .address-field,
+        section#shipping:not(.active, .pinned) .address-field-row {
+            display: none;
+        }
+
+        .email-continue-button {
+            border-radius: 4px !important;
+            margin-left: 16px;
+            width: 145px;
+        }
+
+        .shipping-continue-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 32px;
+        }
+
+        section:not(.active) .continue-button {
+            display: none;
+        }
+
+        section .summary {
+            white-space: pre-line;
+        }
+
+        section.active .summary {
+            display: none;
+        }
+
+        section.visited:not(.active) .summary {
+            display: block;
+        }
+
+        section.pinned .edit-button:not(.pinned) {
+            display: none;
+        }
+
+        section.pinned .summary {
+            display: none;
+        }
+
+        section:not(.active, .pinned) .submit-button {
             display: none;
         }
 
@@ -75,7 +157,7 @@
             align-items: center;
             display: flex;
             justify-content: space-between;
-            max-height: 45px;
+            min-height: 75px;
         }
 
         .Fastlane-outer-container .section-heading h3,
@@ -83,7 +165,7 @@
             margin: 0;
             padding: 0;
             font-family: var(--olvbpf57),"Helvetica Neue",Arial,sans-serif;
-            font-size: var(--olvbpf58);
+            font-size: 2.5rem; /*var(--olvbpf58);*/
             font-weight: var(--olvbpf59);
             letter-spacing: var(--olvbpf5b);
             line-height: var(--olvbpf5a);
@@ -92,7 +174,7 @@
 
         .Fastlane-outer-container .section-heading .edit-button {
             background-color: initial;
-            border: 2px solid #003087;
+            border: 2px transparent /*#003087*/;
             box-sizing: border-box;
             color: #003087;
             font-size: 14px;
@@ -113,22 +195,7 @@
             display: none !important;
         }
 
-        section.active .summary {
-            display: none;
-        }
-
-        section.pinned .edit-button:not(.pinned) {
-            display: none;
-        }
-
-        section.pinned .summary {
-            display: none;
-        }
-
-        section:not(.active, .pinned) .submit-button {
-            display: none;
-        }
-
+        /*
         .email-container {
             display: flex;
             flex-direction: row;
@@ -140,6 +207,7 @@
             flex: auto;
             margin: 0;
         }
+        */
 
         .header {
             align-items: center;
@@ -177,9 +245,8 @@
 
 
         #serviceorder {
-            --olvbpf8a: 1.125rem;
-            --olvbpf8g: 0.875`rem;
-            --olvbpf9a: 1.125rem;
+            /*--olvbpf8a: 1.125rem;*/
+            --olvbpf8g: 0.875rem;
             --olvbpf68: 1.125rem;
             --olvbpf6w: 1.125rem;
             --olvbpfbv: #0070e0;
@@ -371,7 +438,7 @@
             --olvbpf55: -0.02em;
             --olvbpf56: 1.5;
             --olvbpf57: PayPalOpen-Regular;
-            --olvbpf58: 1.5rem;
+            /*--olvbpf58: 1.5rem;*/
             --olvbpf59: 400;
             --olvbpf5a: 2rem;
             --olvbpf5b: -0.02em;
@@ -517,7 +584,7 @@
             --olvbpf97: -0.02em;
             --olvbpf98: 2;
             --olvbpf99: PayPalOpen-Regular;
-            --olvbpf9a: 0.875rem;
+            /*--olvbpf9a: 0.875rem;*/
             --olvbpf9b: 400;
             --olvbpf9c: 1.5rem;
             --olvbpf9d: -0.02em;
@@ -730,12 +797,12 @@
 
         ._15xmczp3 {
             font-family: var(--olvbpf8f),"Helvetica Neue",Arial,sans-serif;
-            font-size: var(--olvbpf8g);
+            font-size: 2.0rem;
             font-weight: var(--olvbpf8h);
             letter-spacing: var(--olvbpf8j);
             line-height: var(--olvbpf8i);
-            min-height: var(--olvbpfg);
-            min-width: 3.75rem;
+            min-height: 4rem;
+            min-width: 6rem;
             padding: calc(var(--olvbpfm) - var(--olvbpf32)) calc(var(--olvbpf12) - var(--olvbpf32));
         }
 
@@ -763,38 +830,14 @@
         }
 
         ._1x14h7f2 {
-            height: var(--olvbpf0);
-            width: var(--olvbpf0);
+            height: 100%;
+            width: 100%;
         }
 
         ._1x14h7f7 img, ._1x14h7f7 svg {
             display: block;
             height: 100%;
             width: 100%;
-        }
-
-        #fastlane-identity-section {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            margin: 1em 0;
-            width: auto;
-        }
-
-        #customer {
-            align-items: center;
-            flex-direction: row;
-            height: 100%;
-            justify-content: space-between;
-            width: 100%;
-        }
-
-        .Fastlane-module_identity_section_input {
-            width: calc(100% - 105px);
-        }
-
-        .Fastlane-module_address_summary_text {
-            white-space: pre-line;
         }
 
         .unr7j04 {
@@ -808,10 +851,13 @@
         }
 
         .unr7j07 {
+            /*
             color: var(--_19shc840,var(--olvbpfal));
             font-family: var(--olvbpf99),"Helvetica Neue",Arial,sans-serif;
             font-size: var(--olvbpf9a);
             font-weight: var(--olvbpf9b);
+
+            */
             letter-spacing: var(--olvbpf9d);
             line-height: var(--olvbpf9c);
             padding: 0;
@@ -819,6 +865,7 @@
             text-align: left;
         }
 
+        .unr7j05,
         .unr7j0a {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -828,7 +875,6 @@
             box-sizing: border-box;
             color: var(--_19shc840,var(--olvbpfal));
             font-family: var(--olvbpf99),"Helvetica Neue",Arial,sans-serif;
-            font-size: var(--olvbpf9a);
             font-weight: var(--olvbpf9b);
             letter-spacing: var(--olvbpf9d);
             line-height: var(--olvbpf9c);
@@ -841,14 +887,16 @@
             width: 100%;
         }
 
-        .unr7j0b {
-            padding: calc(var(--olvbpf13) - var(--olvbpf31)) calc(var(--olvbpf11) - var(--olvbpf31)) calc(var(--olvbpf13) - var(--olvbpf31)) calc(var(--olvbpf11) - var(--olvbpf31));
+        .unr7j05 {
+            font-size: 1.725rem /*var(--olvbpf9a)*/;
         }
 
-        .Fastlane-module_continue_button {
-            border-radius: 4px !important;
-            margin-left: 16px;
-            width: 145px;
+        .unr7j0a {
+            font-size: 2.0rem /*var(--olvbpf9a)*/;
+        }
+
+        .unr7j0b {
+            padding: calc(var(--olvbpf13) - var(--olvbpf31)) calc(var(--olvbpf11) - var(--olvbpf31)) calc(var(--olvbpf13) - var(--olvbpf31)) calc(var(--olvbpf11) - var(--olvbpf31));
         }
 
         ._15xmczp4 {
@@ -859,11 +907,11 @@
 
         ._15xmczp2 {
             font-family: var(--olvbpf89),"Helvetica Neue",Arial,sans-serif;
-            font-size: var(--olvbpf8a);
+            font-size: 2.0rem /*var(--olvbpf8a)*/;
             font-weight: var(--olvbpf8b);
             letter-spacing: var(--olvbpf8d);
             line-height: var(--olvbpf8c);
-            min-height: var(--olvbpfe);
+            min-height: 4.25rem /*var(--olvbpfe)*/;
             min-width: 6rem;
             padding: calc(var(--olvbpf11) - var(--olvbpf32)) calc(var(--olvbpf16) - var(--olvbpf32));
         }
@@ -881,34 +929,10 @@
             transition: color var(--olvbpf28) ease,background-color var(--olvbpf28) ease,border-color var(--olvbpf28) ease;
         }
 
-        #shipping {
-            flex-direction: column;
-        }
-
-        .Fastlane-module_address_form_field_container {
-            display: grid;
-            gap: 17px;
-            grid-template-columns: 1fr 1fr;
-            justify-content: space-between;
-        }
-
-        .Fastlane-module_address_form_field {
-            border: 1px solid #929496;
-            border-radius: 4px;
-            margin-bottom: 12px;
-            width: 100%;
-        }
-
         ._16prk6o2 {
             overflow: hidden;
             text-overflow: ellipsis;
             white-space: nowrap;
-        }
-
-        .Fastlane-module_cta_button_container {
-            display: flex;
-            justify-content: center;
-            margin-top: 32px;
         }
     </style>
 }
@@ -938,79 +962,77 @@
                 <div class="Fastlane-outer-container">
                     <div id="customer-heading" class="section-heading active visited">
                         <h3>Customer</h3>
-                        <button id="email-edit-button" class="_15xmczpo _15xmczpp edit-button" tab-index="0"><div class="_15xmczp1 _15xmczp3 _15xmczp6 _15xmczpm"><span role="img" class="_1x14h7f7 _1x14h7f2 _15xmczpb" aria-label="edit icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em"><path d="M21.31 6.879l-4.188-4.19a1.5 1.5 0 0 0-2.122 0L3.44 14.25A1.487 1.487 0 0 0 3 15.31v4.19A1.5 1.5 0 0 0 4.5 21h4.19a1.485 1.485 0 0 0 1.06-.44L21.31 9a1.5 1.5 0 0 0 0-2.121zM8.69 19.5H4.5v-4.19l8.25-8.25 4.19 4.19-8.25 8.25zM18 10.19L13.81 6l2.25-2.25 4.19 4.189-2.25 2.25z"></path></svg></span>Edit</div></button>
+                        <button id="email-edit-button" class="edit-button" tab-index="0"><div class="_15xmczp1 _15xmczp3 _15xmczp6 _15xmczpm"><span role="img" class="_1x14h7f7 _1x14h7f2 _15xmczpb" aria-label="edit icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em"><path d="M21.31 6.879l-4.188-4.19a1.5 1.5 0 0 0-2.122 0L3.44 14.25A1.487 1.487 0 0 0 3 15.31v4.19A1.5 1.5 0 0 0 4.5 21h4.19a1.485 1.485 0 0 0 1.06-.44L21.31 9a1.5 1.5 0 0 0 0-2.121zM8.69 19.5H4.5v-4.19l8.25-8.25 4.19 4.19-8.25 8.25zM18 10.19L13.81 6l2.25-2.25 4.19 4.189-2.25 2.25z"></path></svg></span>Edit</div></button>
                     </div>
                     <section id="customer" class="active visited">
-                        <div class="unr7j07 Fastlane-module_identity_section_input">
-                            <input class="unr7j0a unr7j0b unr7j05" id="email-input" aria-invalid="false" placeholder="Email"
-                                   type="email" autocomplete="email" value="">
+                        <div class="unr7j07 email-input">
+                            <input class="unr7j0a unr7j0b" id="email-input" aria-invalid="false" placeholder="Email" type="email" autocomplete="email" value="">
                         </div>
-                        <button id="email-submit-button" typw="button"
-                                class="_15xmczp1 _15xmczp2 _15xmczp4 _15xmczpm Fastlane-module_continue_button" tab-index="0">
+                        <button id="email-submit-button" type="button" class="_15xmczp1 _15xmczp2 _15xmczp4 _15xmczpm email-continue-button continue-button" tab-index="0">
                             Continue
                         </button>
-                        <p class="_118huxw1 _118huxw0 Fastlane-module_identity_section_input summary"></p>
+                        <div class="summary"></div>
                     </section>
 
                     <hr />
 
                     <div id="shipping-heading" class="section-heading">
                         <h3>Shipping</h3>
-                        <button id="shipping-edit-button" class="_15xmczpo _15xmczpp edit-button" tab-index="0"><div class="_15xmczp1 _15xmczp3 _15xmczp6 _15xmczpm"><span role="img" class="_1x14h7f7 _1x14h7f2 _15xmczpb" aria-label="edit icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em"><path d="M21.31 6.879l-4.188-4.19a1.5 1.5 0 0 0-2.122 0L3.44 14.25A1.487 1.487 0 0 0 3 15.31v4.19A1.5 1.5 0 0 0 4.5 21h4.19a1.485 1.485 0 0 0 1.06-.44L21.31 9a1.5 1.5 0 0 0 0-2.121zM8.69 19.5H4.5v-4.19l8.25-8.25 4.19 4.19-8.25 8.25zM18 10.19L13.81 6l2.25-2.25 4.19 4.189-2.25 2.25z"></path></svg></span>Edit</div></button>
+                        <button id="shipping-edit-button" class="edit-button" tab-index="0"><div class="_15xmczp1 _15xmczp3 _15xmczp6 _15xmczpm"><span role="img" class="_1x14h7f7 _1x14h7f2 _15xmczpb" aria-label="edit icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em"><path d="M21.31 6.879l-4.188-4.19a1.5 1.5 0 0 0-2.122 0L3.44 14.25A1.487 1.487 0 0 0 3 15.31v4.19A1.5 1.5 0 0 0 4.5 21h4.19a1.485 1.485 0 0 0 1.06-.44L21.31 9a1.5 1.5 0 0 0 0-2.121zM8.69 19.5H4.5v-4.19l8.25-8.25 4.19 4.19-8.25 8.25zM18 10.19L13.81 6l2.25-2.25 4.19 4.189-2.25 2.25z"></path></svg></span>Edit</div></button>
                     </div>
                     <section id="shipping">
-                        <div class="Fastlane-module_address_form_field_container">
-                            <div class="unr7j07 Fastlane-module_address_form_field">
-                                <input class="unr7j0a unr7j05" name="given-name" id="text-input-givenName" aria-invalid="false" placeholder=" " type="text" autocomplete="given-name" required="" value=""><label for="text-input-givenName" id="text-input-givenName-label" class="unr7j04 _16prk6o2 unr7j00">First name</label>
+                        <div class="address-field-row">
+                            <div class="unr7j07 address-field">
+                                <input class="unr7j05" name="given-name" id="text-input-givenName" aria-invalid="false" placeholder=" " type="text" autocomplete="given-name" required="" value=""><label for="text-input-givenName" id="text-input-givenName-label" class="unr7j04 _16prk6o2 unr7j00">First name</label>
                                 <label for="text-input-givenName" id="text-input-givenName-label" class="unr7j04 _16prk6o2 unr7j00">First name</label>
                             </div>
-                            <div class="unr7j07 Fastlane-module_address_form_field">
-                                <input class="unr7j0a unr7j05" name="family-name" id="text-input-familyName" aria-invalid="false" placeholder=" " type="text" autocomplete="family-name" required="" value="">
+                            <div class="unr7j07 address-field">
+                                <input class="unr7j05" name="family-name" id="text-input-familyName" aria-invalid="false" placeholder=" " type="text" autocomplete="family-name" required="" value="">
                                 <label for="text-input-familyName" id="text-input-familyName-label" class="unr7j04 _16prk6o2 unr7j00">Last name</label>
                             </div>
                         </div>
-                        <div class="unr7j07 Fastlane-module_address_form_field">
-                            <input class="unr7j0a unr7j05" name="address-line1" id="text-input-addressLine1" aria-invalid="false" placeholder=" " type="text" autocomplete="address-line1" required="" value="">
+                        <div class="unr7j07 address-field">
+                            <input class="unr7j05" name="address-line1" id="text-input-addressLine1" aria-invalid="false" placeholder=" " type="text" autocomplete="address-line1" required="" value="">
                             <label for="text-input-addressLine1" id="text-input-addressLine1-label" class="unr7j04 _16prk6o2 unr7j00">Address Line 1</label>
                         </div>
-                        <div class="unr7j07 Fastlane-module_address_form_field">
-                            <input class="unr7j0a unr7j05" name="address-line2" id="text-input-addressLine2" aria-invalid="false" placeholder=" " type="text" autocomplete="address-line2" value="">
+                        <div class="unr7j07 address-field">
+                            <input class="unr7j05" name="address-line2" id="text-input-addressLine2" aria-invalid="false" placeholder=" " type="text" autocomplete="address-line2" value="">
                             <label for="text-input-addressLine2" id="text-input-addressLine2-label" class="unr7j04 _16prk6o2 unr7j00">Apt., ste., bldg. (optional)</label>
                         </div>
-                        <div class="Fastlane-module_address_form_field_container">
-                            <div class="unr7j07 Fastlane-module_address_form_field">
-                                <input class="unr7j0a unr7j05" name="address-level2" id="text-input-adminArea2" aria-invalid="false" placeholder=" " type="text" autocomplete="address-level2" required="" value="">
+                        <div class="address-field-row">
+                            <div class="unr7j07 address-field">
+                                <input class="unr7j05" name="address-level2" id="text-input-adminArea2" aria-invalid="false" placeholder=" " type="text" autocomplete="address-level2" required="" value="">
                                 <label for="text-input-adminArea2" id="text-input-adminArea2-label" class="unr7j04 _16prk6o2 unr7j00">City</label>
                             </div>
-                            <div class="unr7j07 Fastlane-module_address_form_field">
-                                <input class="unr7j0a unr7j05" name="address-level1" id="text-input-adminArea1" aria-invalid="false" placeholder=" " type="text" autocomplete="address-level1" required="" value="">
+                            <div class="unr7j07 address-field">
+                                <input class="unr7j05" name="address-level1" id="text-input-adminArea1" aria-invalid="false" placeholder=" " type="text" autocomplete="address-level1" required="" value="">
                                 <label for="text-input-adminArea1" id="text-input-adminArea1-label" class="unr7j04 _16prk6o2 unr7j00">State</label>
                             </div>
                         </div>
-                        <div class="Fastlane-module_address_form_field_container">
-                            <div class="unr7j07 Fastlane-module_address_form_field">
-                                <input class="unr7j0a unr7j05" name="postal-code" id="text-input-postalCode" aria-invalid="false" placeholder=" " type="text" autocomplete="postal-code" required="" value="">
+                        <div class="address-field-row">
+                            <div class="unr7j07 address-field">
+                                <input class="unr7j05" name="postal-code" id="text-input-postalCode" aria-invalid="false" placeholder=" " type="text" autocomplete="postal-code" required="" value="">
                                 <label for="text-input-postalCode" id="text-input-postalCode-label" class="unr7j04 _16prk6o2 unr7j00">ZIP code</label>
                             </div>
-                            <div class="unr7j07 Fastlane-module_address_form_field">
-                                <input class="unr7j0a unr7j05" name="country" id="text-input-countryCode" aria-invalid="false" placeholder=" " autocomplete="country" required="" value="">
+                            <div class="unr7j07 address-field">
+                                <input class="unr7j05" name="country" id="text-input-countryCode" aria-invalid="false" placeholder=" " autocomplete="country" required="" value="">
                                 <label for="text-input-countryCode" id="text-input-countryCode-label" class="unr7j04 _16prk6o2 unr7j00">Country (eg. US, UK)</label>
                             </div>
                         </div>
-                        <div class="Fastlane-module_address_form_field_container">
-                            <div class="unr7j07 Fastlane-module_address_form_field">
-                                <input class="unr7j0a unr7j05" name="tel-country-code" id="text-input-telCountryCode" aria-invalid="false" placeholder=" " type="tel" autocomplete="tel-country-code" value="">
+                        <div class="address-field-row">
+                            <div class="unr7j07 address-field">
+                                <input class="unr7j05" name="tel-country-code" id="text-input-telCountryCode" aria-invalid="false" placeholder=" " type="tel" autocomplete="tel-country-code" value="">
                                 <label for="text-input-telCountryCode" id="text-input-telCountryCode-label" class="unr7j04 _16prk6o2 unr7j00">Country calling code</label>
                             </div>
-                            <div class="unr7j07 Fastlane-module_address_form_field">
-                                <input class="unr7j0a unr7j05" name="tel-national" id="text-input-nationalNumber" aria-invalid="false" placeholder=" " type="tel" autocomplete="tel-national" value="">
+                            <div class="unr7j07 address-field">
+                                <input class="unr7j05" name="tel-national" id="text-input-nationalNumber" aria-invalid="false" placeholder=" " type="tel" autocomplete="tel-national" value="">
                                 <label for="text-input-nationalNumber" id="text-input-nationalNumber-label" class="unr7j04 _16prk6o2 unr7j00">Phone number</label>
                             </div>
                         </div>
-                        <div class="Fastlane-module_cta_button_container">
-                            <button class="_15xmczp1 _15xmczp2 _15xmczp4 _15xmczpm" id="shipping-submit-button" type="button" tab-index="0">Continue</button>
+                        <div class="shipping-continue-button continue-button">
+                            <button id="shipping-submit-button" type="button" class="_15xmczp1 _15xmczp2 _15xmczp4 _15xmczpm" tab-index="0">Continue</button>
                         </div>
-                        <p class="_118huxw1 _118huxw0 Fastlane-module_address_summary_text summary"></p>
+                        <div class="summary"></div>
                     </section>
 
                     <hr />
@@ -1535,20 +1557,31 @@
                 const form = document.getElementById("payment-form"); // document.querySelector("form");
 
                 const customerSection = document.getElementById("customer");
-                const customerHeading = document.getElementById("customer-heading");
+                const customerHeader = document.getElementById("customer-heading");
                 const shippingSection = document.getElementById("shipping");
-                const shippingHeading = document.getElementById("shipping-heading");
+                const shippingHeader = document.getElementById("shipping-heading");
 
                 const paymentSection = document.getElementById("payment");
                 const emailSubmitButton = document.getElementById("email-submit-button");
                 const checkoutButton = document.getElementById("checkout-button");
                 const buyNowButtons = Object.values(document.getElementsByClassName('buy-now-button'));
                 let activeSection = customerSection;
+                let activeHeader = customerHeader;
 
-                const setActiveSection = (section) => {
+                const setActiveSection = (section, sectionHeader) => {
                     activeSection.classList.remove("active");
+                    if (activeHeader) {
+                        activeHeader.classList.remove("active");
+                    }
+
                     section.classList.add("active", "visited");
+                    if (sectionHeader) {
+                        sectionHeader.classList.add("active", "visited");
+                    }
+
                     activeSection = section;
+                    activeHeader = sectionHeader;
+
                 };
 
                 const getAddressSummary = ({
@@ -1596,8 +1629,8 @@
                 buyNowButtons.forEach(button => {
                     button.addEventListener("click", () => {
                         orderType = button.getAttribute("data-servicetype");
-                        setActiveSection(customerSection);
-                        $('#serviceorder').modal({ backdrop: 'static', onClose: () => { resetForm(""); } });
+                        setActiveSection(customerSection, customerHeader);
+                        $('#serviceorder').modal({ backdrop: 'static', width: "700px", height: "500px", onClose: () => { resetForm(""); } });
                     });
                 });
 
@@ -1659,7 +1692,7 @@
                                 paymentSection.classList.add("pinned");
                                 setActiveSection(paymentSection);
                             } else {
-                                setActiveSection(shippingSection);
+                                setActiveSection(shippingSection, shippingHeader);
                             }
                         } finally {
                             // re-enable button once authentication succeeds or fails
@@ -1673,11 +1706,11 @@
 
                 document
                     .getElementById("email-edit-button")
-                    .addEventListener("click", () => setActiveSection(customerSection));
+                    .addEventListener("click", (e) => { e.preventDefault(); setActiveSection(customerSection, customerHeader); });
 
                 document
                     .getElementById("shipping-submit-button")
-                    .addEventListener("click", () => {
+                    .addEventListener("click", (e) => {
                         // extract form values
                         const firstName = form.elements["given-name"].value;
                         const lastName = form.elements["family-name"].value;
@@ -1714,12 +1747,14 @@
                         };
                         setShippingSummary(shippingAddress);
                         paymentComponent.setShippingAddress(shippingAddress);
-                        setActiveSection(paymentSection);
+                        setActiveSection(paymentSection, null);
                     });
 
                 document
                     .getElementById("shipping-edit-button")
-                    .addEventListener("click", async () => {
+                    .addEventListener("click", async (e) => {
+                        e.preventDefault();
+
                         if (memberAuthenticatedSuccessfully) {
                             // open Shipping Address Selector for Fastlane members
                             const { selectionChanged, selectedAddress } =
@@ -1737,7 +1772,7 @@
                                 // selection modal was dismissed without selection
                             }
                         } else {
-                            setActiveSection(shippingSection);
+                            setActiveSection(shippingSection, shippingHeader);
                         }
                     });
 
