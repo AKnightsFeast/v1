@@ -107,6 +107,7 @@
             width: 100%;
         }
 
+        section#payment:not(.active, .pinned),
         section#customer:not(.active, .pinned) .email-input,
         section#shipping:not(.active, .pinned) .address-field,
         section#shipping:not(.active, .pinned) .address-field-row {
@@ -1562,6 +1563,7 @@
                 const shippingHeader = document.getElementById("shipping-heading");
 
                 const paymentSection = document.getElementById("payment");
+                const paymentFormInput = document.getElementById("payment-component");
                 const emailSubmitButton = document.getElementById("email-submit-button");
                 const checkoutButton = document.getElementById("checkout-button");
                 const buyNowButtons = Object.values(document.getElementsByClassName('buy-now-button'));
@@ -1581,7 +1583,6 @@
 
                     activeSection = section;
                     activeHeader = sectionHeader;
-
                 };
 
                 const getAddressSummary = ({
@@ -1644,21 +1645,30 @@
 
                 emailSubmitButton.addEventListener(
                     "click",
-                    async () => {
+                    //async () => {
+                    () => {
                         // disable button until authentication succeeds or fails
                         emailSubmitButton.setAttribute("disabled", "");
 
                         resetForm(form.elements["email-input"].value);
 
-                        memberAuthenticatedSuccessfully = undefined;
-                        shippingAddress = undefined;
-                        paymentToken = undefined;
+                        //memberAuthenticatedSuccessfully = undefined;
+                        //paymentToken = undefined;
+                        //shippingAddress = undefined;
+
+                        if (customerSection.classList.contains("active")) {
+                            while (paymentFormInput.lastChild) {
+                                paymentFormInput.removeChild(paymentFormInput.lastChild);
+                            }
+                        }
 
                         // render payment component
                         paymentComponent.render("#payment-component");
 
-                        try {
-                            // identify and authenticate Fastlane members
+                        //try {
+                            /*
+                            // identify and authenticate Fastlane members (only need this if
+                            we want to use/create a FastLane profile for the user)
                             const { customerContextId } =
                                 await identity.lookupCustomerByEmail(email);
 
@@ -1672,8 +1682,7 @@
                                 // save profile data
                                 if (authResponse?.authenticationState === "succeeded") {
                                     memberAuthenticatedSuccessfully = true;
-                                    shippingAddress =
-                                        authResponse.profileData.shippingAddress;
+                                    shippingAddress = authResponse.profileData.shippingAddress;
                                     paymentToken = authResponse.profileData.card;
                                 }
                             } else {
@@ -1681,23 +1690,25 @@
                                 console.log("No customerContextId");
                             }
 
-                            // update form UI
-                            customerSection.querySelector(".summary").innerText = email;
-
                             if (shippingAddress) {
                                 setShippingSummary(shippingAddress);
                             }
-                            if (memberAuthenticatedSuccessfully) {
-                                shippingSection.classList.add("visited");
-                                paymentSection.classList.add("pinned");
-                                setActiveSection(paymentSection);
-                            } else {
+                            */
+
+                            // update form UI
+                            customerSection.querySelector(".summary").innerText = email;
+
+                            //if (memberAuthenticatedSuccessfully) {
+                            //    shippingSection.classList.add("visited");
+                            //    paymentSection.classList.add("pinned");
+                            //    setActiveSection(paymentSection);
+                            //} else {
                                 setActiveSection(shippingSection, shippingHeader);
-                            }
-                        } finally {
+                        //    }
+                        //} finally {
                             // re-enable button once authentication succeeds or fails
                             emailSubmitButton.removeAttribute("disabled");
-                        }
+                    //    }
                     }
                 );
 
