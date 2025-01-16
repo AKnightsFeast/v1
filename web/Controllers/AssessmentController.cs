@@ -42,7 +42,7 @@ namespace web.Controllers
                         db.SaveChanges();
                     }
 
-                    Email.Send("New Assessment", "system@aknightsfeast.com", "A new assessment form has been submitted!");
+                    Email.Send("system@aknightsfeast.com", "New Assessment", "A new assessment form has been submitted!");
 
                     return Json(new {
                         Success = true,

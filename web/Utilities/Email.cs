@@ -5,16 +5,13 @@ namespace web.Utilities
 {
     public static class Email
     {
-        public static void Send(string name, string email, string message)
+        public static void Send(string sender, string subject, string body, bool isHtml = false)
         {
-            new SmtpClient().Send(
-                new MailMessage(
-                    email.Trim(),
-                    "cheflaura@aknightsfeast.com",
-                    "\"" + name.Trim() + "\" has sent you a message from AKnightsFeast.com!",
-                    message.Trim()
-                )
-            );
+            var emailMsg = new MailMessage(sender.Trim(), "cheflaura@aknightsfeast.com", subject, body.Trim());
+
+            emailMsg.IsBodyHtml = isHtml;
+
+            new SmtpClient().Send(emailMsg);
         }
     }
 }

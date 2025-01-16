@@ -290,6 +290,7 @@
     <Content Include="Content\images\mdayribbon.png" />
     <Content Include="Content\images\servsafe.png" />
     <Content Include="Content\images\summertime.png" />
+    <Content Include="Content\images\Valentine.jpg" />
     <Content Include="Content\styles\about.css" />
     <Content Include="Content\images\smflower.png" />
     <Content Include="Content\images\smvines.png" />
@@ -427,6 +428,7 @@
     <Content Include="Content\media\menus\202409.pdf" />
     <Content Include="Content\media\menus\202410.pdf" />
     <Content Include="Content\media\menus\202411.pdf" />
+    <Content Include="Content\media\menus\202501.pdf" />
     <None Include="Properties\PublishProfiles\aknightsfeast.com - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\ArcNight.pubxml" />
     <None Include="Scripts\jquery\jquery-2.0.3.intellisense.js" />

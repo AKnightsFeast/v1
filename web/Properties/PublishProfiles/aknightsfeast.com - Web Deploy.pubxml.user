@@ -4,4 +4,8 @@ This file is used by the publish/package process of your Web project. You can cu
 by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
 -->
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <History>True|2025-01-16T20:20:16.2500426Z;True|2025-01-16T11:26:53.0850963-05:00;False|2025-01-16T11:23:49.6392549-05:00;False|2025-01-16T11:22:06.8207500-05:00;False|2025-01-16T11:21:59.2373382-05:00;False|2025-01-16T11:21:35.9888650-05:00;False|2025-01-16T11:21:12.0077335-05:00;False|2025-01-16T11:21:01.4789325-05:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
 </Project>

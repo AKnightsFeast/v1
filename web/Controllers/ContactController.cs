@@ -17,7 +17,7 @@ namespace web.Controllers
         {
             try
             {
-                Email.Send(name, email, message);
+                Email.Send(email, name, message);
 
                 return Json(new {
                     Success = true,

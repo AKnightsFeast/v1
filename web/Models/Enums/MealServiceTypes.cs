@@ -2,7 +2,8 @@
 {
     public enum MealsServiceType
     {
-        MealsService = 0,
-        QuickService = 1,
+        FiveMeal = 0,
+        FourMeal = 1,
+        ThreeMeal = 2,
     }
 }

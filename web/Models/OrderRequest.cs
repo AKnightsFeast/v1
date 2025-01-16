@@ -18,6 +18,7 @@ namespace web.Models
 
     public class ShippingAddress
     {
+        public string Email { get; set; }
         public Name Name { get; set; }
         public Address Address { get; set; }
         public PhoneNumber PhoneNumber { get; set; }

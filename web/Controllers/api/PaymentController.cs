@@ -27,22 +27,25 @@ namespace web.Controllers.api
                 var accessToken = await GenerateAccessToken();
                 var url = Config.PayPalApiBaseUrl + "/v2/checkout/orders";
 
+                var email = order?.ShippingAddress?.Email;
                 var fullName = order?.ShippingAddress?.Name?.FullName;
                 var countryCode = order?.ShippingAddress?.PhoneNumber?.CountryCode;
                 var nationalNumber = order?.ShippingAddress?.PhoneNumber?.NationalNumber;
 
                 var payload = new {
                     intent = "CAPTURE",
-                        payment_source = new {
-                            card = new {
-                                single_use_token = order?.PaymentToken?.Id
-                            }
-                        },
-                        purchase_units = new [] {
+                    payment_source = new {
+                        card = new {
+                            single_use_token = order?.PaymentToken?.Id
+                        }
+                    },
+                    purchase_units = new[] {
                         new {
                             amount = new {
                                 currency_code = "USD",
-                                value = order.OrderType == MealsServiceType.MealsService ? "625" : "475"
+                                value = order.OrderType == MealsServiceType.FiveMeal ? "475" :
+                                        order.OrderType == MealsServiceType.FourMeal ? "400" :
+                                        "325"
                             },
                             shipping = order?.ShippingAddress == null ? null : new {
                                 type = "SHIPPING",
@@ -74,7 +77,9 @@ namespace web.Controllers.api
                 var response = await NonSSLHttpClient.SendRequest(request);
                 var responseJson = JObject.Parse(await response.Content.ReadAsStringAsync());
                 var status = responseJson.Root["status"].ToString();
-                var orderType = order.OrderType == MealsServiceType.MealsService ? "Meal" : "Quick";
+                var orderType = order.OrderType == MealsServiceType.FiveMeal ? "Five Meal" :
+                                order.OrderType == MealsServiceType.FourMeal ? "Four Meal" :
+                                "Three Meal";
                 var title = string.Empty;
                 var message = string.Empty;
                 var orderId = default(string);
@@ -84,6 +89,8 @@ namespace web.Controllers.api
                     orderId = responseJson.Root["id"].ToString();
                     title = "Order " + orderId + " has been processed";
                     message = "Thank you for your " + orderType + " Service order!<p>Chef Laura will contact you shortly to discuss the next steps!</p>";
+
+                    Email.Send("system@aknightsfeast.com", "Order " + orderId + " has been submitted", "An order has been purchased via PayPal!" + email + "!", true);
                 }
                 else
                 {
