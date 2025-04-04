@@ -1,1237 +1,148 @@
 ﻿@model Dictionary<string, string>
 
-    @{
-        ViewBag.Title = "Home";
-        Layout = "~/Views/shared/_Layout.cshtml";
-    }
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/shared/_Layout.cshtml";
+}
 
-    @section Head
+@section Head
 {
         @Styles.Render("~/Content/Home/css")
-
-        <style type="text/css">
-                    .github-fork-ribbon.right-top:before {
-                        background-color: rgb(240, 32, 100);
-                    }
-
-                    .buy-now-button {
-                        text-align: center;
-                        border: none;
-                        border-radius: 1.5rem;
-                        min-width: 11.625rem;
-                        padding: 0 2rem;
-                        height: 2rem;
-                        font-weight: bold;
-                        background-color: #d33063;
-                        color: #ffffff;
-                        font-family: "Helvetica Neue",Arial,sans-serif;
-                        font-size: 0.875rem;
-                        line-height: 1.125rem;
-                        cursor: pointer;
-                    }
-
-
-                    hr {
-                        border: 1px solid #dbdde0;
-                        width: 100%;
-                    }
-
-                        hr:has(+ section[hidden]) {
-                            display: none;
-                        }
-
-                    input[type="checkbox"] {
-                        margin: 8px;
-                        transform: scale(1.5);
-                    }
-
-                    /*
-            input:not([type="checkbox"]) {
-                border: 1px solid #929496;
-                border-radius: 4px;
-                box-sizing: border-box;
-                font-size: 18px;
-                height: 48px;
-                line-height: 24px;
-                padding: 8px 12px 8px 12px;
-            }
-            */
-
-                    *:has(#shipping-required-checkbox:not(:checked)) ~ input {
-                        display: none;
-                    }
-
-                    section#customer,
-                    section#shipping {
-                        display: flex;
-                    }
-
-                    /*
-                #fastlane-identity-section {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    margin: 1em 0;
-                    width: auto;
-                }
-                */
-
-                    section#customer {
-                        align-items: center;
-                        flex-direction: row;
-                        height: 100%;
-                        justify-content: space-between;
-                        width: 100%;
-                    }
-
-                        section#customer .email-input,
-                        section#customer .summary {
-                            width: calc(100% - 105px);
-                        }
-
-                    section#shipping {
-                        flex-direction: column;
-                    }
-
-                        section#shipping .address-field-row {
-                            display: grid;
-                            gap: 17px;
-                            grid-template-columns: 1fr 1fr;
-                            justify-content: space-between;
-                        }
-
-                        section#shipping .address-field {
-                            border: 1px solid #929496;
-                            border-radius: 4px;
-                            margin-bottom: 12px;
-                            width: 100%;
-                        }
-
-                        section#payment:not(.active, .pinned),
-                        section#customer:not(.active, .pinned) .email-input,
-                        section#shipping:not(.active, .pinned) .address-field,
-                        section#shipping:not(.active, .pinned) .address-field-row {
-                            display: none;
-                        }
-
-                    .email-continue-button {
-                        border-radius: 4px !important;
-                        margin-left: 16px;
-                        width: 145px;
-                    }
-
-                    .shipping-continue-button {
-                        display: flex;
-                        justify-content: center;
-                        margin-top: 32px;
-                    }
-
-                    section:not(.active) .continue-button {
-                        display: none;
-                    }
-
-                    section .summary {
-                        white-space: pre-line;
-                    }
-
-                    section.active .summary {
-                        display: none;
-                    }
-
-                    section.visited:not(.active) .summary {
-                        display: block;
-                    }
-
-                    section.pinned .edit-button:not(.pinned) {
-                        display: none;
-                    }
-
-                    section.pinned .summary {
-                        display: none;
-                    }
-
-                    section:not(.active, .pinned) .submit-button {
-                        display: none;
-                    }
-
-                    .Fastlane-outer-container .section-heading {
-                        align-items: center;
-                        display: flex;
-                        justify-content: space-between;
-                        min-height: 75px;
-                    }
-
-                        .Fastlane-outer-container .section-heading h3,
-                        .Fastlane-outer-container .section-heading p {
-                            margin: 0;
-                            padding: 0;
-                            font-family: var(--olvbpf57),"Helvetica Neue",Arial,sans-serif;
-                            font-size: 2.5rem; /*var(--olvbpf58);*/
-                            font-weight: var(--olvbpf59);
-                            letter-spacing: var(--olvbpf5b);
-                            line-height: var(--olvbpf5a);
-                            color: var(--_19shc840,var(--olvbpfal));
-                        }
-
-                        .Fastlane-outer-container .section-heading .edit-button {
-                            background-color: initial;
-                            border: 2px transparent /*#003087*/;
-                            box-sizing: border-box;
-                            color: #003087;
-                            font-size: 14px;
-                            font-weight: 700;
-                            gap: 6px;
-                            height: 32px;
-                            line-height: 20px;
-                            padding: 0px 16px 0px 16px;
-                            display: inline-flex !important;
-                        }
-
-                        .Fastlane-outer-container .section-heading.active .edit-button,
-                        .Fastlane-outer-container .section-heading:not(.visited) .edit-button {
-                            display: none !important;
-                        }
-
-                    div.section-heading.active .edit-button:not(.pinned) {
-                        display: none !important;
-                    }
-
-                    /*
-                .email-container {
-                    display: flex;
-                    flex-direction: row;
-                    gap: 16px;
-                    width: 100%;
-                }
-
-                .email-input-with-watermark {
-                    flex: auto;
-                    margin: 0;
-                }
-                */
-
-                    .header {
-                        align-items: center;
-                        display: flex;
-                        justify-content: space-between;
-                        margin: 16px 0;
-                    }
-
-                    .submit-button:not([hidden]) {
-                        background-color: #003087;
-                        border: none;
-                        color: #ffffff;
-                        display: block;
-                        font-size: 18px;
-                        height: 48px;
-                        line-height: 24px;
-                        margin: 0 auto;
-                        padding: 12px 32px 12px 32px;
-                    }
-
-                    .submit-button:disabled {
-                        background-color: #dbdde0;
-                    }
-
-                    #payment:not(.active, .pinned) ~ #checkout-button {
-                        display: none;
-                    }
-
-                    #watermark-container {
-                        align-self: flex-end;
-                        min-height: 24px;
-                    }
-
-
-
-
-                    #serviceorder {
-                        /*--olvbpf8a: 1.125rem;*/
-                        --olvbpf8g: 0.875rem;
-                        --olvbpf68: 1.125rem;
-                        --olvbpf6w: 1.125rem;
-                        --olvbpfbv: #0070e0;
-                        --olvbpf0: 1.125rem;
-                        --olvbpf1: 1.5rem;
-                        --olvbpf2: 2rem;
-                        --olvbpf3: 3rem;
-                        --olvbpf4: 4rem;
-                        --olvbpf5: 6rem;
-                        --olvbpf6: 8.5rem;
-                        --olvbpf7: 10rem;
-                        --olvbpf8: 1.5rem;
-                        --olvbpf9: 2rem;
-                        --olvbpfa: 3rem;
-                        --olvbpfb: 4rem;
-                        --olvbpfc: 6rem;
-                        --olvbpfd: 2.75rem;
-                        --olvbpfe: 3rem;
-                        --olvbpff: 4rem;
-                        --olvbpfg: 2rem;
-                        --olvbpfh: 2.5rem;
-                        --olvbpfi: 0.75rem;
-                        --olvbpfj: 1rem;
-                        --olvbpfk: 0.1875rem;
-                        --olvbpfl: 0.25rem;
-                        --olvbpfm: 0.375rem;
-                        --olvbpfn: 0.5rem;
-                        --olvbpfo: 3rem;
-                        --olvbpfp: 4rem;
-                        --olvbpfq: 22rem;
-                        --olvbpfr: 36rem;
-                        --olvbpfs: 47rem;
-                        --olvbpft: 64rem;
-                        --olvbpfu: 72rem;
-                        --olvbpfv: 90rem;
-                        --olvbpfw: 0rem;
-                        --olvbpfx: 0.125rem;
-                        --olvbpfy: 0.25rem;
-                        --olvbpfz: 0.375rem;
-                        --olvbpf10: 0.5rem;
-                        --olvbpf11: 0.75rem;
-                        --olvbpf12: 1rem;
-                        --olvbpf13: 1.25rem;
-                        --olvbpf14: 1.5rem;
-                        --olvbpf15: 1.75rem;
-                        --olvbpf16: 2rem;
-                        --olvbpf17: 2.25rem;
-                        --olvbpf18: 2.5rem;
-                        --olvbpf19: 3rem;
-                        --olvbpf1a: 3.5rem;
-                        --olvbpf1b: 4rem;
-                        --olvbpf1c: 4.5rem;
-                        --olvbpf1d: 5rem;
-                        --olvbpf1e: 5.5rem;
-                        --olvbpf1f: 6rem;
-                        --olvbpf1g: 0.125rem;
-                        --olvbpf1h: 0.25rem;
-                        --olvbpf1i: 0.5rem;
-                        --olvbpf1j: 0.75rem;
-                        --olvbpf1k: 1rem;
-                        --olvbpf1l: 1.5rem;
-                        --olvbpf1m: 2rem;
-                        --olvbpf1n: 0.0625rem;
-                        --olvbpf1o: 0.08;
-                        --olvbpf1p: 0.75rem;
-                        --olvbpf1q: 0.125rem;
-                        --olvbpf1r: 0.1;
-                        --olvbpf1s: 0.875rem;
-                        --olvbpf1t: 0.125rem;
-                        --olvbpf1u: 0.1;
-                        --olvbpf1v: 1.125rem;
-                        --olvbpf1w: 1;
-                        --olvbpf1x: -1;
-                        --olvbpf1y: 0.625rem;
-                        --olvbpf1z: 0.15;
-                        --olvbpf20: 0.02;
-                        --olvbpf21: 1;
-                        --olvbpf22: 0;
-                        --olvbpf23: 0;
-                        --olvbpf24: 0.9;
-                        --olvbpf25: 0.3;
-                        --olvbpf26: 1;
-                        --olvbpf27: 0.1s;
-                        --olvbpf28: 0.2s;
-                        --olvbpf29: 0.5s;
-                        --olvbpf2a: 0.3s;
-                        --olvbpf2b: 1.3s;
-                        --olvbpf2c: 7s;
-                        --olvbpf2d: 0.2s;
-                        --olvbpf2e: 0.3s;
-                        --olvbpf2f: 0.5s;
-                        --olvbpf2g: 0.1s;
-                        --olvbpf2h: 0.2s;
-                        --olvbpf2i: 0.2s;
-                        --olvbpf2j: 0.2s;
-                        --olvbpf2k: 0.5s;
-                        --olvbpf2l: 0.8s;
-                        --olvbpf2m: 0.5s;
-                        --olvbpf2n: 1.3s;
-                        --olvbpf2o: 7s;
-                        --olvbpf2p: 4s;
-                        --olvbpf2q: 0,0,0,1;
-                        --olvbpf2r: 0.05,0.7,0.1,1;
-                        --olvbpf2s: 0.05,0.7,0.1,1;
-                        --olvbpf2t: 0.3,0,1,1;
-                        --olvbpf2u: 0.3,0,0.8,0.15;
-                        --olvbpf2v: 0.3,0,0.8,0.15;
-                        --olvbpf2w: 0.2,0,0,1;
-                        --olvbpf2x: 0.2,0,0,1;
-                        --olvbpf2y: 0.2,0,0,1;
-                        --olvbpf2z: 0.2,0,0,1;
-                        --olvbpf30: 0,0,1,1;
-                        --olvbpf31: 0.0625rem;
-                        --olvbpf32: 0.125rem;
-                        --olvbpf33: 0.1875rem;
-                        --olvbpf34: 0.375rem;
-                        --olvbpf35: 0.125rem;
-                        --olvbpf36: 0.25rem;
-                        --olvbpf37: 0.375rem;
-                        --olvbpf38: 0.5rem;
-                        --olvbpf39: 0.75rem;
-                        --olvbpf3a: 1rem;
-                        --olvbpf3b: 2rem;
-                        --olvbpf3c: 50%;
-                        --olvbpf3d: PayPalOpen-Bold;
-                        --olvbpf3e: 4rem;
-                        --olvbpf3f: 400;
-                        --olvbpf3g: 3.625rem;
-                        --olvbpf3h: -0.04em;
-                        --olvbpf3i: 1.25;
-                        --olvbpf3j: PayPalOpen-Medium;
-                        --olvbpf3k: 4rem;
-                        --olvbpf3l: 400;
-                        --olvbpf3m: 3.625rem;
-                        --olvbpf3n: -0.04em;
-                        --olvbpf3o: 1.25;
-                        --olvbpf3p: PayPalOpen-Regular;
-                        --olvbpf3q: 4rem;
-                        --olvbpf3r: 400;
-                        --olvbpf3s: 3.625rem;
-                        --olvbpf3t: -0.04em;
-                        --olvbpf3u: 1.25;
-                        --olvbpf3v: PayPalOpen-Bold;
-                        --olvbpf3w: 2.5rem;
-                        --olvbpf3x: 400;
-                        --olvbpf3y: 2.75rem;
-                        --olvbpf3z: 0em;
-                        --olvbpf40: 1.25;
-                        --olvbpf41: PayPalOpen-Medium;
-                        --olvbpf42: 2.5rem;
-                        --olvbpf43: 400;
-                        --olvbpf44: 2.75rem;
-                        --olvbpf45: 0em;
-                        --olvbpf46: 1.25;
-                        --olvbpf47: PayPalOpen-Regular;
-                        --olvbpf48: 2.5rem;
-                        --olvbpf49: 400;
-                        --olvbpf4a: 2.75rem;
-                        --olvbpf4b: 0em;
-                        --olvbpf4c: 1.25;
-                        --olvbpf4d: PayPalOpen-Bold;
-                        --olvbpf4e: 2rem;
-                        --olvbpf4f: 400;
-                        --olvbpf4g: 2.25rem;
-                        --olvbpf4h: -0.02em;
-                        --olvbpf4i: 1.5;
-                        --olvbpf4j: PayPalOpen-Medium;
-                        --olvbpf4k: 2rem;
-                        --olvbpf4l: 400;
-                        --olvbpf4m: 2.25rem;
-                        --olvbpf4n: -0.02em;
-                        --olvbpf4o: 1.5;
-                        --olvbpf4p: PayPalOpen-Regular;
-                        --olvbpf4q: 2rem;
-                        --olvbpf4r: 400;
-                        --olvbpf4s: 2.25rem;
-                        --olvbpf4t: -0.02em;
-                        --olvbpf4u: 1.5;
-                        --olvbpf4v: PayPalOpen-Bold;
-                        --olvbpf4w: 1.5rem;
-                        --olvbpf4x: 400;
-                        --olvbpf4y: 2rem;
-                        --olvbpf4z: -0.02em;
-                        --olvbpf50: 1.5;
-                        --olvbpf51: PayPalOpen-Medium;
-                        --olvbpf52: 1.5rem;
-                        --olvbpf53: 400;
-                        --olvbpf54: 2rem;
-                        --olvbpf55: -0.02em;
-                        --olvbpf56: 1.5;
-                        --olvbpf57: PayPalOpen-Regular;
-                        /*--olvbpf58: 1.5rem;*/
-                        --olvbpf59: 400;
-                        --olvbpf5a: 2rem;
-                        --olvbpf5b: -0.02em;
-                        --olvbpf5c: 1.5;
-                        --olvbpf5d: PayPalOpen-Bold;
-                        --olvbpf5e: 1rem;
-                        --olvbpf5f: 400;
-                        --olvbpf5g: 1.25rem;
-                        --olvbpf5h: -0.01em;
-                        --olvbpf5i: 2;
-                        --olvbpf5j: PayPalOpen-Medium;
-                        --olvbpf5k: 1rem;
-                        --olvbpf5l: 400;
-                        --olvbpf5m: 1.25rem;
-                        --olvbpf5n: -0.01em;
-                        --olvbpf5o: 2;
-                        --olvbpf5p: PayPalOpen-Regular;
-                        --olvbpf5q: 1rem;
-                        --olvbpf5r: 400;
-                        --olvbpf5s: 1.25rem;
-                        --olvbpf5t: -0.01em;
-                        --olvbpf5u: 2;
-                        --olvbpf5v: PayPalOpen-Bold;
-                        --olvbpf5w: 0.875rem;
-                        --olvbpf5x: 400;
-                        --olvbpf5y: 1.125rem;
-                        --olvbpf5z: -0.02em;
-                        --olvbpf60: 2;
-                        --olvbpf61: PayPalOpen-Medium;
-                        --olvbpf62: 0.875rem;
-                        --olvbpf63: 400;
-                        --olvbpf64: 1.125rem;
-                        --olvbpf65: -0.02em;
-                        --olvbpf66: 2;
-                        --olvbpf67: PayPalOpen-Regular;
-                        --olvbpf68: 0.875rem;
-                        --olvbpf69: 400;
-                        --olvbpf6a: 1.125rem;
-                        --olvbpf6b: -0.02em;
-                        --olvbpf6c: 2;
-                        --olvbpf6d: PayPalOpen-Bold;
-                        --olvbpf6e: 0.75rem;
-                        --olvbpf6f: 400;
-                        --olvbpf6g: 1rem;
-                        --olvbpf6h: -0.01em;
-                        --olvbpf6i: 2;
-                        --olvbpf6j: PayPalOpen-Medium;
-                        --olvbpf6k: 0.75rem;
-                        --olvbpf6l: 400;
-                        --olvbpf6m: 1rem;
-                        --olvbpf6n: -0.01em;
-                        --olvbpf6o: 2;
-                        --olvbpf6p: PayPalOpen-Regular;
-                        --olvbpf6q: 0.75rem;
-                        --olvbpf6r: 400;
-                        --olvbpf6s: 1rem;
-                        --olvbpf6t: -0.01em;
-                        --olvbpf6u: 2;
-                        --olvbpf6v: PayPalOpen-Medium;
-                        --olvbpf6w: 0.875rem;
-                        --olvbpf6x: 400;
-                        --olvbpf6y: 1.125rem;
-                        --olvbpf6z: -0.02em;
-                        --olvbpf70: true;
-                        --olvbpf71: 2;
-                        --olvbpf72: PayPalOpen-Medium;
-                        --olvbpf73: 0.75rem;
-                        --olvbpf74: 400;
-                        --olvbpf75: 1rem;
-                        --olvbpf76: -0.01em;
-                        --olvbpf77: true;
-                        --olvbpf78: 2;
-                        --olvbpf79: PayPalOpen-Bold;
-                        --olvbpf7a: 0.625rem;
-                        --olvbpf7b: 400;
-                        --olvbpf7c: 1rem;
-                        --olvbpf7d: -0.01em;
-                        --olvbpf7e: 2;
-                        --olvbpf7f: PayPalOpen-Medium;
-                        --olvbpf7g: 0.625rem;
-                        --olvbpf7h: 400;
-                        --olvbpf7i: 1rem;
-                        --olvbpf7j: -0.01em;
-                        --olvbpf7k: 2;
-                        --olvbpf7l: PayPalOpen-Regular;
-                        --olvbpf7m: 0.625rem;
-                        --olvbpf7n: 400;
-                        --olvbpf7o: 1rem;
-                        --olvbpf7p: -0.01em;
-                        --olvbpf7q: 2;
-                        --olvbpf7r: PayPalOpen-Bold;
-                        --olvbpf7s: 0.625rem;
-                        --olvbpf7t: 400;
-                        --olvbpf7u: 0.75rem;
-                        --olvbpf7v: -0.01em;
-                        --olvbpf7w: 2;
-                        --olvbpf7x: PayPalOpen-Medium;
-                        --olvbpf7y: 0.625rem;
-                        --olvbpf7z: 400;
-                        --olvbpf80: 0.75rem;
-                        --olvbpf81: -0.01em;
-                        --olvbpf82: 2;
-                        --olvbpf83: PayPalOpen-Regular;
-                        --olvbpf84: 0.625rem;
-                        --olvbpf85: 400;
-                        --olvbpf86: 0.75rem;
-                        --olvbpf87: -0.01em;
-                        --olvbpf88: 2;
-                        --olvbpf89: PayPalOpen-Medium;
-                        --olvbpf8a: 0.875rem;
-                        --olvbpf8b: 400;
-                        --olvbpf8c: 1.125rem;
-                        --olvbpf8d: -0.02em;
-                        --olvbpf8e: 2;
-                        --olvbpf8f: PayPalOpen-Medium;
-                        --olvbpf8g: 0.75rem;
-                        --olvbpf8h: 400;
-                        --olvbpf8i: 1rem;
-                        --olvbpf8j: -0.01em;
-                        --olvbpf8k: 2;
-                        --olvbpf8l: PayPalOpen-Regular;
-                        --olvbpf8m: 0.875rem;
-                        --olvbpf8n: 400;
-                        --olvbpf8o: 1.5rem;
-                        --olvbpf8p: -0.02em;
-                        --olvbpf8q: 2;
-                        --olvbpf8r: PayPalOpen-Regular;
-                        --olvbpf8s: 0.75rem;
-                        --olvbpf8t: 400;
-                        --olvbpf8u: 1.25rem;
-                        --olvbpf8v: -0.01em;
-                        --olvbpf8w: 2;
-                        --olvbpf8x: PayPalOpen-Regular;
-                        --olvbpf8y: 2.5rem;
-                        --olvbpf8z: 400;
-                        --olvbpf90: 2.75rem;
-                        --olvbpf91: -0.02em;
-                        --olvbpf92: 1.5;
-                        --olvbpf93: PayPalOpen-Regular;
-                        --olvbpf94: 1.5rem;
-                        --olvbpf95: 400;
-                        --olvbpf96: 2rem;
-                        --olvbpf97: -0.02em;
-                        --olvbpf98: 2;
-                        --olvbpf99: PayPalOpen-Regular;
-                        /*--olvbpf9a: 0.875rem;*/
-                        --olvbpf9b: 400;
-                        --olvbpf9c: 1.5rem;
-                        --olvbpf9d: -0.02em;
-                        --olvbpf9e: 2;
-                        --olvbpf9f: PayPalOpen-Bold;
-                        --olvbpf9g: 0.625rem;
-                        --olvbpf9h: 400;
-                        --olvbpf9i: 0.75rem;
-                        --olvbpf9j: 0.03em;
-                        --olvbpf9k: 2;
-                        --olvbpf9l: PayPalOpen-Medium;
-                        --olvbpf9m: 0.625rem;
-                        --olvbpf9n: 400;
-                        --olvbpf9o: 0.75rem;
-                        --olvbpf9p: 0.03em;
-                        --olvbpf9q: 2;
-                        --olvbpf9r: PayPalOpen-Regular;
-                        --olvbpf9s: 0.625rem;
-                        --olvbpf9t: 400;
-                        --olvbpf9u: 0.75rem;
-                        --olvbpf9v: 0.03em;
-                        --olvbpf9w: 2;
-                        --olvbpf9x: PayPalOpen-Bold;
-                        --olvbpf9y: 0.75rem;
-                        --olvbpf9z: 400;
-                        --olvbpfa0: 1rem;
-                        --olvbpfa1: -0.01em;
-                        --olvbpfa2: 2;
-                        --olvbpfa3: PayPalOpen-Medium;
-                        --olvbpfa4: 0.75rem;
-                        --olvbpfa5: 400;
-                        --olvbpfa6: 1rem;
-                        --olvbpfa7: -0.01em;
-                        --olvbpfa8: 2;
-                        --olvbpfa9: PayPalOpen-Regular;
-                        --olvbpfaa: 0.75rem;
-                        --olvbpfab: 400;
-                        --olvbpfac: 1rem;
-                        --olvbpfad: -0.01em;
-                        --olvbpfae: 2;
-                        --olvbpfaf: 0.5rem;
-                        --olvbpfag: #f0f2f9;
-                        --olvbpfah: #f5f7fb;
-                        --olvbpfai: #fff;
-                        --olvbpfaj: #f5f7fb;
-                        --olvbpfak: #f0f2f9;
-                        --olvbpfal: #000;
-                        --olvbpfam: #686a6d;
-                        --olvbpfan: #0551b5;
-                        --olvbpfao: #1161ca;
-                        --olvbpfap: #003087;
-                        --olvbpfaq: #fff;
-                        --olvbpfar: #aed7ff;
-                        --olvbpfas: #73b9ff;
-                        --olvbpfat: #0070e0;
-                        --olvbpfau: #73b9ff;
-                        --olvbpfav: #003087;
-                        --olvbpfaw: #fff;
-                        --olvbpfax: #003087;
-                        --olvbpfay: #f0f2f9;
-                        --olvbpfaz: #bcc1c7;
-                        --olvbpfb0: #def;
-                        --olvbpfb1: #f0f2f9;
-                        --olvbpfb2: #bcc1c7;
-                        --olvbpfb3: #ffd140;
-                        --olvbpfb4: #ffdf7b;
-                        --olvbpfb5: #f1b700;
-                        --olvbpfb6: #003087;
-                        --olvbpfb7: #0070e0;
-                        --olvbpfb8: #73b9ff;
-                        --olvbpfb9: #0551b5;
-                        --olvbpfba: #fff;
-                        --olvbpfbb: #aed7ff;
-                        --olvbpfbc: #def;
-                        --olvbpfbd: #73b9ff;
-                        --olvbpfbe: #0551b5;
-                        --olvbpfbf: #def;
-                        --olvbpfbg: #aed7ff;
-                        --olvbpfbh: #73b9ff;
-                        --olvbpfbi: #0551b5;
-                        --olvbpfbj: #aed7ff;
-                        --olvbpfbk: #def;
-                        --olvbpfbl: #73b9ff;
-                        --olvbpfbm: #0551b5;
-                        --olvbpfbn: #def;
-                        --olvbpfbo: #aed7ff;
-                        --olvbpfbp: #73b9ff;
-                        --olvbpfbq: #0551b5;
-                        --olvbpfbr: #bcc1c7;
-                        --olvbpfbs: #f0f2f9;
-                        --olvbpfbt: #9199a0;
-                        --olvbpfbu: #4c4d4d;
-                        --olvbpfbv: #000;
-                        --olvbpfbw: #73b9ff;
-                        --olvbpfbx: #003087;
-                        --olvbpfby: #1161ca;
-                        --olvbpfbz: #73b9ff;
-                        --olvbpfc0: #003087;
-                        --olvbpfc1: #fff;
-                        --olvbpfc2: #aed7ff;
-                        --olvbpfc3: #73b9ff;
-                        --olvbpfc4: #1161ca;
-                        --olvbpfc5: #003087;
-                        --olvbpfc6: #1161ca;
-                        --olvbpfc7: #1161ca;
-                        --olvbpfc8: #003087;
-                        --olvbpfc9: #fff;
-                        --olvbpfca: #aed7ff;
-                        --olvbpfcb: #73b9ff;
-                        --olvbpfcc: #545d68;
-                        --olvbpfcd: #545d68;
-                        --olvbpfce: #001435;
-                        --olvbpfcf: rgba(5,5,6,.55);
-                        --olvbpfcg: rgba(5,5,6,.4);
-                        --olvbpfch: rgba(5,5,6,.7);
-                        --olvbpfci: #fff;
-                        --olvbpfcj: hsla(0,0%,100%,.7);
-                        --olvbpfck: hsla(0,0%,100%,.04);
-                        --olvbpfcl: hsla(0,0%,100%,.1);
-                        --olvbpfcm: #000;
-                        --olvbpfcn: #1161ca;
-                        --olvbpfco: #fff;
-                        --olvbpfcp: #e02d50;
-                        --olvbpfcq: #fff;
-                        --olvbpfcr: #388c00;
-                        --olvbpfcs: #fff;
-                        --olvbpfct: #7252cc;
-                        --olvbpfcu: #fff;
-                        --olvbpfcv: #d50102;
-                        --olvbpfcw: #fe7575;
-                        --olvbpfcx: #870101;
-                        --olvbpfcy: #fff;
-                        --olvbpfcz: #ffe8ec;
-                        --olvbpfd0: #ff9caa;
-                        --olvbpfd1: #ff5a6d;
-                        --olvbpfd2: #d50102;
-                        --olvbpfd3: #ffbe4a;
-                        --olvbpfd4: #ffdf7b;
-                        --olvbpfd5: #c07600;
-                        --olvbpfd6: #c07600;
-                        --olvbpfd7: #0a0a0a;
-                        --olvbpfd8: #ffeec2;
-                        --olvbpfd9: #ffdf7b;
-                        --olvbpfda: #ffd140;
-                        --olvbpfdb: #a35441;
-                        --olvbpfdc: #0c6e11;
-                        --olvbpfdd: #8fd01d;
-                        --olvbpfde: #0a570d;
-                        --olvbpfdf: #fff;
-                        --olvbpfdg: #e6f8e7;
-                        --olvbpfdh: #94df98;
-                        --olvbpfdi: #42c25b;
-                        --olvbpfdj: #0c6e11;
-                        --olvbpfdk: #001435;
-                        --olvbpfdl: #9198a0;
-                        --olvbpfdm: #545d68;
-                        --olvbpfdn: #fff;
-                        --olvbpfdo: #cfd3d8;
-                        --olvbpfdp: #f1f2f3;
-                        --olvbpfdq: #b2b7bd;
-                        --olvbpfdr: #001435;
-                        --olvbpfds: #7252cc;
-                        --olvbpfdt: #977fd9;
-                        --olvbpfdu: #5b38bf;
-                        --olvbpfdv: #fff;
-                        --olvbpfdw: #ede9f9;
-                        --olvbpfdx: #977fd9;
-                        --olvbpfdy: #7252cc;
-                        --olvbpfdz: #5b38bf;
-                        --olvbpfe0: #737b84;
-                        --olvbpfe1: #cfd3d8;
-                        --olvbpfe2: rgba(5,5,6,.1);
-                        --olvbpfe3: #097ff5;
-                        --olvbpfe4: rgba(5,5,6,.4);
-                        --olvbpfe5: #f0f2f9;
-                        --olvbpfe6: #545d68;
-                        --olvbpfe7: hsla(0,0%,100%,.7);
-                        --olvbpfe8: #000;
-                        --olvbpfe9: rgba(209,229,249,.9);
-                        --olvbpfea: rgba(224,45,80,.16);
-                    }
-
-
-
-
-                    .Fastlane-outer-container {
-                        background-color: #faf8f5;
-                        border-radius: 10px;
-                        margin: 24px 14px;
-                        padding: 32px;
-                        position: relative
-                    }
-
-                        .Fastlane-outer-container hr {
-                            border: none;
-                            border-top: var(--olvbpf31) solid var(--olvbpfe2);
-                            margin: var(--olvbpf11) 0;
-                        }
-
-                        .Fastlane-outer-container p {
-                            font-size: 16px;
-                            line-height: 1.5;
-                        }
-
-                    ._15xmczp6 {
-                        background-color: transparent;
-                        border-color: var(--fjr1f70,var(--olvbpfe1));
-                        color: var(--fjr1f70,var(--olvbpfal));
-                    }
-
-                    ._15xmczp3 {
-                        font-family: var(--olvbpf8f),"Helvetica Neue",Arial,sans-serif;
-                        font-size: 2.0rem;
-                        font-weight: var(--olvbpf8h);
-                        letter-spacing: var(--olvbpf8j);
-                        line-height: var(--olvbpf8i);
-                        min-height: 4rem;
-                        min-width: 6rem;
-                        padding: calc(var(--olvbpfm) - var(--olvbpf32)) calc(var(--olvbpf12) - var(--olvbpf32));
-                    }
-
-                    ._15xmczp1 {
-                        align-items: center;
-                        border-radius: 1000px;
-                        border-style: solid;
-                        border-width: var(--olvbpf31);
-                        cursor: pointer;
-                        display: inline-flex;
-                        justify-content: center;
-                        position: relative;
-                        text-decoration: none;
-                        transition: color var(--olvbpf28) ease,background-color var(--olvbpf28) ease,border-color var(--olvbpf28) ease;
-                    }
-
-                    ._15xmczpb {
-                        margin-inline-end: var(--olvbpf10);
-                    }
-
-                    ._1x14h7f7 {
-                        speak: none;
-                        aspect-ratio: 1;
-                        display: inline-block;
-                    }
-
-                    ._1x14h7f2 {
-                        height: 100%;
-                        width: 100%;
-                    }
-
-                    ._1x14h7f7 img, ._1x14h7f7 svg {
-                        display: block;
-                        height: 100%;
-                        width: 100%;
-                    }
-
-                    .unr7j04 {
-                        background-clip: padding-box;
-                        left: var(--olvbpf11);
-                        pointer-events: none;
-                        position: absolute;
-                        right: var(--olvbpf11);
-                        top: var(--olvbpf10);
-                        transition: font-size var(--olvbpf2j) cubic-bezier(var(--olvbpf2w)), top var(--olvbpf2j) cubic-bezier(var(--olvbpf2w)), backgroundColor var(--olvbpf2j) cubic-bezier(var(--olvbpf2w));
-                    }
-
-                    .unr7j07 {
-                        /*
-                    color: var(--_19shc840,var(--olvbpfal));
-                    font-family: var(--olvbpf99),"Helvetica Neue",Arial,sans-serif;
-                    font-size: var(--olvbpf9a);
-                    font-weight: var(--olvbpf9b);
-
-                    */
-                        letter-spacing: var(--olvbpf9d);
-                        line-height: var(--olvbpf9c);
-                        padding: 0;
-                        position: relative;
-                        text-align: left;
-                    }
-
-                    .unr7j05,
-                    .unr7j0a {
-                        -webkit-appearance: none;
-                        -moz-appearance: none;
-                        background-color: var(--olvbpfai);
-                        border: var(--olvbpfe1) solid var(--olvbpf31);
-                        border-radius: var(--olvbpf37);
-                        box-sizing: border-box;
-                        color: var(--_19shc840,var(--olvbpfal));
-                        font-family: var(--olvbpf99),"Helvetica Neue",Arial,sans-serif;
-                        font-weight: var(--olvbpf9b);
-                        letter-spacing: var(--olvbpf9d);
-                        line-height: var(--olvbpf9c);
-                        margin: 0;
-                        min-height: var(--olvbpfp);
-                        outline: none;
-                        padding: calc(var(--olvbpf15) + var(--olvbpfx) - var(--olvbpf31)) calc(var(--olvbpf11) - var(--olvbpf31)) calc(var(--olvbpf10) + var(--olvbpfx) - var(--olvbpf31)) calc(var(--olvbpf11) - var(--olvbpf31));
-                        position: relative;
-                        text-overflow: ellipsis;
-                        width: 100%;
-                    }
-
-                    .unr7j05 {
-                        font-size: 1.725rem /*var(--olvbpf9a)*/;
-                    }
-
-                    .unr7j0a {
-                        font-size: 2.0rem /*var(--olvbpf9a)*/;
-                    }
-
-                    .unr7j0b {
-                        padding: calc(var(--olvbpf13) - var(--olvbpf31)) calc(var(--olvbpf11) - var(--olvbpf31)) calc(var(--olvbpf13) - var(--olvbpf31)) calc(var(--olvbpf11) - var(--olvbpf31));
-                    }
-
-                    ._15xmczp4 {
-                        background-color: var(--fjr1f70,var(--olvbpfan));
-                        border: var(--olvbpf32) solid var(--fjr1f70,var(--olvbpfan));
-                        color: var(--fjr1f71,var(--olvbpfaq));
-                    }
-
-                    ._15xmczp2 {
-                        font-family: var(--olvbpf89),"Helvetica Neue",Arial,sans-serif;
-                        font-size: 2.0rem /*var(--olvbpf8a)*/;
-                        font-weight: var(--olvbpf8b);
-                        letter-spacing: var(--olvbpf8d);
-                        line-height: var(--olvbpf8c);
-                        min-height: 4.25rem /*var(--olvbpfe)*/;
-                        min-width: 6rem;
-                        padding: calc(var(--olvbpf11) - var(--olvbpf32)) calc(var(--olvbpf16) - var(--olvbpf32));
-                    }
-
-                    ._15xmczp1 {
-                        align-items: center;
-                        border-radius: 1000px;
-                        border-style: solid;
-                        border-width: var(--olvbpf31);
-                        cursor: pointer;
-                        display: inline-flex;
-                        justify-content: center;
-                        position: relative;
-                        text-decoration: none;
-                        transition: color var(--olvbpf28) ease,background-color var(--olvbpf28) ease,border-color var(--olvbpf28) ease;
-                    }
-
-                    ._16prk6o2 {
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                    }
-        </style>
-    }
+}
 
 @section Modals
 {
-    @**@
-    <div id="announcement" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title announcementtitle">Check out the Valentine's Day menu! (click image)!</h4>
-        </div>
-        <div class="modal-body announcementbody">
-            @*
-        <div id="cozymeal-chef-badge-4"></div>
-        <script type="text/javascript" src="https://www.cozymeal.com/widget.js?id=eyJpdiI6InRZQ2FJYXZ1U002dG9CaTJmSis3YWc9PSIsInZhbHVlIjoiOUNHU2hRVDZKTTdoUE1wSUxGMzBpZz09IiwibWFjIjoiZDRmMzM0Y2I5MzE4YmIzZjdhODcwMzZjZGFjMzc3NDI0YmRkOTQ2MWQ4NzQ5YWYxYTljMTVmMTcyYzBlNmMxZCJ9" async></script>
-            *@
-            <a href="~/Menus/ThemedEvents#vdmenu"><img src="~/Content/images/Valentine.jpg" style="width:700px" /></a>
-        </div>
-    </div>
-    <div id="serviceorder" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
-        <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h4 class="modal-title announcementtitle">Order your meal service today!</h4>
-            <div id="watermark-container"></div>
-        </div>
-        <div class="modal-body announcementbody" style="padding-top:0px">
-            <form id="payment-form">
-                <div class="Fastlane-outer-container">
-                    @*
-                        <div id="customer-heading" class="section-heading active visited">
-                            <h3>Customer</h3>
-                            <button id="email-edit-button" class="edit-button" tab-index="0"><div class="_15xmczp1 _15xmczp3 _15xmczp6 _15xmczpm"><span role="img" class="_1x14h7f7 _1x14h7f2 _15xmczpb" aria-label="edit icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em"><path d="M21.31 6.879l-4.188-4.19a1.5 1.5 0 0 0-2.122 0L3.44 14.25A1.487 1.487 0 0 0 3 15.31v4.19A1.5 1.5 0 0 0 4.5 21h4.19a1.485 1.485 0 0 0 1.06-.44L21.31 9a1.5 1.5 0 0 0 0-2.121zM8.69 19.5H4.5v-4.19l8.25-8.25 4.19 4.19-8.25 8.25zM18 10.19L13.81 6l2.25-2.25 4.19 4.189-2.25 2.25z"></path></svg></span>Edit</div></button>
-                        </div>
-                        <section id="customer" class="active visited">
-                            <div class="unr7j07 email-input">
-                                <input class="unr7j0a unr7j0b" id="email-input" aria-invalid="false" placeholder="Email" type="email" autocomplete="email" value="">
-                            </div>
-                            <button id="email-submit-button" type="button" class="_15xmczp1 _15xmczp2 _15xmczp4 _15xmczpm email-continue-button continue-button" tab-index="0">
-                                Continue
-                            </button>
-                            <div class="summary"></div>
-                        </section>
-
-                        <hr />
-                    *@
-                    <div id="shipping-heading" class="section-heading">
-                        <h3>Information</h3>
-                        <button id="shipping-edit-button" class="edit-button" tab-index="0"><div class="_15xmczp1 _15xmczp3 _15xmczp6 _15xmczpm"><span role="img" class="_1x14h7f7 _1x14h7f2 _15xmczpb" aria-label="edit icon"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" width="1em" height="1em"><path d="M21.31 6.879l-4.188-4.19a1.5 1.5 0 0 0-2.122 0L3.44 14.25A1.487 1.487 0 0 0 3 15.31v4.19A1.5 1.5 0 0 0 4.5 21h4.19a1.485 1.485 0 0 0 1.06-.44L21.31 9a1.5 1.5 0 0 0 0-2.121zM8.69 19.5H4.5v-4.19l8.25-8.25 4.19 4.19-8.25 8.25zM18 10.19L13.81 6l2.25-2.25 4.19 4.189-2.25 2.25z"></path></svg></span>Edit</div></button>
-                    </div>
-                    <section id="shipping">
-                        <div class="address-field-row">
-                            <div class="unr7j07 address-field">
-                                <input class="unr7j05" name="given-name" id="text-input-givenName" aria-invalid="false" placeholder=" " type="text" autocomplete="given-name" required="" value=""><label for="text-input-givenName" id="text-input-givenName-label" class="unr7j04 _16prk6o2 unr7j00">First name</label>
-                                <label for="text-input-givenName" id="text-input-givenName-label" class="unr7j04 _16prk6o2 unr7j00">First name</label>
-                            </div>
-                            <div class="unr7j07 address-field">
-                                <input class="unr7j05" name="family-name" id="text-input-familyName" aria-invalid="false" placeholder=" " type="text" autocomplete="family-name" required="" value="">
-                                <label for="text-input-familyName" id="text-input-familyName-label" class="unr7j04 _16prk6o2 unr7j00">Last name</label>
-                            </div>
-                        </div>
-                        <div class="unr7j07 address-field">
-                            <input class="unr7j05" name="address-line1" id="text-input-addressLine1" aria-invalid="false" placeholder=" " type="text" autocomplete="address-line1" required="" value="">
-                            <label for="text-input-addressLine1" id="text-input-addressLine1-label" class="unr7j04 _16prk6o2 unr7j00">Address Line 1</label>
-                        </div>
-                        <div class="unr7j07 address-field">
-                            <input class="unr7j05" name="address-line2" id="text-input-addressLine2" aria-invalid="false" placeholder=" " type="text" autocomplete="address-line2" value="">
-                            <label for="text-input-addressLine2" id="text-input-addressLine2-label" class="unr7j04 _16prk6o2 unr7j00">Apt., ste., bldg. (optional)</label>
-                        </div>
-                        <div class="address-field-row">
-                            <div class="unr7j07 address-field">
-                                <input class="unr7j05" name="address-level2" id="text-input-adminArea2" aria-invalid="false" placeholder=" " type="text" autocomplete="address-level2" required="" value="">
-                                <label for="text-input-adminArea2" id="text-input-adminArea2-label" class="unr7j04 _16prk6o2 unr7j00">City</label>
-                            </div>
-                            <div class="unr7j07 address-field">
-                                <input class="unr7j05" name="address-level1" id="text-input-adminArea1" aria-invalid="false" placeholder=" " type="text" autocomplete="address-level1" required="" value="">
-                                <label for="text-input-adminArea1" id="text-input-adminArea1-label" class="unr7j04 _16prk6o2 unr7j00">State</label>
-                            </div>
-                        </div>
-                        <div class="address-field-row">
-                            <div class="unr7j07 address-field">
-                                <input class="unr7j05" name="postal-code" id="text-input-postalCode" aria-invalid="false" placeholder=" " type="text" autocomplete="postal-code" required="" value="">
-                                <label for="text-input-postalCode" id="text-input-postalCode-label" class="unr7j04 _16prk6o2 unr7j00">ZIP code</label>
-                            </div>
-                            <div class="unr7j07 address-field">
-                                <input class="unr7j05" name="country" id="text-input-countryCode" aria-invalid="false" placeholder=" " autocomplete="country" required="" value="">
-                                <label for="text-input-countryCode" id="text-input-countryCode-label" class="unr7j04 _16prk6o2 unr7j00">Country (eg. US, UK)</label>
-                            </div>
-                        </div>
-                        <div class="address-field-row">
-                            <div class="unr7j07 address-field">
-                                <input class="unr7j05" name="tel-country-code" id="text-input-telCountryCode" aria-invalid="false" placeholder=" " type="tel" autocomplete="tel-country-code" value="">
-                                <label for="text-input-telCountryCode" id="text-input-telCountryCode-label" class="unr7j04 _16prk6o2 unr7j00">Country calling code</label>
-                            </div>
-                            <div class="unr7j07 address-field">
-                                <input class="unr7j05" name="tel-national" id="text-input-nationalNumber" aria-invalid="false" placeholder=" " type="tel" autocomplete="tel-national" value="">
-                                <label for="text-input-nationalNumber" id="text-input-nationalNumber-label" class="unr7j04 _16prk6o2 unr7j00">Phone number</label>
-                            </div>
-                        </div>
-                        <div class="unr7j07 address-field">
-                            <input class="unr7j05" name="email-input" id="email-input" aria-invalid="false" placeholder=" " type="email" autocomplete="email" value="">
-                            <label for="email-input" id="text-input-email-input" class="unr7j04 _16prk6o2 unr7j00">Email</label>
-                        </div>
-                        <div class="shipping-continue-button continue-button">
-                            <button id="shipping-submit-button" type="button" class="_15xmczp1 _15xmczp2 _15xmczp4 _15xmczpm" tab-index="0">Continue</button>
-                        </div>
-                        <div class="summary"></div>
-                    </section>
-
-                    <hr />
-
-                    <div class="section-heading">
-                        <h3>Payment</h3>
-                    </div>
-                    <section id="payment">
-                        <div id="payment-component"></div>
-                        <button id="checkout-button" type="button" class="submit-button">
-                            Checkout
-                        </button>
-                    </section>
-                </div>
-            </form>
-        </div>
-    </div>
-}
-
-    <div id="banner">
-        @*
-            <map name="ribbon">
-                <area data-toggle="modal" href="#announcement" title="Healthy Stock Up!" alt="Healthy Stock Up!" shape="poly" coords="0,0,180,180,180,0">
-            </map>
-            <img src="@Url.Content("~/Content/images/healthy.png")" class="ribbon" usemap="#ribbon" title="Healthy Stock Up!" alt="Healthy Stock Up!">
-            <!-- TOP RIGHT RIBBON: START COPYING HERE -->
-            <a class="github-fork-ribbon right-top" data-toggle="modal" href="#announcement" data-ribbon="I'm on CozyMeal!" title="Check me out at CozyMean!">Check me out at CozyMeal!</a>
-        *@
-        <!-- TOP RIGHT RIBBON: END COPYING HERE -->
-        <div id="chefquote">
-            <i class="fa fa-quote-left fa-2x pull-left dblquote"></i>
-            <div>
-                <div class="quote">A personal chef service is for anyone looking for a few nights off from worrying about what's for dinner.</div>
-                <div class="speaker"><i class="fa fa-user"></i> Chef Laura</div>
+    @*
+        <div id="announcement" class="modal fade" data-replace="true" data-keyboard="false" data-backdrop="static">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title announcementtitle">Check out the Valentine's Day menu! (click image)!</h4>
             </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6">
-                <h4>Question?</h4>
-                <p class="justify">
-                    Have you and your family become too reliant on carryout meals, mass-produced restaurant food, or boxed dinners
-                    with minimal nutritional value? Do you want to eat healthier but lack the time to plan, shop for and cook meals
-                    that are good for you?
-                </p>
-            </div>
-            <div class="col-md-6">
-                <h4>Answer!</h4>
-                <p class="justify">
-                    <b>A Knight's Feast Personal Chef Service</b> prepares your choice of meals - made fresh in your own kitchen - and packages
-                    them with easy-to-follow heating instructions. We create meals that meet your specific dietary and nutritional needs
-                    and appeal to your personal tastes.
-                </p>
-                <p class="justify"><b><u>What can I do for you?</u></b></p>
-            </div>
-        </div>
-    </div>
-
-    <div id="how" class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="frame">
-                    <section id="howbg">
-                        <div class="title shadow">How it Works</div>
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h4><img alt="" src="~/Images/1.png" /> Chat</h4>
-                <p class="justify">
-                    First I meet with you to discuss your dining wants and needs.
-                </p>
-                <ul class="justify">
-                    <li><i class="fa fa-leaf"></i> What are your favorite foods, flavors, and textures?</li>
-                    <li><i class="fa fa-leaf"></i> Do you have a family favorite that you just don’t have time to prepare?</li>
-                    <li><i class="fa fa-leaf"></i> Do you want to follow a diet plan?</li>
-                    <li><i class="fa fa-leaf"></i> Do you have any allergies or foods you don’t like?</li>
-                    <li><i class="fa fa-leaf"></i> What international foods do you enjoy?</li>
-                </ul>
-                <p class="justify highlight">
-                    You can also complete a <a href="@Url.Action("", "Assessment")"><i class="fa fa-edit"></i> Client Assessment Form</a>
-                    online so I can come up with a menu for you quicker!
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h4><img alt="" src="~/Images/2.png" /> Design</h4>
-                <p class="justify">Your menu is designed and sent to you for approval.</p>
-                <p class="justify">
-                    A list of suggestions will be sent you.  It must be approved within 48 hours of your cook date.  Feel free to
-                    make suggestions of what you’re craving!
-                </p>
-            </div>
-            <div class="col-md-4">
-                <h4><img alt="" src="~/Images/3.png" /> Shop</h4>
-                <p class="justify">Your food is purchased fresh the day of your cook date.</p>
-                <p class="justify">
-                    Chef Laura will shop at the best local grocery stores and local farmers’ markets to
-                    ensure your meals are produced from the absolute freshest ingredients.
-                </p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-2">&nbsp;</div>
-            <div class="col-md-4">
-                <h4><img alt="" src="~/Images/4.png" /> Cook</h4>
-                <p class="justify">Your food will be prepared fresh in your home.</p>
-            </div>
-            <div class="col-md-4">
-                <h4><img alt="" src="~/Images/5.png" /> Pack</h4>
-                <p class="justify">Your fridge or freezer will be chock full of delicious food ready to consume at your convenience.</p>
-                <p class="justify">
-                    All meals will be packaged with instructions on how to serve. Your kitchen will be clean of all evidence of
-                    your chef being there — all except for the pleasant smell of fresh food.
-                </p>
-            </div>
-            <div class="col-md-2">&nbsp;</div>
-        </div>
-    </div>
-
-    @* ----- Hiding this section for right now ---------
-        <div id="delivery" class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="frame">
-                        <section id="deliverybg">
-                            <div class="title shadow">Meal Delivery Service</div>
-                        </section>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container">
-            <div class="row justify">
-                <div id="deliverysummary" class="col-md-11">
-                    <p>Here's a summary of the meal delivery service:</p>
-                    <ul>
-                        <li>
-                            Meals will be delivered through most of DC, Maryland, and Virginia (DMV area)
-                        </li>
-                        <li>
-                            There will be 10 meal choices with classic, Keto (a.k.a. low carb, high fat), Paleo, vegan, and vegetarian variations
-                        </li>
-                        <li>
-                            Organic ingredients are purchased from reputable stores, such as Wegman’s or Trader Joe’s, or local farmers' markets
-                        </li>
-                        <li>
-                            The menu for the week is prepared by Chef Laura and made available on the Friday prior to that week
-                            <br /><br />
-                            <i>
-                                Menu choices must be sent to Chef Laura by the Sunday prior to that week no later than noon via e-mail, or she may
-                                select the menu by stating "chef’s choice" in the message
-                            </i>
-                        </li>
-                        <li>
-                            Deliveries are made throughout the day on the Tuesday of the menu week
-                            <br /><br />
-                            If given access Chef Laura would prefer to put the meals in your refrigerator
-                        </li>
-                        <li>
-                            <b>$20/Serving for 10 meals</b> or <b>$200 per delivery</b>
-                        </li>
-                        <li>
-                            Payment options include Paypal, Venmo, or check
-                        </li>
-                    </ul>
-                    <p>
-                        <br />
-                        <b>
-                            NOTE: The meals are prepared in a kitchen where many ingredients have been used and not in an allergen free kitchen. Chef Laura
-                            can avoid using some ingredients when cooking, but cannot guarantee any adverse allergic reactions from occurring.
-                        </b>
-                    </p>
-                </div>
+            <div class="modal-body announcementbody">
+                <!--
+            <div id="cozymeal-chef-badge-4"></div>
+            <script type="text/javascript" src="https://www.cozymeal.com/widget.js?id=eyJpdiI6InRZQ2FJYXZ1U002dG9CaTJmSis3YWc9PSIsInZhbHVlIjoiOUNHU2hRVDZKTTdoUE1wSUxGMzBpZz09IiwibWFjIjoiZDRmMzM0Y2I5MzE4YmIzZjdhODcwMzZjZGFjMzc3NDI0YmRkOTQ2MWQ4NzQ5YWYxYTljMTVmMTcyYzBlNmMxZCJ9" async></script>
+                -->
+                <a href="~/Menus/ThemedEvents#vdmenu"><img src="~/Content/images/Valentine.jpg" style="width:700px" /></a>
             </div>
         </div>
     *@
+}
 
-    <div id="prices" class="container">
+<div id="banner">
+    @*
+        <map name="ribbon">
+            <area data-toggle="modal" href="#announcement" title="Healthy Stock Up!" alt="Healthy Stock Up!" shape="poly" coords="0,0,180,180,180,0">
+        </map>
+        <img src="@Url.Content("~/Content/images/healthy.png")" class="ribbon" usemap="#ribbon" title="Healthy Stock Up!" alt="Healthy Stock Up!">
+        <!-- TOP RIGHT RIBBON: START COPYING HERE -->
+        <a class="github-fork-ribbon right-top" data-toggle="modal" href="#announcement" data-ribbon="I'm on CozyMeal!" title="Check me out at CozyMean!">Check me out at CozyMeal!</a>
+    *@
+    <!-- TOP RIGHT RIBBON: END COPYING HERE -->
+    <div id="chefquote">
+        <i class="fa fa-quote-left fa-2x pull-left dblquote"></i>
+        <div>
+            <div class="quote">A personal chef service is for anyone looking for a few nights off from worrying about what's for dinner.</div>
+            <div class="speaker"><i class="fa fa-user"></i> Chef Laura</div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h4>Question?</h4>
+            <p class="justify">
+                Have you and your family become too reliant on carryout meals, mass-produced restaurant food, or boxed dinners
+                with minimal nutritional value? Do you want to eat healthier but lack the time to plan, shop for and cook meals
+                that are good for you?
+            </p>
+        </div>
+        <div class="col-md-6">
+            <h4>Answer!</h4>
+            <p class="justify">
+                <b>A Knight's Feast Personal Chef Service</b> prepares your choice of meals - made fresh in your own kitchen - and packages
+                them with easy-to-follow heating instructions. We create meals that meet your specific dietary and nutritional needs
+                and appeal to your personal tastes.
+            </p>
+            <p class="justify"><b><u>What can I do for you?</u></b></p>
+        </div>
+    </div>
+</div>
+
+<div id="how" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="frame">
+                <section id="howbg">
+                    <div class="title shadow">How it Works</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h4><img alt="" src="~/Images/1.png" /> Chat</h4>
+            <p class="justify">
+                First I meet with you to discuss your dining wants and needs.
+            </p>
+            <ul class="justify">
+                <li><i class="fa fa-leaf"></i> What are your favorite foods, flavors, and textures?</li>
+                <li><i class="fa fa-leaf"></i> Do you have a family favorite that you just don’t have time to prepare?</li>
+                <li><i class="fa fa-leaf"></i> Do you want to follow a diet plan?</li>
+                <li><i class="fa fa-leaf"></i> Do you have any allergies or foods you don’t like?</li>
+                <li><i class="fa fa-leaf"></i> What international foods do you enjoy?</li>
+            </ul>
+            <p class="justify highlight">
+                You can also complete a <a href="@Url.Action("", "Assessment")"><i class="fa fa-edit"></i> Client Assessment Form</a>
+                online so I can come up with a menu for you quicker!
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h4><img alt="" src="~/Images/2.png" /> Design</h4>
+            <p class="justify">Your menu is designed and sent to you for approval.</p>
+            <p class="justify">
+                A list of suggestions will be sent you.  It must be approved within 48 hours of your cook date.  Feel free to
+                make suggestions of what you’re craving!
+            </p>
+        </div>
+        <div class="col-md-4">
+            <h4><img alt="" src="~/Images/3.png" /> Shop</h4>
+            <p class="justify">Your food is purchased fresh the day of your cook date.</p>
+            <p class="justify">
+                Chef Laura will shop at the best local grocery stores and local farmers’ markets to
+                ensure your meals are produced from the absolute freshest ingredients.
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">&nbsp;</div>
+        <div class="col-md-4">
+            <h4><img alt="" src="~/Images/4.png" /> Cook</h4>
+            <p class="justify">Your food will be prepared fresh in your home.</p>
+        </div>
+        <div class="col-md-4">
+            <h4><img alt="" src="~/Images/5.png" /> Pack</h4>
+            <p class="justify">Your fridge or freezer will be chock full of delicious food ready to consume at your convenience.</p>
+            <p class="justify">
+                All meals will be packaged with instructions on how to serve. Your kitchen will be clean of all evidence of
+                your chef being there — all except for the pleasant smell of fresh food.
+            </p>
+        </div>
+        <div class="col-md-2">&nbsp;</div>
+    </div>
+</div>
+
+@* ----- Hiding this section for right now ---------
+    <div id="delivery" class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="frame">
-                    <section id="pricebg">
-                        <div class="title shadow">Prices</div>
+                    <section id="deliverybg">
+                        <div class="title shadow">Meal Delivery Service</div>
                     </section>
                 </div>
             </div>
@@ -1239,274 +150,325 @@
     </div>
 
     <div class="container">
+        <div class="row justify">
+            <div id="deliverysummary" class="col-md-11">
+                <p>Here's a summary of the meal delivery service:</p>
+                <ul>
+                    <li>
+                        Meals will be delivered through most of DC, Maryland, and Virginia (DMV area)
+                    </li>
+                    <li>
+                        There will be 10 meal choices with classic, Keto (a.k.a. low carb, high fat), Paleo, vegan, and vegetarian variations
+                    </li>
+                    <li>
+                        Organic ingredients are purchased from reputable stores, such as Wegman’s or Trader Joe’s, or local farmers' markets
+                    </li>
+                    <li>
+                        The menu for the week is prepared by Chef Laura and made available on the Friday prior to that week
+                        <br /><br />
+                        <i>
+                            Menu choices must be sent to Chef Laura by the Sunday prior to that week no later than noon via e-mail, or she may
+                            select the menu by stating "chef’s choice" in the message
+                        </i>
+                    </li>
+                    <li>
+                        Deliveries are made throughout the day on the Tuesday of the menu week
+                        <br /><br />
+                        If given access Chef Laura would prefer to put the meals in your refrigerator
+                    </li>
+                    <li>
+                        <b>$20/Serving for 10 meals</b> or <b>$200 per delivery</b>
+                    </li>
+                    <li>
+                        Payment options include Paypal, Venmo, or check
+                    </li>
+                </ul>
+                <p>
+                    <br />
+                    <b>
+                        NOTE: The meals are prepared in a kitchen where many ingredients have been used and not in an allergen free kitchen. Chef Laura
+                        can avoid using some ingredients when cooking, but cannot guarantee any adverse allergic reactions from occurring.
+                    </b>
+                </p>
+            </div>
+        </div>
+    </div>
+*@
+
+<div id="prices" class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="frame">
+                <section id="pricebg">
+                    <div class="title shadow">Prices</div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pricetbl">
+                <div class="col1">
+                    <ul>
+                        <li class="pricerow">
+                            5 Meal Package - $475 + Groceries
+                            @*
+                                <br />
+                                <input class="buy-now-button" type="button" value="Buy Now!" data-servicetype="0" />
+                            *@
+                        </li>
+                        <li class="pricerow">
+                            4 Meal Package - $400 + Groceries
+                            @*
+                                <br />
+                                <input class="buy-now-button" type="button" value="Buy Now!" data-servicetype="1" />
+                            *@
+                        </li>
+                        <li class="pricerow">
+                            3 Meal Package - $325 + Groceries
+                            @*
+                                <br />
+                                <input class="buy-now-button" type="button" value="Buy Now!" data-servicetype="2" />
+                            *@
+                        </li>
+                        <li class="pricerow">
+                            Party - $500 Minimum
+                        </li>
+                        <li class="pricerow">
+                            Snacks and breakfast items - $75 each + Groceries
+                        </li>
+                        <li class="pricerow">
+                            Cooking Class - $500 Minimum
+                        </li>
+                    </ul>
+                </div>
+                <div class="col2">
+                    <ul>
+                        <li class="pricerow">
+                            Five meals with up to four - six servings of any selection.
+                        </li>
+                        <li class="pricerow">
+                            Four meals with up to four - six servings of any selection.
+                        </li>
+                        <li class="pricerow">
+                            Three Meals with up to four - six servings of any selection.
+                        </li>
+                        <li class="pricerow">
+                            Call or email to discuss your event.
+                        </li>
+                        <li></li>
+                        <li class="pricerow">
+                            Call or email to discuss the class you would like.  I specialize in knife skills, sauces, special diets like keto,
+                            Italian and French techniques.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*
+    <!-- Old Prices Section --
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Packages</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>$325 flat service fee (additional fees dependent on package)</h4>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="pricetbl">
-                    <div class="col1">
-                        <ul>
-                            <li class="pricerow">
-                                5 Meal Package - $475 + Groceries
-                                @*
-        <br />
-        <input class="buy-now-button" type="button" value="Buy Now!" data-servicetype="0" />
-
-                                *@
+                    <div>
+                        <ul class="col1">
+                            <li class="header">
+                                <h2>&nbsp;</h2>
+                                <h3>&nbsp;</h3>
                             </li>
-                            <li class="pricerow">
-                                4 Meal Package - $400 + Groceries
-                                @*
-        <br />
-        <input class="buy-now-button" type="button" value="Buy Now!" data-servicetype="1" />
-
-                                *@
-                            </li>
-                            <li class="pricerow">
-                                3 Meal Package - $325 + Groceries
-                                @*
-        <br />
-        <input class="buy-now-button" type="button" value="Buy Now!" data-servicetype="2" />
-
-                                *@
-                            </li>
-                            <li class="pricerow">
-                                Party - $500 Minimum
-                            </li>
-                            <li class="pricerow">
-                                Snacks and breakfast items - $75 each + Groceries
-                            </li>
-                            <li class="pricerow">
-                                Cooking Class - $500 Minimum
-                            </li>
+                            <li class="pricerow darkgrey">Conventional Grocery Fee</li>
+                            <li class="pricerow mediumgrey">Organic Grocery Fee</li>
+                            <li class="pricerow darkgrey">Total Meals</li>
                         </ul>
                     </div>
-                    <div class="col2">
-                        <ul>
-                            <li class="pricerow">
-                                Five meals with up to four - six servings of any selection.
+                    <div class="hover">
+                        <ul class="col2">
+                            <li class="header">
+                                <h2>We Are Family!</h2>
+                                <h3>(Four - Six People)</h3>
                             </li>
-                            <li class="pricerow">
-                                Four meals with up to four - six servings of any selection.
+                            <li class="pricerow mediumgrey">+ $225</li>
+                            <li class="pricerow lightgrey">+ $275</li>
+                            <li class="pricerow mediumgrey">20</li>
+                        </ul>
+                    </div>
+                    <div class="hover">
+                        <ul class="col3">
+                            <li class="header">
+                                <h2>Three Peas in a Pod</h2>
+                                <h3>(Three People)</h3>
                             </li>
-                            <li class="pricerow">
-                                Three Meals with up to four - six servings of any selection.
+                            <li class="pricerow darkgrey">+ $175</li>
+                            <li class="pricerow mediumgrey">+ $225</li>
+                            <li class="pricerow darkgrey">15</li>
+                        </ul>
+                    </div>
+                    <div class="hover">
+                        <ul class="col4">
+                            <li class="header">
+                                <h2>Just the Two of Us</h2>
+                                <h3>(Two People)</h3>
                             </li>
-                            <li class="pricerow">
-                                Call or email to discuss your event.
+                            <li class="pricerow mediumgrey">+ $150</li>
+                            <li class="pricerow lightgrey">+ $200</li>
+                            <li class="pricerow mediumgrey">10</li>
+                        </ul>
+                    </div>
+                    <div class="hover">
+                        <ul class="col5">
+                            <li class="header">
+                                <h2>Single and Loving It</h2>
+                                <h3>(One Person)</h3>
                             </li>
-                            <li></li>
-                            <li class="pricerow">
-                                Call or email to discuss the class you would like.  I specialize in knife skills, sauces, special diets like keto,
-                                Italian and French techniques.
-                            </li>
+                            <li class="pricerow darkgrey">+ $125</li>
+                            <li class="pricerow mediumgrey">+ $175</li>
+                            <li class="pricerow darkgrey">5</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="justify">
+                    <i class="fa fa-leaf"></i> <b>
+                        If you would like more than five meals including dinner, lunch or breakfast
+                        increase the grocery bill by $50/meal and service fee by $25.
+                    </b>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p class="justify">
+                    <i class="fa fa-leaf"></i> <b>
+                        If you would like to reduce the meal count from five to four or three, reduce
+                        the grocery cost by $25 for four or $50 for three.  Service fee does not change.
+                    </b>
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p><b>Additional Items can be purchased in addition to the service fee:</b></p>
+                <div class="pricetbl">
+                    <div>
+                        <ul class="col1">
+                            <li class="pricerow darkgrey">Breakfast Bakes</li>
+                            <li class="pricerow mediumgrey">Baked Muffins or Cookies</li>
+                            <li class="pricerow darkgrey">Family Style Fruit Salad</li>
+                            <li class="pricerow mediumgrey">Add a Soup or Salad</li>
+                            <li class="pricerow darkgrey">Pie, Tart, or Cake</li>
+                            <li class="pricerow mediumgrey">Baby Food</li>
+                            <li class="pricerow darkgrey">Pet Food</li>
+                            <li class="pricerow mediumgrey">Cooking Lessons</li>
+                        </ul>
+                    </div>
+                    <div class="colwidth35">
+                        <ul class="col2">
+                            <li class="pricerow mediumgrey">$25 per 9 x 12 tray</li>
+                            <li class="pricerow lightgrey">$15 per dozen</li>
+                            <li class="pricerow mediumgrey">$25 for 8 cups</li>
+                            <li class="pricerow lightgrey">$15 for 4 servings</li>
+                            <li class="pricerow mediumgrey">$25 each</li>
+                            <li class="pricerow lightgrey">$20 per ice cube tray full</li>
+                            <li class="pricerow mediumgrey">$50 for ten 8 oz servings</li>
+                            <li class="pricerow lightgrey">$75/person or $450 minimum (includes groceries)</li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    -->
 
-    @*
-        -- Old Prices Section
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>Packages</h3>
-                </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h3>Additional Services</h3>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <h4>$325 flat service fee (additional fees dependent on package)</h4>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="pricetbl">
-                        <div>
-                            <ul class="col1">
-                                <li class="header">
-                                    <h2>&nbsp;</h2>
-                                    <h3>&nbsp;</h3>
-                                </li>
-                                <li class="pricerow darkgrey">Conventional Grocery Fee</li>
-                                <li class="pricerow mediumgrey">Organic Grocery Fee</li>
-                                <li class="pricerow darkgrey">Total Meals</li>
-                            </ul>
-                        </div>
-                        <div class="hover">
-                            <ul class="col2">
-                                <li class="header">
-                                    <h2>We Are Family!</h2>
-                                    <h3>(Four - Six People)</h3>
-                                </li>
-                                <li class="pricerow mediumgrey">+ $225</li>
-                                <li class="pricerow lightgrey">+ $275</li>
-                                <li class="pricerow mediumgrey">20</li>
-                            </ul>
-                        </div>
-                        <div class="hover">
-                            <ul class="col3">
-                                <li class="header">
-                                    <h2>Three Peas in a Pod</h2>
-                                    <h3>(Three People)</h3>
-                                </li>
-                                <li class="pricerow darkgrey">+ $175</li>
-                                <li class="pricerow mediumgrey">+ $225</li>
-                                <li class="pricerow darkgrey">15</li>
-                            </ul>
-                        </div>
-                        <div class="hover">
-                            <ul class="col4">
-                                <li class="header">
-                                    <h2>Just the Two of Us</h2>
-                                    <h3>(Two People)</h3>
-                                </li>
-                                <li class="pricerow mediumgrey">+ $150</li>
-                                <li class="pricerow lightgrey">+ $200</li>
-                                <li class="pricerow mediumgrey">10</li>
-                            </ul>
-                        </div>
-                        <div class="hover">
-                            <ul class="col5">
-                                <li class="header">
-                                    <h2>Single and Loving It</h2>
-                                    <h3>(One Person)</h3>
-                                </li>
-                                <li class="pricerow darkgrey">+ $125</li>
-                                <li class="pricerow mediumgrey">+ $175</li>
-                                <li class="pricerow darkgrey">5</li>
-                            </ul>
-                        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="price">
+                    <div class="price-header lightgrey shadow">
+                        <h3>@Html.ActionLink("Themed events", "ThemedEvents", "Menus", null, new { @class = "pink" }), dinner parties and heavy appetizers</h3>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="justify">
-                        <i class="fa fa-leaf"></i> <b>
-                            If you would like more than five meals including dinner, lunch or breakfast
-                            increase the grocery bill by $50/meal and service fee by $25.
-                        </b>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p class="justify">
-                        <i class="fa fa-leaf"></i> <b>
-                            If you would like to reduce the meal count from five to four or three, reduce
-                            the grocery cost by $25 for four or $50 for three.  Service fee does not change.
-                        </b>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p><b>Additional Items can be purchased in addition to the service fee:</b></p>
-                    <div class="pricetbl">
-                        <div>
-                            <ul class="col1">
-                                <li class="pricerow darkgrey">Breakfast Bakes</li>
-                                <li class="pricerow mediumgrey">Baked Muffins or Cookies</li>
-                                <li class="pricerow darkgrey">Family Style Fruit Salad</li>
-                                <li class="pricerow mediumgrey">Add a Soup or Salad</li>
-                                <li class="pricerow darkgrey">Pie, Tart, or Cake</li>
-                                <li class="pricerow mediumgrey">Baby Food</li>
-                                <li class="pricerow darkgrey">Pet Food</li>
-                                <li class="pricerow mediumgrey">Cooking Lessons</li>
-                            </ul>
-                        </div>
-                        <div class="colwidth35">
-                            <ul class="col2">
-                                <li class="pricerow mediumgrey">$25 per 9 x 12 tray</li>
-                                <li class="pricerow lightgrey">$15 per dozen</li>
-                                <li class="pricerow mediumgrey">$25 for 8 cups</li>
-                                <li class="pricerow lightgrey">$15 for 4 servings</li>
-                                <li class="pricerow mediumgrey">$25 each</li>
-                                <li class="pricerow lightgrey">$20 per ice cube tray full</li>
-                                <li class="pricerow mediumgrey">$50 for ten 8 oz servings</li>
-                                <li class="pricerow lightgrey">$75/person or $450 minimum (includes groceries)</li>
-                            </ul>
-                        </div>
+                    <div class="price-body mediumgrey">
+                        Usually $85/person with a $500 minimum (No additional charges for groceries)
                     </div>
+                    <div class="price-footer darkgrey"></div>
+                </div>
+                <div class="price">
+                    <div class="price-header lightgrey shadow">
+                        <h3>Romantic Dinner for Two</h3>
+                    </div>
+                    <div class="price-body mediumgrey">
+                        4 Course Meal for $500 (includes groceries)
+                    </div>
+                    <div class="price-footer darkgrey"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="price">
+                    <div class="price-header lightgrey shadow">
+                        <h3>Mother's Helper</h3>
+                    </div>
+                    <div class="price-body mediumgrey">
+                        <p>
+                            Sometimes you don't mind doing the shopping and the prep, but you want to enjoy the party and would like
+                            help with clean up.
+                        </p>
+                        <p>
+                            I can come cook your food, serve and clean up. I charge $75/hour with a $300 minimum.
+                            If the event is over 25 people, additional help will be hired at $20/hour.
+                        </p>
+                    </div>
+                    <div class="price-footer darkgrey"></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="price">
+                    <div class="price-header lightgrey shadow">
+                        <h3>Pack your Freezer – Lasagnas, Chills, Soups, Meatloaves, Etc!</h3>
+                    </div>
+                    <div class="price-body mediumgrey">
+                        <ul class="justify">
+                            <li><i class="fa fa-leaf"></i> $400 for 4 Entrees with 8 Servings Each with Conventional Groceries</li>
+                            <li><i class="fa fa-leaf"></i> $500  for 4 entrees with 8 Servings Each with Organic Groceries</li>
+                        </ul>
+                    </div>
+                    <div class="price-footer darkgrey"></div>
                 </div>
             </div>
         </div>
-    *@
+    </div>
+*@
 
-    @{/*
-          <div class="container">
-              <div class="row">
-                  <div class="col-md-12">
-                      <h3>Additional Services</h3>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-4">
-                      <div class="price">
-                          <div class="price-header lightgrey shadow">
-              *
-                              <h3>@Html.ActionLink("Themed events", "ThemedEvents", "Menus", null, new { @class = "pink" }), dinner parties and heavy appetizers</h3>
-                          </div>
-                          <div class="price-body mediumgrey">
-                              Usually $85/person with a $500 minimum (No additional charges for groceries)
-                          </div>
-                          <div class="price-footer darkgrey"></div>
-                      </div>
-                      <div class="price">
-                          <div class="price-header lightgrey shadow">
-                              <h3>Romantic Dinner for Two</h3>
-                          </div>
-                          <div class="price-body mediumgrey">
-                              4 Course Meal for $500 (includes groceries)
-                          </div>
-                          <div class="price-footer darkgrey"></div>
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                      <div class="price">
-                          <div class="price-header lightgrey shadow">
-                              <h3>Mother's Helper</h3>
-                          </div>
-                          <div class="price-body mediumgrey">
-                              <p>
-                                  Sometimes you don't mind doing the shopping and the prep, but you want to enjoy the party and would like
-                                  help with clean up.
-                              </p>
-                              <p>
-                                  I can come cook your food, serve and clean up. I charge $75/hour with a $300 minimum.
-                                  If the event is over 25 people, additional help will be hired at $20/hour.
-                              </p>
-                          </div>
-                          <div class="price-footer darkgrey"></div>
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                      <div class="price">
-                          <div class="price-header lightgrey shadow">
-                              <h3>Pack your Freezer – Lasagnas, Chills, Soups, Meatloaves, Etc!</h3>
-                          </div>
-                          <div class="price-body mediumgrey">
-                              <ul class="justify">
-                                  <li><i class="fa fa-leaf"></i> $400 for 4 Entrees with 8 Servings Each with Conventional Groceries</li>
-                                  <li><i class="fa fa-leaf"></i> $500  for 4 entrees with 8 Servings Each with Organic Groceries</li>
-                              </ul>
-                          </div>
-                          <div class="price-footer darkgrey"></div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-    */}
-
-    @section Scripts
+@section Scripts
 {
-        <script src="@Model["sdkSrc"]" data-sdk-client-token="@Model["token"]" data-sdk-integration-source="developer-studio" defer></script>
+    @{ var bgPath = Url.Content("~/Content/images/bg/"); }
 
-        @{ var bgPath = Url.Content("~/Content/images/bg/"); }
+    @Scripts.Render("~/bundles/jquery/effects")
 
-        @Scripts.Render("~/bundles/jquery/effects")
-
-        <script type="text/javascript">
+    <script type="text/javascript">
         $(function () {
             $("#banner").backstretch("@Html.Raw(bgPath + "punch.jpg")");
             @*
@@ -1530,347 +492,5 @@
 
             initFastlane();
         });
-
-        async function initFastlane() {
-            try {
-                /**
-                    * ######################################################################
-                    * Initialize Fastlane components
-                    * ######################################################################
-                    */
-
-                const {
-                    //identity,
-                    profile,
-                    FastlanePaymentComponent,
-                    FastlaneWatermarkComponent,
-                } = await window.paypal.Fastlane({
-                    // shippingAddressOptions: {
-                    //   allowedLocations: [],
-                    // },
-                    // cardOptions: {
-                    //   allowedBrands: [],
-                    // },
-                });
-
-                const paymentComponent = await FastlanePaymentComponent();
-
-                (
-                    await FastlaneWatermarkComponent({
-                        includeAdditionalInfo: true,
-                    })
-                ).render("#watermark-container");
-
-                /**
-                    * ######################################################################
-                    * State & data required for Fastlane
-                    * ######################################################################
-                    */
-
-                //let email;
-                let orderType;
-                //let paymentToken;
-                let shippingAddress;
-                //let memberAuthenticatedSuccessfully;
-                let activeSection;
-                let activeHeader;
-
-                /**
-                    * ######################################################################
-                    * Checkout form helpers
-                    * (this will be different for individual websites and will depend on how
-                    * your own checkout flow functions)
-                    * ######################################################################
-                    */
-
-                const form = document.getElementById("payment-form"); // document.querySelector("form");
-
-                //const customerSection = document.getElementById("customer");
-                //const customerHeader = document.getElementById("customer-heading");
-                const shippingSection = document.getElementById("shipping");
-                const shippingHeader = document.getElementById("shipping-heading");
-
-                const paymentSection = document.getElementById("payment");
-                //const paymentFormInput = document.getElementById("payment-component");
-                //const emailSubmitButton = document.getElementById("email-submit-button");
-                const checkoutButton = document.getElementById("checkout-button");
-                const buyNowButtons = Object.values(document.getElementsByClassName('buy-now-button'));
-
-                const setActiveSection = (section, sectionHeader) => {
-                    if (activeSection) activeSection.classList.remove("active");
-                    if (activeHeader) activeHeader.classList.remove("active");
-
-                    if (section) section.classList.add("active", "visited");
-                    if (sectionHeader) sectionHeader.classList.add("active", "visited");
-
-                    activeSection = section;
-                    activeHeader = sectionHeader;
-                };
-
-                const getAddressSummary = ({
-                    email,
-                    address: {
-                        addressLine1,
-                        addressLine2,
-                        adminArea2,
-                        adminArea1,
-                        postalCode,
-                        countryCode,
-                    } = {},
-                    name: { firstName, lastName, fullName } = {},
-                    phoneNumber: { countryCode: telCountryCode, nationalNumber } = {},
-                }) => {
-                    const isNotEmpty = (field) => !!field;
-                    const summary = [
-                        fullName || [firstName, lastName].filter(isNotEmpty).join(" "),
-                        [addressLine1, addressLine2].filter(isNotEmpty).join(", "),
-                        [
-                            adminArea2,
-                            [adminArea1, postalCode].filter(isNotEmpty).join(" "),
-                            countryCode,
-                        ]
-                            .filter(isNotEmpty)
-                            .join(", "),
-                        [telCountryCode, nationalNumber].filter(isNotEmpty).join(""),
-                        email,
-                    ];
-                    return summary.filter(isNotEmpty).join("\n");
-                };
-
-                const setShippingSummary = (address) => {
-                    shippingSection.querySelector(".summary").innerText = getAddressSummary(address);
-                };
-
-                const resetForm = (customerEmail) => {
-                    // reset form & state
-                    form.reset();
-                    document.getElementById("email-input").value = email = customerEmail;
-                    shippingSection.classList.remove("visited");
-                    setShippingSummary({});
-                    paymentSection.classList.remove("visited", "pinned");
-                };
-
-                buyNowButtons.forEach(button => {
-                    button.addEventListener("click", () => {
-                        orderType = button.getAttribute("data-servicetype");
-                        setActiveSection(shippingSection, shippingHeader);
-                        $('#serviceorder').modal({ backdrop: 'static', width: "700px", height: "500px", onClose: () => { resetForm(""); } });
-                    });
-                });
-
-                /**
-                    * ######################################################################
-                    * Checkout form interactable elements
-                    * (this will be different for individual websites and will depend on how
-                    * your own checkout flow functions)
-                    * ######################################################################
-                    */
-
-                //emailSubmitButton.addEventListener(
-                //    "click",
-                //    //async () => {
-                //    () => {
-                //        // disable button until authentication succeeds or fails
-                //        emailSubmitButton.setAttribute("disabled", "");
-
-                //        resetForm(form.elements["email-input"].value);
-
-                //        //memberAuthenticatedSuccessfully = undefined;
-                //        //paymentToken = undefined;
-                //        //shippingAddress = undefined;
-
-                //        if (customerSection.classList.contains("active")) {
-                //            while (paymentFormInput.lastChild) {
-                //                paymentFormInput.removeChild(paymentFormInput.lastChild);
-                //            }
-                //        }
-
-                //        // render payment component
-                //        paymentComponent.render("#payment-component");
-
-                //        //try {
-                //            /*
-                //            // identify and authenticate Fastlane members (only need this if
-                //            we want to use/create a FastLane profile for the user)
-                //            const { customerContextId } =
-                //                await identity.lookupCustomerByEmail(email);
-
-                //            if (customerContextId) {
-                //                const authResponse =
-                //                    await identity.triggerAuthenticationFlow(
-                //                        customerContextId
-                //                    );
-                //                console.log("Auth response:", authResponse);
-
-                //                // save profile data
-                //                if (authResponse?.authenticationState === "succeeded") {
-                //                    memberAuthenticatedSuccessfully = true;
-                //                    shippingAddress = authResponse.profileData.shippingAddress;
-                //                    paymentToken = authResponse.profileData.card;
-                //                }
-                //            } else {
-                //                // user was not recognized
-                //                console.log("No customerContextId");
-                //            }
-
-                //            if (shippingAddress) {
-                //                setShippingSummary(shippingAddress);
-                //            }
-                //            */
-
-                //            // update form UI
-                //            customerSection.querySelector(".summary").innerText = email;
-
-                //            //if (memberAuthenticatedSuccessfully) {
-                //            //    shippingSection.classList.add("visited");
-                //            //    paymentSection.classList.add("pinned");
-                //            //    setActiveSection(paymentSection);
-                //            //} else {
-                //                setActiveSection(shippingSection, shippingHeader);
-                //        //    }
-                //        //} finally {
-                //            // re-enable button once authentication succeeds or fails
-                //            emailSubmitButton.removeAttribute("disabled");
-                //    //    }
-                //    }
-                //);
-
-                // enable button after adding click event listener
-                //emailSubmitButton.removeAttribute("disabled");
-
-                //document
-                //    .getElementById("email-edit-button")
-                //    .addEventListener("click", (e) => { e.preventDefault(); setActiveSection(customerSection, customerHeader); });
-
-                document
-                    .getElementById("shipping-submit-button")
-                    .addEventListener("click", (e) => {
-                        // extract form values
-                        const email = form.elements["email-input"].value;
-                        const firstName = form.elements["given-name"].value;
-                        const lastName = form.elements["family-name"].value;
-                        const addressLine1 = form.elements["address-line1"].value;
-                        const addressLine2 = form.elements["address-line2"].value;
-                        const adminArea2 = form.elements["address-level2"].value;
-                        const adminArea1 = form.elements["address-level1"].value;
-                        const postalCode = form.elements["postal-code"].value;
-                        const countryCode = form.elements["country"].value;
-                        const telCountryCode = form.elements["tel-country-code"].value;
-                        const telNational = form.elements["tel-national"].value;
-
-                        // update state & form UI
-                        shippingAddress = {
-                            email,
-                            address: {
-                                addressLine1,
-                                addressLine2,
-                                adminArea2,
-                                adminArea1,
-                                postalCode,
-                                countryCode,
-                            },
-                            name: {
-                                firstName,
-                                lastName,
-                                fullName: [firstName, lastName]
-                                    .filter((field) => !!field)
-                                    .join(" "),
-                            },
-                            phoneNumber: {
-                                countryCode: telCountryCode,
-                                nationalNumber: telNational,
-                            },
-                        };
-
-                        paymentComponent.setShippingAddress(shippingAddress);
-                        paymentComponent.render("#payment-component");
-
-                        setShippingSummary(shippingAddress);
-
-                        setActiveSection(paymentSection, null);
-                    });
-
-                document
-                    .getElementById("shipping-edit-button")
-                    .addEventListener("click", async (e) => {
-                        e.preventDefault();
-
-                        //if (memberAuthenticatedSuccessfully) {
-                        //    // open Shipping Address Selector for Fastlane members
-                        //    const { selectionChanged, selectedAddress } =
-                        //        await profile.showShippingAddressSelector();
-
-                        //    if (selectionChanged) {
-                        //        // selectedAddress contains the new address
-                        //        console.log("New address:", selectedAddress);
-
-                        //        // update state & form UI
-                        //        shippingAddress = selectedAddress;
-                        //        setShippingSummary(shippingAddress);
-                        //        paymentComponent.setShippingAddress(shippingAddress);
-                        //    } else {
-                        //        // selection modal was dismissed without selection
-                        //    }
-                        //} else {
-                            setActiveSection(shippingSection, shippingHeader);
-                    //    }
-                    });
-
-                //document
-                //    .getElementById("payment-edit-button")
-                //    .addEventListener("click", () => setActiveSection(paymentSection));
-
-                checkoutButton.addEventListener("click", async () => {
-                    // disable button until transaction succeeds or fails
-                    checkoutButton.setAttribute("disabled", "");
-
-                    ShowWaitModal("Submitting payment...");
-
-                    try {
-                        // get payment token
-                        paymentToken = await paymentComponent.getPaymentToken();
-
-                        // send transaction details to back-end
-                        const headers = new Headers();
-                        headers.append("Content-Type", "application/json");
-
-//                            const isShippingRequired = form.elements["shipping-required"].checked;
-//                            const body = JSON.stringify({
-//                                ...(isShippingRequired && { shippingAddress }),
-//                                paymentToken,
-//                            });
-//                            const data = new FormData(form);
-//                            const body = JSON.stringify(Object.fromEntries(data.entries()));
-                        const body = JSON.stringify({ orderType, paymentToken, shippingAddress })
-
-                        const response = await fetch("api/Payment", {
-                            method: "POST",
-                            headers,
-                            body,
-                        });
-
-                        const { result, error } = await response.json();
-
-                        if (error) {
-                            console.error(error);
-                        } else {
-                            GetResponse(result);
-
-                            if (result.id) {
-                                resetForm("");
-
-                                console.log(`Order ${result.id}: ${result.status}`);
-                            }
-                        }
-                    } finally {
-                        // re-enable button once transaction succeeds or fails
-                        checkoutButton.removeAttribute("disabled");
-                    }
-                });
-            }
-            catch (error) {
-                console.error(error);
-            }
-        }
-        </script>
-    }
+    </script>
+}
